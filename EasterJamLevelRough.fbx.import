@@ -38,6 +38,14 @@ materials/extract=0
 materials/extract_format=0
 materials/extract_path=""
 _subresources={
+"materials": {
+"@MATERIAL:0": {
+"use_external/path": "uid://8qbq06cov4jr"
+},
+"@MATERIAL:1": {
+"use_external/path": "uid://8qbq06cov4jr"
+}
+},
 "nodes": {
 "PATH:Camera": {
 "import/skip_import": true

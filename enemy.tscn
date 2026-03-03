@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://blqtn0ghqib5f"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nxogm"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7xaro"]
 albedo_color = Color(1, 0, 0, 1)
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_3253y"]
-material = SubResource("StandardMaterial3D_nxogm")
+material = SubResource("StandardMaterial3D_7xaro")
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_u3cyc"]
 
