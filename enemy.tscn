@@ -1,21 +1,71 @@
 [gd_scene format=3 uid="uid://blqtn0ghqib5f"]
 
+[ext_resource type="Script" uid="uid://8a1cdsr38h7a" path="res://debug_radius.gd" id="1_7k104"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_u3cyc"]
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7xaro"]
 albedo_color = Color(1, 0, 0, 1)
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_3253y"]
 material = SubResource("StandardMaterial3D_7xaro")
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_u3cyc"]
+[sub_resource type="BoxMesh" id="BoxMesh_7xaro"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_7xaro"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4gyqm"]
+transparency = 1
+cull_mode = 2
+albedo_color = Color(1, 0, 0, 0.2627451)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7k104"]
+transparency = 1
+cull_mode = 2
+albedo_color = Color(0, 0, 1, 0.2627451)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qi2p4"]
+transparency = 1
+cull_mode = 2
+albedo_color = Color(0, 1, 0, 0.2627451)
 
 [node name="Enemy" type="CharacterBody3D" unique_id=45088162]
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1912462064]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-mesh = SubResource("CapsuleMesh_3253y")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1070725013]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_u3cyc")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=431065075]
+
+[node name="Pivot" type="Node3D" parent="." unique_id=1033716084]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Pivot" unique_id=1912462064]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_3253y")
+
+[node name="Eyebrows" type="MeshInstance3D" parent="Pivot" unique_id=18348045]
+transform = Transform3D(0.5, 0, 0, 0, 0.25, 0, 0, 0, 0.5, 0, 1.427499, 0.30576366)
+mesh = SubResource("BoxMesh_7xaro")
+
+[node name="DebugDeathRadius" type="MeshInstance3D" parent="." unique_id=553273740 node_paths=PackedStringArray("bunny")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 1, 0)
+mesh = SubResource("SphereMesh_7xaro")
+surface_material_override/0 = SubResource("StandardMaterial3D_4gyqm")
+script = ExtResource("1_7k104")
+bunny = NodePath("..")
+
+[node name="DebugDangerRadius" type="MeshInstance3D" parent="." unique_id=819175157 node_paths=PackedStringArray("bunny")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 1, 0)
+mesh = SubResource("SphereMesh_7xaro")
+surface_material_override/0 = SubResource("StandardMaterial3D_7k104")
+script = ExtResource("1_7k104")
+bunny = NodePath("..")
+index = 1
+
+[node name="DebugDetectionRadius" type="MeshInstance3D" parent="." unique_id=738553507 node_paths=PackedStringArray("bunny")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 1, 0)
+mesh = SubResource("SphereMesh_7xaro")
+surface_material_override/0 = SubResource("StandardMaterial3D_qi2p4")
+script = ExtResource("1_7k104")
+bunny = NodePath("..")
+index = 2

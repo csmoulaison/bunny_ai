@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://c1hs0vbivnb7a"]
+
+[ext_resource type="PackedScene" uid="uid://bq8m8th7oc435" path="res://EasterJamLevelRough.fbx" id="1_404va"]
+[ext_resource type="Material" uid="uid://ctg444mbr3k4o" path="res://debug_radii.tres" id="2_btufr"]
+
+[node name="EasterJamLevelRough" unique_id=948382410 instance=ExtResource("1_404va")]
+
+[node name="Cube" parent="." index="0" unique_id=1254440960]
+surface_material_override/0 = ExtResource("2_btufr")
+
+[node name="Cube_001" parent="." index="1" unique_id=485541405]
+surface_material_override/0 = ExtResource("2_btufr")
