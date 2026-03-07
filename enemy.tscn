@@ -1,8 +1,11 @@
 [gd_scene format=3 uid="uid://blqtn0ghqib5f"]
 
-[ext_resource type="Script" uid="uid://8a1cdsr38h7a" path="res://debug_radius.gd" id="1_7k104"]
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_u3cyc"]
+[ext_resource type="Script" uid="uid://4elh4607cn7n" path="res://eb_core.gd" id="1_3yqyl"]
+[ext_resource type="Script" uid="uid://dogtnfp5dwtsi" path="res://eb_roam.gd" id="1_4gyqm"]
+[ext_resource type="Script" uid="uid://83j5pehywu46" path="res://eb_search.gd" id="2_epg4t"]
+[ext_resource type="Script" uid="uid://bibi6kptslmq0" path="res://eb_hunt.gd" id="3_3yqyl"]
+[ext_resource type="Script" uid="uid://ti5ldoal8cjk" path="res://eb_locomotion.gd" id="3_wujgv"]
+[ext_resource type="Script" uid="uid://ca5ogf00p5yni" path="res://eb_brain.gd" id="7_wujgv"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7xaro"]
 albedo_color = Color(1, 0, 0, 1)
@@ -12,30 +15,10 @@ material = SubResource("StandardMaterial3D_7xaro")
 
 [sub_resource type="BoxMesh" id="BoxMesh_7xaro"]
 
-[sub_resource type="SphereMesh" id="SphereMesh_7xaro"]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_u3cyc"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4gyqm"]
-transparency = 1
-cull_mode = 2
-albedo_color = Color(1, 0, 0, 0.2627451)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7k104"]
-transparency = 1
-cull_mode = 2
-albedo_color = Color(0, 0, 1, 0.2627451)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qi2p4"]
-transparency = 1
-cull_mode = 2
-albedo_color = Color(0, 1, 0, 0.2627451)
-
-[node name="Enemy" type="CharacterBody3D" unique_id=45088162]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1070725013]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-shape = SubResource("CapsuleShape3D_u3cyc")
-
-[node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=431065075]
+[node name="EB" type="CharacterBody3D" unique_id=45088162]
+script = ExtResource("1_3yqyl")
 
 [node name="Pivot" type="Node3D" parent="." unique_id=1033716084]
 
@@ -47,25 +30,33 @@ mesh = SubResource("CapsuleMesh_3253y")
 transform = Transform3D(0.5, 0, 0, 0, 0.25, 0, 0, 0, 0.5, 0, 1.427499, 0.30576366)
 mesh = SubResource("BoxMesh_7xaro")
 
-[node name="DebugDeathRadius" type="MeshInstance3D" parent="." unique_id=553273740 node_paths=PackedStringArray("bunny")]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 1, 0)
-mesh = SubResource("SphereMesh_7xaro")
-surface_material_override/0 = SubResource("StandardMaterial3D_4gyqm")
-script = ExtResource("1_7k104")
-bunny = NodePath("..")
+[node name="Collider" type="CollisionShape3D" parent="." unique_id=1070725013]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_u3cyc")
 
-[node name="DebugDangerRadius" type="MeshInstance3D" parent="." unique_id=819175157 node_paths=PackedStringArray("bunny")]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 1, 0)
-mesh = SubResource("SphereMesh_7xaro")
-surface_material_override/0 = SubResource("StandardMaterial3D_7k104")
-script = ExtResource("1_7k104")
-bunny = NodePath("..")
-index = 1
+[node name="NavAgent" type="NavigationAgent3D" parent="." unique_id=431065075]
 
-[node name="DebugDetectionRadius" type="MeshInstance3D" parent="." unique_id=738553507 node_paths=PackedStringArray("bunny")]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 1, 0)
-mesh = SubResource("SphereMesh_7xaro")
-surface_material_override/0 = SubResource("StandardMaterial3D_qi2p4")
-script = ExtResource("1_7k104")
-bunny = NodePath("..")
-index = 2
+[node name="Logic" type="Node" parent="." unique_id=577667029]
+
+[node name="Brain" type="Node" parent="Logic" unique_id=1941013720]
+script = ExtResource("7_wujgv")
+metadata/_custom_type_script = "uid://ca5ogf00p5yni"
+
+[node name="Locomotion" type="Node" parent="Logic" unique_id=2031736653 node_paths=PackedStringArray("body", "pivot", "nav")]
+script = ExtResource("3_wujgv")
+body = NodePath("../..")
+pivot = NodePath("../../Pivot")
+nav = NodePath("../../NavAgent")
+metadata/_custom_type_script = "uid://ti5ldoal8cjk"
+
+[node name="Hunt" type="Node" parent="Logic" unique_id=10863832]
+script = ExtResource("3_3yqyl")
+metadata/_custom_type_script = "uid://bibi6kptslmq0"
+
+[node name="Roam" type="Node" parent="Logic" unique_id=1497458186]
+script = ExtResource("1_4gyqm")
+metadata/_custom_type_script = "uid://dogtnfp5dwtsi"
+
+[node name="Search" type="Node" parent="Logic" unique_id=1076472909]
+script = ExtResource("2_epg4t")
+metadata/_custom_type_script = "uid://83j5pehywu46"

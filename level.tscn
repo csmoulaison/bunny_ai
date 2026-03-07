@@ -2,10 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://gh4cva7umx7l" path="res://player.tscn" id="1_oi3di"]
 [ext_resource type="PackedScene" uid="uid://bq8m8th7oc435" path="res://EasterJamLevelRough.fbx" id="2_0b4ue"]
-[ext_resource type="Script" uid="uid://dqmllewg2kuoq" path="res://enemy.gd" id="3_0b4ue"]
 [ext_resource type="PackedScene" uid="uid://blqtn0ghqib5f" path="res://enemy.tscn" id="3_f2txt"]
-[ext_resource type="Script" uid="uid://l738r75wn4vv" path="res://debug_enemy_camera.gd" id="5_1ainy"]
-[ext_resource type="Script" uid="uid://cwksor6f6d7xo" path="res://enemy_debug_info.gd" id="5_f2txt"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_drvgu"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -44,12 +41,9 @@ floor_constant_speed = true
 floor_max_angle = 1.0227629
 floor_snap_length = 0.25
 
-[node name="Enemy" parent="." unique_id=45088162 node_paths=PackedStringArray("player", "path_nodes") instance=ExtResource("3_f2txt")]
+[node name="Enemy" parent="." unique_id=45088162 node_paths=PackedStringArray("path") instance=ExtResource("3_f2txt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.368725, -1.9451082, -0.6756096)
-script = ExtResource("3_0b4ue")
-player = NodePath("../Player")
-path_nodes = [NodePath("../Path/p1"), NodePath("../Path/p2"), NodePath("../Path/p3"), NodePath("../Path/p4")]
-detection_radii = Array[float]([4.0, 12.0, 24.0])
+path = NodePath("../Path")
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=1100214392]
 navigation_mesh = SubResource("NavigationMesh_nxogm")
@@ -84,41 +78,3 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.568418, -2, -3.518612)
 
 [node name="p4" type="Node3D" parent="Path" unique_id=289201942]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.304762, -2, 4.792019)
-
-[node name="DebugHelpers" type="Node" parent="." unique_id=14832044]
-
-[node name="EnemySubViewport" type="SubViewportContainer" parent="DebugHelpers" unique_id=792773535]
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -373.0
-offset_top = -259.0
-offset_right = -13.0
-offset_bottom = -19.0
-grow_horizontal = 0
-grow_vertical = 0
-pivot_offset_ratio = Vector2(1, 1)
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="SubViewport" type="SubViewport" parent="DebugHelpers/EnemySubViewport" unique_id=380769996]
-handle_input_locally = false
-size = Vector2i(360, 240)
-render_target_update_mode = 4
-
-[node name="Camera3D" type="Camera3D" parent="DebugHelpers/EnemySubViewport/SubViewport" unique_id=920831734 node_paths=PackedStringArray("enemy")]
-transform = Transform3D(1, 0, 0, 0, 0.926371, 0.37661234, 0, -0.37661234, 0.926371, 4.4600563, 1.4794993, 4.0716925)
-fov = 100.4
-script = ExtResource("5_1ainy")
-enemy = NodePath("../../../../Enemy")
-
-[node name="EnemyDebugInfo" type="RichTextLabel" parent="DebugHelpers" unique_id=1070878504 node_paths=PackedStringArray("enemy")]
-offset_left = 13.0
-offset_top = 9.0
-offset_right = 665.0
-offset_bottom = 311.0
-text = "State: HUMAN"
-script = ExtResource("5_f2txt")
-enemy = NodePath("../../Enemy")
