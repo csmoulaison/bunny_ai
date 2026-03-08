@@ -21,20 +21,3 @@ func physics_process(dt: float):
 		stop_moving()
 	body.velocity = body.velocity.move_toward(desired_velocity, acceleration * dt)
 	body.move_and_slide()
-
-func set_target(position: Vector3):
-	nav.target_position = position
-
-func stop_moving():
-	set_target(body.position)
-
-func at_target() -> bool:
-	var delta = target_delta()
-	return delta.length() < navigation_stop_distance
-
-func target_position() -> Vector3:
-	return nav.get_next_path_position()
-
-func target_delta() -> Vector3:
-	var target = target_position()
-	return target - body.global_transform.origin;

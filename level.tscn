@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://gh4cva7umx7l" path="res://player.tscn" id="1_oi3di"]
 [ext_resource type="PackedScene" uid="uid://bq8m8th7oc435" path="res://EasterJamLevelRough.fbx" id="2_0b4ue"]
 [ext_resource type="PackedScene" uid="uid://blqtn0ghqib5f" path="res://enemy.tscn" id="3_f2txt"]
+[ext_resource type="Script" uid="uid://cqedo74nh61hh" path="res://director.gd" id="4_0b4ue"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_drvgu"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -41,9 +42,8 @@ floor_constant_speed = true
 floor_max_angle = 1.0227629
 floor_snap_length = 0.25
 
-[node name="Enemy" parent="." unique_id=45088162 node_paths=PackedStringArray("path") instance=ExtResource("3_f2txt")]
+[node name="Enemy" parent="." unique_id=45088162 instance=ExtResource("3_f2txt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.368725, -1.9451082, -0.6756096)
-path = NodePath("../Path")
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=1100214392]
 navigation_mesh = SubResource("NavigationMesh_nxogm")
@@ -78,3 +78,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.568418, -2, -3.518612)
 
 [node name="p4" type="Node3D" parent="Path" unique_id=289201942]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.304762, -2, 4.792019)
+
+[node name="Director" type="Node" parent="." unique_id=929345303 node_paths=PackedStringArray("starting_path") groups=["Director"]]
+script = ExtResource("4_0b4ue")
+starting_path = NodePath("../Path")

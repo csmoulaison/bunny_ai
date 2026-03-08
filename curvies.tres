@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="SoundConfiguration" format=3 uid="uid://ckaqx7ljag5bo"]
+
+[ext_resource type="Script" uid="uid://cv274nl3a7xno" path="res://sound_resource.gd" id="1_31bk1"]
+[ext_resource type="Script" uid="uid://did4dbiqjy8a4" path="res://sound_curve.gd" id="2_h4m1w"]
+
+[sub_resource type="Curve" id="Curve_2eiyy"]
+_limits = [0.0, 1.0, 0.0, 10.0]
+script = ExtResource("2_h4m1w")
+metadata/_custom_type_script = "uid://did4dbiqjy8a4"
+
+[resource]
+script = ExtResource("1_31bk1")
+suspicion_curve = SubResource("Curve_2eiyy")
+metadata/_custom_type_script = "uid://cv274nl3a7xno"
