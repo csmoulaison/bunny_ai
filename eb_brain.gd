@@ -19,7 +19,9 @@ enum Action {
 	STUNNED
 }
 
+@export var speed_mod: float = 0.1
 @export var player_kill_radius: float = 2.0
+@export var sound_combine_distance: float = 5.0
 @export_group("Sound Response Configuration")
 @export var breath_sound_configuration: SoundConfiguration
 @export var crouch_sound_configuration: SoundConfiguration
@@ -32,7 +34,10 @@ enum Action {
 
 class PointOfInterest:
 	var position: Vector3
-	var interest: float
+	var score: float
+	func _init(pos: Vector3, scr: float):
+		position = pos
+		score = scr
 
 var previous_action: Action = Action.ROAM
 ## A measure of how much EB feels it isn't as aware as it should be and the 
@@ -68,19 +73,29 @@ func take_action(core: EbCore, dt: float):
 	aggression -= dt
 	stun -= dt
 	
-	# Cooldown points of interest.
-	for point in points_of_interest:
-		point.interest -= dt
+	# Cooldown points of interest and target the closest
+	var closest_distance: float = 100000.0
+	for i in points_of_interest.size():
+		var point: PointOfInterest = points_of_interest[i]
+		var distance = core.nav_position().distance_to(point.position)
+		if distance < closest_distance:
+			closest_distance = distance
+			target = point.position
+		point.score -= dt
+		if point.score < 0.0:
+			points_of_interest[i] = points_of_interest.back()
+			points_of_interest.pop_back()
 	
 	# TODO(conner): Determine algorithms for scoring these. They should include
 	# coefficients which are parameterized by the designer.
 	var scores: Array[float]
+	scores.resize(6)
 	scores[Action.ROAM] = 1.0
-	scores[Action.LISTEN] = suspicion
+	scores[Action.LISTEN] = anxiety
 	scores[Action.MOVE_TO_TARGET] = suspicion
 	scores[Action.MOVE_IN_SEARCH_RADIUS] = suspicion
-	scores[Action.HUNT] = 0.0
-	scores[Action.STUNNED] = 0.0
+	scores[Action.HUNT] = aggression
+	scores[Action.STUNNED] = stun
 	
 	var best_score: float = 0.0
 	var best_action: Action
@@ -96,12 +111,14 @@ func take_action(core: EbCore, dt: float):
 		Action.MOVE_IN_SEARCH_RADIUS: move_in_search_radius(core)
 		Action.HUNT: hunt(core)
 		Action.STUNNED: stunned(core)
+	core.nav_set_speed(aggression * speed_mod)
 
-func respond_to_sound(my_position: Vector3, origin: Vector3, type: Sound.Type):
+func respond_to_sound(core: EbCore, origin: Vector3, type: Sound.Type):
 	# Modify suspicion, aggression, and stun based on type and distance.
 	# TODO(conner): Attenuate score (modify distance, probably) based on walls,
 	# and maybe even based on ambient sounds in the room.
-	var distance: float = (my_position - origin).length()
+	var distance: float = (core.nav_position() - origin).length()
+	distance = max(1.0, distance * core.velocity().length() / 4.0)
 	var sound: SoundConfiguration
 	match type:
 		Sound.Type.BREATH: sound = breath_sound_configuration
@@ -112,19 +129,38 @@ func respond_to_sound(my_position: Vector3, origin: Vector3, type: Sound.Type):
 		Sound.Type.EGG_GLASS: sound = glass_sound_configuration
 		Sound.Type.EXHIBIT_RECORDING: sound = exhibit_sound_configuration
 		Sound.Type.AIRHORN: sound = airhorn_sound_configuration
-	suspicion = sound.suspicion_curve.sample(distance)
-	aggression = sound.aggression_curve.sample(distance)
-	stun = sound.stun_curve.sample(distance)
+	suspicion = max(suspicion, sound.suspicion_curve.sample(distance))
+	aggression = max(aggression, sound.aggression_curve.sample(distance))
+	stun = max(stun, sound.stun_curve.sample(distance))
 
 	# Kill the player if they made a sound too close to us.
 	if sound.is_from_player && distance < player_kill_radius && stun < 0.1:
 		print("Player being killed as we speak!")
 		# TODO(conner): Kill the player as we speak.
 	
-	# TODO(conner): Add/combine points of interest.
+	# Add sound to points of interest, combining with another if close enough.
+	points_of_interest.push_back(PointOfInterest.new(origin, sound.interest_score))
+	'''
+	var closest_point_index: int = -1
+	var closest_point_distance: float
+	for i in points_of_interest.size():
+		var point_distance: float = my_position.distance_to(points_of_interest[i].position)
+		if closest_point_index == -1:
+			closest_point_index = i
+			closest_point_distance = point_distance
+			continue
+		if point_distance < closest_point_distance:
+			closest_point_index = i
+			closest_point_distance = point_distance
+	if closest_point_index != -1 && closest_point_distance < sound_combine_distance:
+		points_of_interest[closest_point_index].position = origin
+		points_of_interest[closest_point_index].score = sound.interest_score
+	else:
+		points_of_interest.push_back(PointOfInterest.new(origin, sound.interest_score))
+	'''
 
 func roam(core: EbCore):
-	if core.at_target():
+	if core.nav_at_target():
 		core.path_increment_waypoint()
 	core.nav_goto_target(core.path_current_waypoint_position())
 	
@@ -148,8 +184,8 @@ func move_in_search_radius(core: EbCore):
 		target = position_result.position
 	core.nav_goto_target(target)
 
-func hunt(_core: EbCore):
-	var _tmp
+func hunt(core: EbCore):
+	core.nav_goto_target(target)
 	
 func stunned(_core: EbCore):
 	var _tmp

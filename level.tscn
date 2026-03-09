@@ -5,6 +5,12 @@
 [ext_resource type="PackedScene" uid="uid://blqtn0ghqib5f" path="res://enemy.tscn" id="3_f2txt"]
 [ext_resource type="Script" uid="uid://cqedo74nh61hh" path="res://director.gd" id="4_0b4ue"]
 
+[sub_resource type="GDScript" id="GDScript_0b4ue"]
+script/source = "class_name EbRoot extends CharacterBody3D
+
+@export var path: Node
+"
+
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_drvgu"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
 ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -26,7 +32,9 @@ cell_height = 0.1
 agent_height = 1.0
 agent_max_slope = 60.0
 
-[node name="Root" type="Node3D" unique_id=694463482]
+[node name="Root" type="Node3D" unique_id=694463482 node_paths=PackedStringArray("path")]
+script = SubResource("GDScript_0b4ue")
+path = NodePath("Path")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=474906465]
 environment = SubResource("Environment_nxogm")
@@ -41,9 +49,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.14737, 0, -20.826687)
 floor_constant_speed = true
 floor_max_angle = 1.0227629
 floor_snap_length = 0.25
-
-[node name="Enemy" parent="." unique_id=45088162 instance=ExtResource("3_f2txt")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.368725, -1.9451082, -0.6756096)
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=1100214392]
 navigation_mesh = SubResource("NavigationMesh_nxogm")
@@ -82,3 +87,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.304762, -2, 4.792019)
 [node name="Director" type="Node" parent="." unique_id=929345303 node_paths=PackedStringArray("starting_path") groups=["Director"]]
 script = ExtResource("4_0b4ue")
 starting_path = NodePath("../Path")
+
+[node name="EB" parent="." unique_id=1494601571 instance=ExtResource("3_f2txt")]

@@ -3,29 +3,22 @@
 # EB from the outside, responding to signals, for instance.
 class_name EbCore extends Node
 
-@export var _body: CharacterBody3D
+@export var _root: CharacterBody3D
+@export var _brain: EbBrain
 @export var _pivot: Node3D
 @export var _nav: NavigationAgent3D
 @export var _waypoints: Array[Node]
 @export var _current_waypoint: int = 0
 @export var _navigation_stop_distance: float = 0.1
 @export var _acceleration: float = 20.0
-
-# TODO(conner): Once we have an absolute MVP going for Brain 2.0, reimplement
-# Brain 1.0 and make sure it interoperates. Add some optional complications to
-# 1.0 as well. Maybe making continuousness and/or dynamic ranges optional isn't
-# THAT hard, idk.
-@onready var _brain: EbBrain = $Brain
 var _speed: float = 0.0
 
 func _ready():
 	var sound_emitters = get_tree().get_nodes_in_group("SoundEmitters")
 	for emitter in sound_emitters:
 		emitter.sound.connect(on_sound)
-	
-	var directors = get_tree().get_nodes_in_group("Directors")
-	for director in directors:
-		director.set_eb_path.connect(on_set_eb_path)
+
+	_waypoints = _root.path.get_children()
 		
 	nav_goto_me()
 	
@@ -35,24 +28,21 @@ func _process(dt: float):
 func _physics_process(dt: float):
 	var desired_velocity: Vector3 = Vector3.ZERO
 	var target = _nav.get_next_path_position()
-	var delta: Vector3 = target - _body.global_transform.origin;
+	var delta: Vector3 = target - _root.global_transform.origin;
 
 	if(delta.length()) > _navigation_stop_distance:
 		desired_velocity = delta.normalized() * _speed
 		_pivot.rotation.y = atan2(desired_velocity.x, desired_velocity.z)
 	else:
-		_nav.target_position = _body.position
-	_body.velocity = _body.velocity.move_toward(desired_velocity, _acceleration * dt)
-	_body.move_and_slide()
+		_nav.target_position = _root.position
+	_root.velocity = _root.velocity.move_toward(desired_velocity, _acceleration * dt)
+	_root.move_and_slide()
 	
 # ================
 # SIGNAL RESPONSES
 # ================
 func on_sound(origin: Vector3, type: Sound.Type): 
-	_brain.respond_to_sound(_body.position, origin, type)
-	
-func on_set_eb_path(path: Node):
-	_waypoints = path.get_children()
+	_brain.respond_to_sound(self, origin, type)
 	
 # ====
 # PATH
@@ -73,7 +63,7 @@ func path_current_waypoint_position() -> Vector3:
 # NAVIGATION
 # ==========
 func nav_position() -> Vector3:
-	return _body.position
+	return _root.position
 
 func nav_set_speed(speed: float):
 	_speed = speed
@@ -82,7 +72,7 @@ func nav_goto_target(pos: Vector3):
 	_nav.target_position = pos
 
 func nav_goto_me():
-	nav_goto_target(_body.position)
+	nav_goto_target(_root.position)
 
 func nav_at_target() -> bool:
 	return nav_target_delta().length() < _navigation_stop_distance
@@ -91,7 +81,7 @@ func nav_target_position() -> Vector3:
 	return _nav.get_next_path_position()
 
 func nav_target_delta() -> Vector3:
-	return nav_target_position() - _body.global_transform.origin;
+	return nav_target_position() - _root.global_transform.origin;
 
 func nav_target_reachable() -> bool:
 	return _nav.is_target_reachable()
@@ -114,7 +104,7 @@ func try_find_search_radius_position(center: Vector3, radius: float, space_state
 	
 	# Check if position on circle hits a wall, defined as having
 	# an angle greater than 0.8 radians.
-	var ray_origin = Vector3(_body.position.x, _body.position.y + 0.0, _body.position.z)
+	var ray_origin = Vector3(_root.position.x, _root.position.y + 0.0, _root.position.z)
 	var ray_query = PhysicsRayQueryParameters3D.create(ray_origin, circle_position)
 	var result = space_state.intersect_ray(ray_query)
 	if !result.is_empty():
@@ -138,7 +128,7 @@ func try_find_search_radius_position(center: Vector3, radius: float, space_state
 	result = space_state.intersect_ray(ray_query)
 	if !result.is_empty():
 		var down_y = result["position"].y
-		if abs(down_y - _body.position.y) < abs(closest_y - _body.position.y):
+		if abs(down_y - _root.position.y) < abs(closest_y - _root.position.y):
 			closest_y = down_y
 			
 	if(closest_y != 100000.0):

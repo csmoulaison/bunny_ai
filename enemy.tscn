@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://blqtn0ghqib5f"]
 
+[ext_resource type="Script" uid="uid://dicmi0ehevrd7" path="res://eb_root.gd" id="1_epg4t"]
 [ext_resource type="Script" uid="uid://did4dbiqjy8a4" path="res://sound_curve.gd" id="3_dxifv"]
 [ext_resource type="Script" uid="uid://4elh4607cn7n" path="res://eb_core.gd" id="4_iifgy"]
 [ext_resource type="Script" uid="uid://cv274nl3a7xno" path="res://sound_resource.gd" id="4_pwjut"]
@@ -184,7 +185,8 @@ aggression_curve = SubResource("Curve_ccdwq")
 stun_curve = SubResource("Curve_0jgdh")
 metadata/_custom_type_script = "uid://cv274nl3a7xno"
 
-[node name="EB" type="CharacterBody3D" unique_id=45088162]
+[node name="EB" type="CharacterBody3D" unique_id=1494601571]
+script = ExtResource("1_epg4t")
 
 [node name="Pivot" type="Node3D" parent="." unique_id=1033716084]
 
@@ -214,9 +216,10 @@ exhibit_sound_configuration = SubResource("Resource_doop2")
 airhorn_sound_configuration = SubResource("Resource_jmwgi")
 metadata/_custom_type_script = "uid://ca5ogf00p5yni"
 
-[node name="Core" type="CharacterBody3D" parent="." unique_id=864673111 node_paths=PackedStringArray("_body", "_pivot", "_nav")]
+[node name="Core" type="Node" parent="." unique_id=1704359287 node_paths=PackedStringArray("_root", "_brain", "_pivot", "_nav")]
 script = ExtResource("4_iifgy")
-_body = NodePath("..")
+_root = NodePath("..")
+_brain = NodePath("../Brain")
 _pivot = NodePath("../Pivot")
 _nav = NodePath("../NavAgent")
 metadata/_custom_type_script = "uid://4elh4607cn7n"
