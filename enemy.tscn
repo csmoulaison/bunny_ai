@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://dicmi0ehevrd7" path="res://eb_root.gd" id="1_epg4t"]
 [ext_resource type="Script" uid="uid://did4dbiqjy8a4" path="res://sound_curve.gd" id="3_dxifv"]
 [ext_resource type="Script" uid="uid://4elh4607cn7n" path="res://eb_core.gd" id="4_iifgy"]
-[ext_resource type="Script" uid="uid://cv274nl3a7xno" path="res://sound_resource.gd" id="4_pwjut"]
 [ext_resource type="Script" uid="uid://ca5ogf00p5yni" path="res://eb_brain.gd" id="7_wujgv"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7xaro"]
@@ -14,189 +13,80 @@ material = SubResource("StandardMaterial3D_7xaro")
 
 [sub_resource type="BoxMesh" id="BoxMesh_7xaro"]
 
+[sub_resource type="BoxMesh" id="BoxMesh_iifgy"]
+
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_u3cyc"]
 
-[sub_resource type="Curve" id="Curve_n0g06"]
-_limits = [0.0, 20.0, 0.0, 20.0]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(2.6395938, 0), 0.0, 0.0, 0, 0]
+[sub_resource type="Curve" id="Curve_iifgy"]
+_limits = [0.0, 25.0, 0.0, 15.0]
+_data = [Vector2(0, 12.542588), 0.0, -3.7025414, 0, 0, Vector2(9.835272, 0), 0.0, 0.0, 0, 0]
 point_count = 2
 script = ExtResource("3_dxifv")
 metadata/_custom_type_script = "uid://did4dbiqjy8a4"
 
-[sub_resource type="Curve" id="Curve_ar8e5"]
-script = ExtResource("3_dxifv")
-metadata/_custom_type_script = "uid://did4dbiqjy8a4"
-
-[sub_resource type="Curve" id="Curve_doop2"]
-_limits = [0.0, 20.0, 0.0, 20.0]
-_data = [Vector2(0, 5), 0.0, 0.0, 0, 0, Vector2(5.042301, 0), 0.0, 0.0, 0, 0]
+[sub_resource type="Curve" id="Curve_epg4t"]
+_limits = [0.0, 25.0, 0.0, 50.0]
+_data = [Vector2(0, 12.597955), 0.0, -1.2039791, 0, 0, Vector2(25.242249, 0), 0.0, 0.0, 0, 0]
 point_count = 2
 script = ExtResource("3_dxifv")
 metadata/_custom_type_script = "uid://did4dbiqjy8a4"
 
-[sub_resource type="Resource" id="Resource_5hcft"]
-script = ExtResource("4_pwjut")
-is_from_player = true
-suspicion_curve = SubResource("Curve_doop2")
-aggression_curve = SubResource("Curve_n0g06")
-stun_curve = SubResource("Curve_ar8e5")
-metadata/_custom_type_script = "uid://cv274nl3a7xno"
+[sub_resource type="Curve" id="Curve_3yqyl"]
+_limits = [0.0, 25.0, 0.0, 50.0]
+_data = [Vector2(0, 19.574104), 0.0, -1.1075981, 0, 0, Vector2(37.693798, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+script = ExtResource("3_dxifv")
+metadata/_custom_type_script = "uid://did4dbiqjy8a4"
+
+[sub_resource type="Curve" id="Curve_wujgv"]
+_limits = [0.0, 25.0, 0.0, 50.0]
+_data = [Vector2(0, 25), 0.0, -1.5113189, 0, 0, Vector2(50, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+script = ExtResource("3_dxifv")
+metadata/_custom_type_script = "uid://did4dbiqjy8a4"
+
+[sub_resource type="Curve" id="Curve_hb8ge"]
+script = ExtResource("3_dxifv")
+metadata/_custom_type_script = "uid://did4dbiqjy8a4"
+
+[sub_resource type="Curve" id="Curve_e1ltt"]
+script = ExtResource("3_dxifv")
+metadata/_custom_type_script = "uid://did4dbiqjy8a4"
 
 [sub_resource type="Curve" id="Curve_dxifv"]
-_limits = [0.0, 20.0, 0.0, 20.0]
-_data = [Vector2(0, 10.080645), 0.0, 0.0, 0, 0, Vector2(12.791878, 0), 0.0, 0.0, 0, 0]
-point_count = 2
 script = ExtResource("3_dxifv")
 metadata/_custom_type_script = "uid://did4dbiqjy8a4"
 
 [sub_resource type="Curve" id="Curve_pwjut"]
-_limits = [0.0, 20.0, 0.0, 20.0]
 script = ExtResource("3_dxifv")
 metadata/_custom_type_script = "uid://did4dbiqjy8a4"
-
-[sub_resource type="Curve" id="Curve_5hcft"]
-_limits = [0.0, 20.0, 0.0, 20.0]
-_data = [Vector2(0, 10), 0.0, 0.0, 0, 0, Vector2(11.235195, 0), 0.0, 0.0, 0, 0]
-point_count = 2
-script = ExtResource("3_dxifv")
-metadata/_custom_type_script = "uid://did4dbiqjy8a4"
-
-[sub_resource type="Resource" id="Resource_nnovl"]
-script = ExtResource("4_pwjut")
-is_from_player = true
-suspicion_curve = SubResource("Curve_5hcft")
-aggression_curve = SubResource("Curve_dxifv")
-stun_curve = SubResource("Curve_pwjut")
-metadata/_custom_type_script = "uid://cv274nl3a7xno"
-
-[sub_resource type="Curve" id="Curve_nnovl"]
-script = ExtResource("3_dxifv")
-metadata/_custom_type_script = "uid://did4dbiqjy8a4"
-
-[sub_resource type="Curve" id="Curve_jmwgi"]
-script = ExtResource("3_dxifv")
-metadata/_custom_type_script = "uid://did4dbiqjy8a4"
-
-[sub_resource type="Curve" id="Curve_g2u8i"]
-script = ExtResource("3_dxifv")
-metadata/_custom_type_script = "uid://did4dbiqjy8a4"
-
-[sub_resource type="Resource" id="Resource_dxifv"]
-script = ExtResource("4_pwjut")
-is_from_player = true
-suspicion_curve = SubResource("Curve_g2u8i")
-aggression_curve = SubResource("Curve_nnovl")
-stun_curve = SubResource("Curve_jmwgi")
-metadata/_custom_type_script = "uid://cv274nl3a7xno"
-
-[sub_resource type="Curve" id="Curve_otto8"]
-script = ExtResource("3_dxifv")
-metadata/_custom_type_script = "uid://did4dbiqjy8a4"
-
-[sub_resource type="Curve" id="Curve_8q82m"]
-script = ExtResource("3_dxifv")
-metadata/_custom_type_script = "uid://did4dbiqjy8a4"
-
-[sub_resource type="Curve" id="Curve_epc7x"]
-script = ExtResource("3_dxifv")
-metadata/_custom_type_script = "uid://did4dbiqjy8a4"
-
-[sub_resource type="Resource" id="Resource_pwjut"]
-script = ExtResource("4_pwjut")
-is_from_player = true
-suspicion_curve = SubResource("Curve_epc7x")
-aggression_curve = SubResource("Curve_otto8")
-stun_curve = SubResource("Curve_8q82m")
-metadata/_custom_type_script = "uid://cv274nl3a7xno"
-
-[sub_resource type="Curve" id="Curve_o7rgc"]
-script = ExtResource("3_dxifv")
-metadata/_custom_type_script = "uid://did4dbiqjy8a4"
-
-[sub_resource type="Curve" id="Curve_kdav3"]
-script = ExtResource("3_dxifv")
-metadata/_custom_type_script = "uid://did4dbiqjy8a4"
-
-[sub_resource type="Curve" id="Curve_jpbtr"]
-script = ExtResource("3_dxifv")
-metadata/_custom_type_script = "uid://did4dbiqjy8a4"
-
-[sub_resource type="Resource" id="Resource_n0g06"]
-script = ExtResource("4_pwjut")
-suspicion_curve = SubResource("Curve_jpbtr")
-aggression_curve = SubResource("Curve_o7rgc")
-stun_curve = SubResource("Curve_kdav3")
-metadata/_custom_type_script = "uid://cv274nl3a7xno"
-
-[sub_resource type="Curve" id="Curve_qgdfx"]
-script = ExtResource("3_dxifv")
-metadata/_custom_type_script = "uid://did4dbiqjy8a4"
-
-[sub_resource type="Curve" id="Curve_qku5p"]
-script = ExtResource("3_dxifv")
-metadata/_custom_type_script = "uid://did4dbiqjy8a4"
-
-[sub_resource type="Curve" id="Curve_l1fjw"]
-script = ExtResource("3_dxifv")
-metadata/_custom_type_script = "uid://did4dbiqjy8a4"
-
-[sub_resource type="Resource" id="Resource_ar8e5"]
-script = ExtResource("4_pwjut")
-suspicion_curve = SubResource("Curve_l1fjw")
-aggression_curve = SubResource("Curve_qgdfx")
-stun_curve = SubResource("Curve_qku5p")
-metadata/_custom_type_script = "uid://cv274nl3a7xno"
-
-[sub_resource type="Curve" id="Curve_b5wqg"]
-script = ExtResource("3_dxifv")
-metadata/_custom_type_script = "uid://did4dbiqjy8a4"
-
-[sub_resource type="Curve" id="Curve_hgro5"]
-script = ExtResource("3_dxifv")
-metadata/_custom_type_script = "uid://did4dbiqjy8a4"
-
-[sub_resource type="Curve" id="Curve_18rq2"]
-script = ExtResource("3_dxifv")
-metadata/_custom_type_script = "uid://did4dbiqjy8a4"
-
-[sub_resource type="Resource" id="Resource_doop2"]
-script = ExtResource("4_pwjut")
-suspicion_curve = SubResource("Curve_18rq2")
-aggression_curve = SubResource("Curve_b5wqg")
-stun_curve = SubResource("Curve_hgro5")
-metadata/_custom_type_script = "uid://cv274nl3a7xno"
-
-[sub_resource type="Curve" id="Curve_ccdwq"]
-script = ExtResource("3_dxifv")
-metadata/_custom_type_script = "uid://did4dbiqjy8a4"
-
-[sub_resource type="Curve" id="Curve_0jgdh"]
-script = ExtResource("3_dxifv")
-metadata/_custom_type_script = "uid://did4dbiqjy8a4"
-
-[sub_resource type="Curve" id="Curve_6wg26"]
-script = ExtResource("3_dxifv")
-metadata/_custom_type_script = "uid://did4dbiqjy8a4"
-
-[sub_resource type="Resource" id="Resource_jmwgi"]
-script = ExtResource("4_pwjut")
-suspicion_curve = SubResource("Curve_6wg26")
-aggression_curve = SubResource("Curve_ccdwq")
-stun_curve = SubResource("Curve_0jgdh")
-metadata/_custom_type_script = "uid://cv274nl3a7xno"
 
 [node name="EB" type="CharacterBody3D" unique_id=1494601571]
 script = ExtResource("1_epg4t")
 
 [node name="Pivot" type="Node3D" parent="." unique_id=1033716084]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Pivot" unique_id=1912462064]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+[node name="Body" type="MeshInstance3D" parent="Pivot" unique_id=1912462064]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8112669, 0)
 mesh = SubResource("CapsuleMesh_3253y")
 
-[node name="Eyebrows" type="MeshInstance3D" parent="Pivot" unique_id=18348045]
-transform = Transform3D(0.5, 0, 0, 0, 0.25, 0, 0, 0, 0.5, 0, 1.427499, 0.30576366)
+[node name="EyebrowL" type="MeshInstance3D" parent="Pivot" unique_id=598845137]
+transform = Transform3D(0.23420787, 0.014442429, 0.09863228, -0.0630512, 0.0474294, -0.09562049, -0.060590625, 0.006470476, 0.48075813, 0.25, 2.25, 0.25)
 mesh = SubResource("BoxMesh_7xaro")
+
+[node name="EyebrowR" type="MeshInstance3D" parent="Pivot" unique_id=18348045]
+transform = Transform3D(0.2332532, -0.0129409535, -0.12500001, 0.0625, 0.04829629, -0.03349365, 0.06470477, 0, 0.48296297, -0.25, 2.25, 0.25)
+mesh = SubResource("BoxMesh_7xaro")
+
+[node name="StepTargets" type="Node" parent="Pivot" unique_id=971222757]
+
+[node name="LegL" type="MeshInstance3D" parent="Pivot/StepTargets" unique_id=244134242]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0.5, 0.125, 0)
+mesh = SubResource("BoxMesh_iifgy")
+
+[node name="LegR" type="MeshInstance3D" parent="Pivot/StepTargets" unique_id=895175887]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -0.5, 0.125, 0)
+mesh = SubResource("BoxMesh_iifgy")
 
 [node name="Collider" type="CollisionShape3D" parent="." unique_id=1070725013]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -206,14 +96,16 @@ shape = SubResource("CapsuleShape3D_u3cyc")
 
 [node name="Brain" type="Node" parent="." unique_id=1941013720]
 script = ExtResource("7_wujgv")
-breath_sound_configuration = SubResource("Resource_5hcft")
-crouch_sound_configuration = SubResource("Resource_nnovl")
-walk_sound_configuration = SubResource("Resource_dxifv")
-run_sound_configuration = SubResource("Resource_pwjut")
-egg_sound_configuration = SubResource("Resource_n0g06")
-glass_sound_configuration = SubResource("Resource_ar8e5")
-exhibit_sound_configuration = SubResource("Resource_doop2")
-airhorn_sound_configuration = SubResource("Resource_jmwgi")
+search_min_radius = 3.0
+search_max_radius = 8.0
+breath_interest_curve = SubResource("Curve_iifgy")
+crouch_interest_curve = SubResource("Curve_epg4t")
+walk_interest_curve = SubResource("Curve_3yqyl")
+run_interest_curve = SubResource("Curve_wujgv")
+egg_interest_curve = SubResource("Curve_hb8ge")
+glass_interest_curve = SubResource("Curve_e1ltt")
+exhibit_interest_curve = SubResource("Curve_dxifv")
+airhorn_stun_curve = SubResource("Curve_pwjut")
 metadata/_custom_type_script = "uid://ca5ogf00p5yni"
 
 [node name="Core" type="Node" parent="." unique_id=1704359287 node_paths=PackedStringArray("_root", "_brain", "_pivot", "_nav")]
@@ -223,3 +115,15 @@ _brain = NodePath("../Brain")
 _pivot = NodePath("../Pivot")
 _nav = NodePath("../NavAgent")
 metadata/_custom_type_script = "uid://4elh4607cn7n"
+
+[node name="IkTargets" type="Node" parent="." unique_id=1050947392]
+
+[node name="LegL" type="MeshInstance3D" parent="IkTargets" unique_id=1654186301]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0.5, 0.125, 0)
+top_level = true
+mesh = SubResource("BoxMesh_iifgy")
+
+[node name="LegR" type="MeshInstance3D" parent="IkTargets" unique_id=546478057]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -0.5, 0.125, 0)
+top_level = true
+mesh = SubResource("BoxMesh_iifgy")

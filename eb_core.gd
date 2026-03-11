@@ -10,7 +10,7 @@ class_name EbCore extends Node
 @export var _waypoints: Array[Node]
 @export var _current_waypoint: int = 0
 @export var _navigation_stop_distance: float = 0.1
-@export var _acceleration: float = 20.0
+@export var _acceleration: float = 50.0
 var _speed: float = 0.0
 
 func _ready():
@@ -62,8 +62,11 @@ func path_current_waypoint_position() -> Vector3:
 # ==========
 # NAVIGATION
 # ==========
-func nav_position() -> Vector3:
+func position() -> Vector3:
 	return _root.position
+	
+func velocity() -> Vector3:
+	return _root.velocity
 
 func nav_set_speed(speed: float):
 	_speed = speed
@@ -96,6 +99,19 @@ class SearchRadiusPositionResult:
 		success = suc
 		position = pos
 
+func find_search_radius_position(min_radius: float, max_radius: float) -> Vector3:
+	const max_count: int = 100
+	var count: int = 0
+	var space_state: PhysicsDirectSpaceState3D = _root.get_world_3d().direct_space_state
+	var position_result: EbCore.SearchRadiusPositionResult = try_find_search_radius_position(position(), randf_range(min_radius, max_radius), space_state)
+	while(!position_result.success):
+		position_result = try_find_search_radius_position(position(), randf_range(min_radius - (max_count / 100.0) * min_radius, max_radius - (max_count / 100.0) * max_radius), space_state)
+		count += 1
+		if count > 100:
+			print("CONNER: Too many attempts to find search radius position!")
+			return position()
+	return position_result.position
+
 func try_find_search_radius_position(center: Vector3, radius: float, space_state: PhysicsDirectSpaceState3D) -> SearchRadiusPositionResult:	
 	# Choose a random search point within the radius range, attenuated
 	# proportionally to many attempts we've made (count).
@@ -111,32 +127,27 @@ func try_find_search_radius_position(center: Vector3, radius: float, space_state
 		var normal: Vector3 = result["normal"]
 		var dot: float = normal.dot(Vector3.UP)
 		if dot >= 0.8 || dot <= -0.8:
-			print("Collided with wall!")
+			#print("Collided with wall!")
 			return SearchRadiusPositionResult.new(false, Vector3.ZERO)
 			
-	# Cast for closest y floor position
-	var closest_y: float = 100000.0
+	# Check for collisions at the point that are not the floor.
 	# UP from position
 	var ray_end = circle_position + (Vector3.UP * 100.0)
 	ray_query = PhysicsRayQueryParameters3D.create(circle_position, ray_end)
 	result = space_state.intersect_ray(ray_query)
-	if !result.is_empty():
-		closest_y = result["position"].y
+	if !result.is_empty() && result["position"].y != 0.0:
+		#print("Collided with something other than the floor!")
+		return SearchRadiusPositionResult.new(false, Vector3.ZERO)
 	# DOWN from position
 	ray_end = circle_position + (Vector3.DOWN * 100.0)
 	ray_query = PhysicsRayQueryParameters3D.create(circle_position, ray_end)
 	result = space_state.intersect_ray(ray_query)
-	if !result.is_empty():
-		var down_y = result["position"].y
-		if abs(down_y - _root.position.y) < abs(closest_y - _root.position.y):
-			closest_y = down_y
-			
-	if(closest_y != 100000.0):
-		print("closest_y = 100000.0. Tell Conner this happened, probably shouldn't ever be the case.")
+	if !result.is_empty() && result["position"].y != 0.0:
+		#print("Collided with something other than the floor!")
 		return SearchRadiusPositionResult.new(false, Vector3.ZERO)
-		
+	
 	if nav_target_reachable():
-		return SearchRadiusPositionResult.new(true, Vector3(circle_position.x, closest_y, circle_position.z))
+		return SearchRadiusPositionResult.new(true, Vector3(circle_position.x, 0.0, circle_position.z))
 	else:
 		print("Target not reachable!", nav_target_position())
 		return SearchRadiusPositionResult.new(false, Vector3.ZERO)
