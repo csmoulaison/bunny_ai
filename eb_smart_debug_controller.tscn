@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://bgm82yxbtspug"]
+
+[ext_resource type="Script" uid="uid://bfjvjyu7s34ya" path="res://scripts/eb_smart_debug.gd" id="1_fqhk6"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_fqhk6"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fqhk6"]
+albedo_color = Color(1, 0, 1, 1)
+
+[node name="EbSmartDebugController" type="Node" unique_id=240108754 node_paths=PackedStringArray("label", "target_mesh")]
+script = ExtResource("1_fqhk6")
+label = NodePath("SubViewportContainer/Label")
+target_mesh = NodePath("DebugTarget")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=1007043190]
+offset_left = 10.0
+offset_top = 210.0
+offset_right = 851.0
+offset_bottom = 598.0
+
+[node name="Label" type="Label" parent="SubViewportContainer" unique_id=786460670]
+layout_mode = 2
+text = "Helo"
+
+[node name="DebugTarget" type="MeshInstance3D" parent="." unique_id=666255657]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+mesh = SubResource("SphereMesh_fqhk6")
+surface_material_override/0 = SubResource("StandardMaterial3D_fqhk6")

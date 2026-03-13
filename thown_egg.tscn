@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://c5h0tthfxoku1"]
+
+[ext_resource type="Script" uid="uid://l6cgv6m48wre" path="res://thown_egg.gd" id="1_bg8j3"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_t01cm"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t01cm"]
+albedo_color = Color(0, 0.6039216, 1, 1)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_t01cm"]
+
+[node name="ThownEgg" type="RigidBody3D" unique_id=110759650]
+collision_priority = 5.0
+continuous_cd = true
+contact_monitor = true
+max_contacts_reported = 8
+script = ExtResource("1_bg8j3")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=607819248]
+transform = Transform3D(0.275, 0, 0, 0, 0.275, 0, 0, 0, 0.275, 0, 0, 0)
+mesh = SubResource("CapsuleMesh_t01cm")
+surface_material_override/0 = SubResource("StandardMaterial3D_t01cm")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=263332275]
+transform = Transform3D(0.275, 0, 0, 0, 0.275, 0, 0, 0, 0.275, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_t01cm")

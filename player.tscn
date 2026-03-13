@@ -1,14 +1,21 @@
 [gd_scene format=3 uid="uid://gh4cva7umx7l"]
 
-[ext_resource type="Script" uid="uid://dy5vaf78iy6p8" path="res://player.gd" id="1_4flbx"]
-[ext_resource type="AudioStream" uid="uid://bg7l0cq1w68gw" path="res://footsteps.ogg" id="2_onrkg"]
+[ext_resource type="Script" uid="uid://dy5vaf78iy6p8" path="res://scripts/player.gd" id="1_4flbx"]
+[ext_resource type="AudioStream" uid="uid://bg7l0cq1w68gw" path="res://media/footsteps.ogg" id="2_onrkg"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_drvgu"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_onrkg"]
+albedo_color = Color(0, 0.7019608, 1, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_onrkg"]
+material = SubResource("StandardMaterial3D_onrkg")
+
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4flbx"]
 
-[node name="Player" type="CharacterBody3D" unique_id=1105167680]
+[node name="Player" type="CharacterBody3D" unique_id=1105167680 node_paths=PackedStringArray("egg_mesh")]
 script = ExtResource("1_4flbx")
+egg_mesh = NodePath("Pivot/EggSlot/EggMesh")
 mouse_sensitivity = 0.005
 
 [node name="Pivot" type="Node3D" parent="." unique_id=1479558177]
@@ -17,6 +24,13 @@ mouse_sensitivity = 0.005
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 visible = false
 mesh = SubResource("CapsuleMesh_drvgu")
+
+[node name="EggSlot" type="Node3D" parent="Pivot" unique_id=1926348127]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.6456456, -1.9997501)
+
+[node name="EggMesh" type="MeshInstance3D" parent="Pivot/EggSlot" unique_id=112886060]
+transform = Transform3D(0.335, 0, 0, 0, 0.335, 0, 0, 0, 0.335, 0.62597954, 1.8496747, 1.1981137)
+mesh = SubResource("CapsuleMesh_onrkg")
 
 [node name="CameraPivot" type="Node3D" parent="." unique_id=1160882246]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)

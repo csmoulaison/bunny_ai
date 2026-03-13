@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://d06iq86s5fsw8"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_1ainy"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1ainy"]
+albedo_color = Color(0, 1, 0.6901961, 1)
+
+[node name="EggPickup" type="Node3D" unique_id=475578480 groups=["Eggs"]]
+
+[node name="Mesh" type="MeshInstance3D" parent="." unique_id=1974848657]
+transform = Transform3D(0.32908967, 0.18352589, -0.049175616, 0, 0.09835125, 0.3670518, 0.18999998, -0.3178762, 0.08517469, 0, 0.13067412, 0)
+mesh = SubResource("CapsuleMesh_1ainy")
+surface_material_override/0 = SubResource("StandardMaterial3D_1ainy")
