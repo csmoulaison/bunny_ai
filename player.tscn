@@ -2,6 +2,8 @@
 
 [ext_resource type="Script" uid="uid://dy5vaf78iy6p8" path="res://scripts/player.gd" id="1_4flbx"]
 [ext_resource type="AudioStream" uid="uid://bg7l0cq1w68gw" path="res://media/footsteps.ogg" id="2_onrkg"]
+[ext_resource type="AudioStream" uid="uid://dxv5cacass41f" path="res://media/airhorn.mp3" id="3_i3pqv"]
+[ext_resource type="AudioStream" uid="uid://ccogly5s2de2f" path="res://media/breath.wav" id="4_hqtel"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_drvgu"]
 
@@ -14,6 +16,8 @@ material = SubResource("StandardMaterial3D_onrkg")
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4flbx"]
 
 [node name="Player" type="CharacterBody3D" unique_id=1105167680 node_paths=PackedStringArray("egg_mesh")]
+collision_layer = 2
+collision_mask = 3
 script = ExtResource("1_4flbx")
 egg_mesh = NodePath("Pivot/EggSlot/EggMesh")
 mouse_sensitivity = 0.005
@@ -43,3 +47,11 @@ shape = SubResource("CapsuleShape3D_4flbx")
 
 [node name="FootstepSound" type="AudioStreamPlayer3D" parent="." unique_id=272902617]
 stream = ExtResource("2_onrkg")
+
+[node name="AirhornSound" type="AudioStreamPlayer3D" parent="." unique_id=1520016434]
+stream = ExtResource("3_i3pqv")
+volume_db = -10.0
+
+[node name="BreathSound" type="AudioStreamPlayer3D" parent="." unique_id=1836274639]
+stream = ExtResource("4_hqtel")
+volume_db = -18.0

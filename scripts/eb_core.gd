@@ -5,14 +5,24 @@ class_name EbCore extends Node
 
 @export var _root: CharacterBody3D
 @export var _brain: EbBrain
+@export var _regular_brain: EbBrainSmart
+@export var _smartest_brain: EbBrainSmartest
 @export var _animator: EbAnimator
 @export var _pivot: Node3D
 @export var _nav: NavigationAgent3D
 @export var _waypoints: Array[Node]
+@export var _explore_nodes: Array[SearchNode]
+@export var _search_nodes: Array[SearchNode]
 @export var _current_waypoint: int = 0
 @export var _navigation_stop_distance: float = 0.1
-@export var _acceleration: float = 50.0
+@export var _acceleration: float = 20.0
 var _speed: float = 0.0
+
+func reset():
+	nav_set_speed(0.0)
+	nav_goto_me()
+	_root.velocity = Vector3.ZERO
+	_current_waypoint = 0
 
 func _ready():
 	var sound_emitters = get_tree().get_nodes_in_group("SoundEmitters")
@@ -20,7 +30,25 @@ func _ready():
 		emitter.sound.connect(on_sound)
 
 	_waypoints = _root.path.get_children()
+	
+	if _root.explore_nodes_parent != null:
+		var tmp_explore_nodes: Array[Node] = _root.explore_nodes_parent.get_children()
+		for tmp_node in tmp_explore_nodes:
+			if tmp_node is SearchNode:
+				_explore_nodes.push_back(tmp_node)
+				_search_nodes.push_back(tmp_node)
+	if _root.other_search_nodes_parent != null:
+		var tmp_search_nodes: Array[Node] = _root.other_search_nodes_parent.get_children()
+		for tmp_node in tmp_search_nodes:
+			if tmp_node is SearchNode:
+				_search_nodes.push_back(tmp_node)
 	nav_goto_me()
+
+	if _root.use_smarter_ai:
+		_brain = _smartest_brain
+	else:
+		_brain = _regular_brain
+	_brain.reset(self)
 
 func _process(dt: float):
 	_brain.take_action(self, dt)
@@ -86,7 +114,7 @@ func nav_at_target() -> bool:
 	return nav_target_delta().length() < _navigation_stop_distance
 
 func nav_target_position() -> Vector3:
-	return _nav.get_next_path_position()
+	return _nav.get_final_position()
 
 func nav_target_delta() -> Vector3:
 	return nav_target_position() - _root.global_transform.origin;

@@ -18,6 +18,7 @@ enum MoveState {
 @export var crouch_height = 0.75
 @export var normal_height = 1.5
 
+@export var breath_interval = 2.0
 @export var crouch_footstep_interval = 1.0
 @export var walk_footstep_interval = 0.6
 @export var run_footstep_interval = 0.3
@@ -33,12 +34,13 @@ var target_velocity = Vector3.ZERO
 var footstep_cooldown = 0.0
 var has_egg: bool = false
 var level_eggs: Array[Node]
+var breath_cooldown = 0.0
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	level_eggs = get_tree().get_nodes_in_group("Eggs")
 	
-func _process(_dt: float):
+func _process(dt: float):
 	if !has_egg:
 		for egg in level_eggs:
 			var egg3D: Node3D = egg as Node3D
@@ -58,7 +60,15 @@ func _process(_dt: float):
 		
 	if Input.is_action_just_pressed("airhorn"):
 		print("Airhorn!")
+		$AirhornSound.play()
 		sound.emit(position, Sound.Type.AIRHORN)
+		
+	breath_cooldown -= dt
+	if breath_cooldown < 0.0:
+		print("breath!")
+		$BreathSound.play()
+		sound.emit(position, Sound.Type.BREATH)
+		breath_cooldown = breath_interval
 
 func on_egg_collide(pos: Vector3, _body: Node3D):
 	pos.y = 0.0

@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://dw6e8tx3urbtc" path="res://scripts/eb_brain_smart.gd" id="4_epg4t"]
 [ext_resource type="Script" uid="uid://4elh4607cn7n" path="res://scripts/eb_core.gd" id="4_iifgy"]
 [ext_resource type="Script" uid="uid://c6il72grs1iry" path="res://scripts/eb_animator.gd" id="6_3yqyl"]
-[ext_resource type="Script" uid="uid://ca5ogf00p5yni" path="res://scripts/eb_brain_smarter.gd" id="7_wujgv"]
+[ext_resource type="Script" uid="uid://wvds6c00nso6" path="res://scripts/eb_brain_smartest.gd" id="6_wujgv"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7xaro"]
 albedo_color = Color(1, 0, 0, 1)
@@ -17,47 +17,51 @@ material = SubResource("StandardMaterial3D_7xaro")
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_u3cyc"]
 
-[sub_resource type="Curve" id="Curve_iifgy"]
-_limits = [0.0, 25.0, 0.0, 15.0]
-_data = [Vector2(0, 12.542588), 0.0, -3.7025414, 0, 0, Vector2(9.835272, 0), 0.0, 0.0, 0, 0]
+[sub_resource type="Curve" id="Curve_n0g06"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.043282233, 0), 0.0, 0.0, 0, 0]
 point_count = 2
 script = ExtResource("3_dxifv")
 metadata/_custom_type_script = "uid://did4dbiqjy8a4"
 
-[sub_resource type="Curve" id="Curve_epg4t"]
-_limits = [0.0, 25.0, 0.0, 50.0]
-_data = [Vector2(0, 12.597955), 0.0, -1.2039791, 0, 0, Vector2(25.242249, 0), 0.0, 0.0, 0, 0]
+[sub_resource type="Curve" id="Curve_ar8e5"]
+_data = [Vector2(0, 1), 0.0, -7.541687, 0, 0, Vector2(0.14607754, 0), -2.5138044, 0.0, 0, 0]
 point_count = 2
 script = ExtResource("3_dxifv")
 metadata/_custom_type_script = "uid://did4dbiqjy8a4"
 
-[sub_resource type="Curve" id="Curve_3yqyl"]
-_limits = [0.0, 25.0, 0.0, 50.0]
-_data = [Vector2(0, 19.574104), 0.0, -1.1075981, 0, 0, Vector2(37.693798, 0), 0.0, 0.0, 0, 0]
+[sub_resource type="Curve" id="Curve_doop2"]
+_data = [Vector2(0, 1), 0.0, -5.9767265, 0, 0, Vector2(0.29846707, 0), -1.8284849, 0.0, 0, 0]
 point_count = 2
 script = ExtResource("3_dxifv")
 metadata/_custom_type_script = "uid://did4dbiqjy8a4"
 
-[sub_resource type="Curve" id="Curve_wujgv"]
-_limits = [0.0, 25.0, 0.0, 50.0]
-_data = [Vector2(0, 25), 0.0, -1.5113189, 0, 0, Vector2(50, 0), 0.0, 0.0, 0, 0]
+[sub_resource type="Curve" id="Curve_5hcft"]
+_data = [Vector2(0, 1), 0.0, -4.8493905, 0, 0, Vector2(0.5022543, 0), 0.0, 0.0, 0, 0]
 point_count = 2
 script = ExtResource("3_dxifv")
 metadata/_custom_type_script = "uid://did4dbiqjy8a4"
 
-[sub_resource type="Curve" id="Curve_hb8ge"]
+[sub_resource type="Curve" id="Curve_nnovl"]
+_data = [Vector2(0, 1), 0.0, -3.4694817, 0, 0, Vector2(0.7493237, 0), 0.0, 0.0, 0, 0]
+point_count = 2
 script = ExtResource("3_dxifv")
 metadata/_custom_type_script = "uid://did4dbiqjy8a4"
 
-[sub_resource type="Curve" id="Curve_e1ltt"]
+[sub_resource type="Curve" id="Curve_jmwgi"]
+_data = [Vector2(0, 1), 0.0, -1.984944, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
 script = ExtResource("3_dxifv")
 metadata/_custom_type_script = "uid://did4dbiqjy8a4"
 
-[sub_resource type="Curve" id="Curve_dxifv"]
+[sub_resource type="Curve" id="Curve_g2u8i"]
+_data = [Vector2(0.0009017121, 1), 0.0, -1.8352773, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
 script = ExtResource("3_dxifv")
 metadata/_custom_type_script = "uid://did4dbiqjy8a4"
 
-[sub_resource type="Curve" id="Curve_pwjut"]
+[sub_resource type="Curve" id="Curve_otto8"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
 script = ExtResource("3_dxifv")
 metadata/_custom_type_script = "uid://did4dbiqjy8a4"
 
@@ -68,6 +72,8 @@ metadata/_custom_type_script = "uid://did4dbiqjy8a4"
 [sub_resource type="SphereMesh" id="SphereMesh_3yqyl"]
 
 [node name="EB" type="CharacterBody3D" unique_id=1494601571]
+collision_layer = 2
+collision_mask = 3
 script = ExtResource("1_epg4t")
 
 [node name="Pivot" type="Node3D" parent="." unique_id=1033716084]
@@ -90,37 +96,36 @@ shape = SubResource("CapsuleShape3D_u3cyc")
 
 [node name="NavAgent" type="NavigationAgent3D" parent="." unique_id=431065075]
 
-[node name="Core" type="Node" parent="." unique_id=1704359287 node_paths=PackedStringArray("_root", "_brain", "_animator", "_pivot", "_nav")]
+[node name="Core" type="Node" parent="." unique_id=1704359287 node_paths=PackedStringArray("_root", "_brain", "_regular_brain", "_smartest_brain", "_animator", "_pivot", "_nav")]
 script = ExtResource("4_iifgy")
 _root = NodePath("..")
-_brain = NodePath("../BrainSmart")
+_brain = NodePath("../BrainSmartest")
+_regular_brain = NodePath("../BrainSmart")
+_smartest_brain = NodePath("../BrainSmartest")
 _animator = NodePath("../Animator")
 _pivot = NodePath("../Pivot")
 _nav = NodePath("../NavAgent")
 metadata/_custom_type_script = "uid://4elh4607cn7n"
 
-[node name="BrainSmarter" type="Node" parent="." unique_id=1941013720]
-script = ExtResource("7_wujgv")
-search_min_radius = 3.0
-search_max_radius = 8.0
-breath_interest_curve = SubResource("Curve_iifgy")
-crouch_interest_curve = SubResource("Curve_epg4t")
-walk_interest_curve = SubResource("Curve_3yqyl")
-run_interest_curve = SubResource("Curve_wujgv")
-egg_interest_curve = SubResource("Curve_hb8ge")
-glass_interest_curve = SubResource("Curve_e1ltt")
-exhibit_interest_curve = SubResource("Curve_dxifv")
-airhorn_stun_curve = SubResource("Curve_pwjut")
-metadata/_custom_type_script = "uid://ca5ogf00p5yni"
-
 [node name="BrainSmart" type="Node" parent="." unique_id=156802362]
 script = ExtResource("4_epg4t")
-death_radius = 4.0
+death_radius = 2.5
 danger_radius = 9.0
 detection_radius = 18.0
 roam_listen_min_seconds = 3.0
 roam_listen_max_seconds = 5.0
 metadata/_custom_type_script = "uid://dw6e8tx3urbtc"
+
+[node name="BrainSmartest" type="Node" parent="." unique_id=1618758879]
+script = ExtResource("6_wujgv")
+breath_response_curve = SubResource("Curve_n0g06")
+crouch_response_curve = SubResource("Curve_ar8e5")
+walk_response_curve = SubResource("Curve_doop2")
+run_response_curve = SubResource("Curve_5hcft")
+egg_response_curve = SubResource("Curve_nnovl")
+glass_response_curve = SubResource("Curve_jmwgi")
+exhibit_response_curve = SubResource("Curve_g2u8i")
+airhorn_response_curve = SubResource("Curve_otto8")
 
 [node name="Animator" type="Node" parent="." unique_id=453776453 node_paths=PackedStringArray("body", "ik_targets", "step_targets")]
 script = ExtResource("6_3yqyl")

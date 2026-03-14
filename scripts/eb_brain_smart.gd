@@ -23,8 +23,8 @@ enum State {
 @export var distracted_hearing_distance_multiplier: float = 5.0
 
 @export_group("State speeds")
-@export var roam_speed: float = 3.0
-@export var investigate_speed: float = 5.0
+@export var roam_speed: float = 4.0
+@export var investigate_speed: float = 6.0
 @export var search_speed: float = 5.0
 @export var hunt_speed: float = 11.0
 
@@ -47,6 +47,17 @@ var search_listen_timer: float = 0.0
 var search_state_timer: float = 0.0
 var stunned_timer: float = 0.0
 var distracted_timer: float = 0.0
+
+func reset(core: EbCore):
+	state = State.ROAM_MOVE
+	target = Vector3.ZERO
+	roam_move_listen_timer = 0.0
+	search_listen_timer = 0.0
+	search_state_timer = 0.0
+	stunned_timer = 0.0
+	distracted_timer = 0.0
+	core.nav_goto_me()
+	core.nav_set_speed(0.0)
 
 func take_action(core: EbCore, dt: float):
 	match state:
@@ -85,10 +96,9 @@ func respond_to_sound(core: EbCore, origin: Vector3, type: Sound.Type):
 		|| type == Sound.Type.CROUCH_FOOTSTEP
 		|| type == Sound.Type.WALK_FOOTSTEP
 		|| type == Sound.Type.RUN_FOOTSTEP):
-			# TODO(conner): Kill the player
-			print("The player is being killed, trust me!")
-			new_state = State.HUNT
 			core.kill_player()
+			reset(core)
+			return
 	else: if distance < danger_radius:
 		if(type == Sound.Type.WALK_FOOTSTEP
 		|| type == Sound.Type.RUN_FOOTSTEP):
