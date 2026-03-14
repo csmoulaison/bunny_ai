@@ -41,7 +41,7 @@ _subresources={
 "materials": {
 "Flat Shader": {
 "use_external/enabled": true,
-"use_external/fallback_path": "res://standard.tres",
+"use_external/fallback_path": "res://media/standard.tres",
 "use_external/path": "uid://di52boueu7q4q"
 }
 }

@@ -72,20 +72,20 @@ func reset(core: EbCore):
 	
 func update_explore_nodes(core: EbCore, dt: float) -> SearchNode:
 	for node in explore_nodes:
-		var distance = core.position().distance_to(node.position)
+		var distance = core.position().distance_to(node.global_position)
 		var distance_contribution: float = lerp(-1.0, 1.0, clamp((distance / exploration_distance_threshold) / 2.0, 0.0, 1.0))
 		if distance_contribution > 0.0: distance_contribution *= search_node_forget_per_second
 		if distance_contribution < 0.0: distance_contribution *= search_node_explore_per_second
 		node.score += distance_contribution * dt
 		
-		var player_distance = player_guess_center.distance_to(node.position)
+		var player_distance = player_guess_center.distance_to(node.global_position)
 		var player_contribution: float = lerp(1.0, -1.0, clamp((player_distance / player_guess_radius) / 2.0, 0.0, 1.0))
 		player_contribution *= 0.1 * player_guess_intensity
 		node.score += player_contribution * dt
 	var highest_utility: float = 0.0
 	var highest_utility_node: SearchNode = explore_nodes[0]
 	for node in explore_nodes:
-		var distance = core.position().distance_to(node.position)
+		var distance = core.position().distance_to(node.global_position)
 		if node.score / (distance * 0.2) > highest_utility:
 			highest_utility = node.score
 			highest_utility_node = node
@@ -132,6 +132,7 @@ func take_action(core: EbCore, dt: float):
 			select_player_nav_target(core)
 		return
 	
+	print("exploring ", Time.get_ticks_msec())
 	# If we don't have a guess, start exploring
 	match explore_state:
 		ExploreState.MOVE:
@@ -147,17 +148,17 @@ func take_action(core: EbCore, dt: float):
 					state_timer = randf_range(min_think_seconds, max_think_seconds)
 					explore_state = ExploreState.THINK
 				else:
-					core.nav_goto_target(search_node.position)
+					core.nav_goto_target(search_node.global_position)
 		ExploreState.LISTEN:
 			state_timer -= dt
 			if state_timer < 0.0:
-				core.nav_goto_target(search_node.position)
+				core.nav_goto_target(search_node.global_position)
 				state_timer = randf_range(min_move_seconds, max_move_seconds)
 				explore_state = ExploreState.MOVE
 		ExploreState.THINK:
 			state_timer -= dt
 			if state_timer < 0.0:
-				core.nav_goto_target(search_node.position)
+				core.nav_goto_target(search_node.global_position)
 				state_timer = randf_range(min_move_seconds, max_move_seconds)
 				explore_state = ExploreState.MOVE
 
@@ -218,7 +219,7 @@ func respond_to_sound(core: EbCore, origin: Vector3, type: Sound.Type):
 			player_guess_velocity = lerp(player_guess_velocity, implied_velocity, response)
 			player_guess_radius = lerp(player_guess_radius, 0.0, response)
 			player_guess_center = lerp(player_guess_center, origin, response)
-			player_guess_intensity = response
+			player_guess_intensity = lerp(player_guess_intensity, 1.0, response)
 		if player_guess_intensity > 0.1:
 			select_player_nav_target(core)
 	else: if(type == Sound.Type.EGG_NORMAL

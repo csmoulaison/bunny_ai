@@ -37,6 +37,10 @@ tonemap_mode = 2
 transparency = 1
 albedo_color = Color(1, 0, 1, 0.5019608)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uac3q"]
+transparency = 1
+albedo_color = Color(0, 1, 0, 0.6862745)
+
 [node name="Root" type="Node3D" unique_id=694463482]
 
 [node name="Player" parent="." unique_id=1105167680 groups=["SoundEmitters"] instance=ExtResource("1_uac3q")]
@@ -139,484 +143,2232 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40.574654, 0, 12.37858)
 [node name="p4" type="Node3D" parent="EncounterDirector/Encounter2/Path" unique_id=289201942]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.93546, 3.8146973e-06, 12.16305)
 
-[node name="EB" parent="." unique_id=1494601571 node_paths=PackedStringArray("explore_nodes_parent", "other_search_nodes_parent", "path", "player") instance=ExtResource("6_p2p1j")]
+[node name="EB" parent="." unique_id=1494601571 node_paths=PackedStringArray("explore_zones", "search_zones", "path", "player") instance=ExtResource("6_p2p1j")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.70579, 0.25000095, -3.7462301)
 use_smarter_ai = true
-explore_nodes_parent = NodePath("../SearchNodes/ExploreNodes")
-other_search_nodes_parent = NodePath("../SearchNodes/OtherNodes")
+explore_zones = [NodePath("../SearchZones/G_1"), NodePath("../SearchZones/G_2")]
+search_zones = NodePath("../SearchZones")
 path = NodePath("../EncounterDirector/Encounter/Path")
 player = NodePath("../Player")
 
-[node name="SearchNodes" type="Node3D" parent="." unique_id=63157058]
+[node name="SearchZones" type="Node3D" parent="." unique_id=63157058]
 
-[node name="ExploreNodes" type="Node3D" parent="SearchNodes" unique_id=1851654090]
+[node name="A_1" type="Node3D" parent="SearchZones" unique_id=1851654090]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45.48936, 0, -30.484571)
 
-[node name="SearchNode" parent="SearchNodes/ExploreNodes" unique_id=1519857486 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.5, 0, -8.5)
+[node name="SearchNode" parent="SearchZones/A_1" unique_id=1519857486 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.514885, 0, -6.3110256)
 
-[node name="SearchNode2" parent="SearchNodes/ExploreNodes" unique_id=1974205238 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.5, 0, -2.5)
+[node name="SearchNode2" parent="SearchZones/A_1" unique_id=2040058993 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.544437, 0, -3.680849)
 
-[node name="SearchNode3" parent="SearchNodes/ExploreNodes" unique_id=176265717 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.5, 0, -14.5)
+[node name="SearchNode3" parent="SearchZones/A_1" unique_id=377607844 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.6922, 0, -1.2279835)
 
-[node name="SearchNode29" parent="SearchNodes/ExploreNodes" unique_id=722620095 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.5, 0, -8.5)
+[node name="SearchNode4" parent="SearchZones/A_1" unique_id=1881221277 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.662647, 0, 1.3135376)
 
-[node name="SearchNode30" parent="SearchNodes/ExploreNodes" unique_id=856651769 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.5, 0, -2.5)
+[node name="SearchNode5" parent="SearchZones/A_1" unique_id=794038343 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.57399, 0, 4.209692)
 
-[node name="SearchNode31" parent="SearchNodes/ExploreNodes" unique_id=926927351 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.5, 0, -14.5)
+[node name="SearchNode6" parent="SearchZones/A_1" unique_id=1413858008 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.194595, 0, 7.933317)
 
-[node name="SearchNode4" parent="SearchNodes/ExploreNodes" unique_id=1353564650 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.5, 0, -14.5)
+[node name="SearchNode7" parent="SearchZones/A_1" unique_id=1404547849 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.244125, 0, 6.278372)
 
-[node name="SearchNode5" parent="SearchNodes/ExploreNodes" unique_id=1438786953 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.5, 0, -13.5)
+[node name="SearchNode8" parent="SearchZones/A_1" unique_id=1055542078 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.214577, 0, 7.7464256)
 
-[node name="SearchNode6" parent="SearchNodes/ExploreNodes" unique_id=1205694547 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.5, 0, -8.5)
+[node name="SearchNode9" parent="SearchZones/A_1" unique_id=1985712665 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.273674, 0, 5.775978)
 
-[node name="SearchNode7" parent="SearchNodes/ExploreNodes" unique_id=871538313 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.5, 0, -8.5)
+[node name="SearchNode10" parent="SearchZones/A_1" unique_id=1513557060 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.7073936, 0, 8.199289)
 
-[node name="SearchNode8" parent="SearchNodes/ExploreNodes" unique_id=98827044 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.5, 0, -2.5)
+[node name="SearchNode11" parent="SearchZones/A_1" unique_id=1291743749 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.0228958, 0, 5.835083)
 
-[node name="SearchNode32" parent="SearchNodes/ExploreNodes" unique_id=475742313 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.90449, 0, -14.5)
+[node name="SearchNode12" parent="SearchZones/A_1" unique_id=989430614 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.7912636, 0, 3.0866947)
 
-[node name="SearchNode33" parent="SearchNodes/ExploreNodes" unique_id=63697054 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.90449, 0, -8.5)
+[node name="SearchNode13" parent="SearchZones/A_1" unique_id=1251341320 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.7026062, 0, 0.70251083)
 
-[node name="SearchNode34" parent="SearchNodes/ExploreNodes" unique_id=1030745906 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.90449, 0, -2.5)
+[node name="SearchNode14" parent="SearchZones/A_1" unique_id=352546397 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5843925, 0, -2.1049824)
 
-[node name="SearchNode9" parent="SearchNodes/ExploreNodes" unique_id=1974197692 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.5, 0, -2.5)
+[node name="SearchNode15" parent="SearchZones/A_1" unique_id=410826009 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.7026062, 0, -5.06024)
 
-[node name="SearchNode10" parent="SearchNodes/ExploreNodes" unique_id=1905992159 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5, 0, -4.5)
+[node name="SearchNode16" parent="SearchZones/A_1" unique_id=1901935937 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.5939713, 0, -6.449213)
 
-[node name="SearchNode11" parent="SearchNodes/ExploreNodes" unique_id=1503065759 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5, 0, -12.5)
+[node name="SearchNode17" parent="SearchZones/A_1" unique_id=1879908348 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.312809, 0, -6.4787655)
 
-[node name="SearchNode12" parent="SearchNodes/ExploreNodes" unique_id=1654600574 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0, -12.5)
+[node name="SearchNode18" parent="SearchZones/A_1" unique_id=2109442223 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.98376846, 0, -6.5378704)
 
-[node name="SearchNode13" parent="SearchNodes/ExploreNodes" unique_id=463506250 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0, -8.5)
+[node name="SearchNode19" parent="SearchZones/A_1" unique_id=2064257804 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.6807518, 0, -6.5969753)
 
-[node name="SearchNode14" parent="SearchNodes/ExploreNodes" unique_id=1063276402 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0, -4.5)
+[node name="SearchNode20" parent="SearchZones/A_1" unique_id=1269548979 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.453907, 0, -4.498743)
 
-[node name="SearchNode15" parent="SearchNodes/ExploreNodes" unique_id=1342646821 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 0, -4.5)
+[node name="SearchNode21" parent="SearchZones/A_1" unique_id=318185556 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.552143, 0, -6.77429)
 
-[node name="SearchNode16" parent="SearchNodes/ExploreNodes" unique_id=274118167 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 0, -12.5)
+[node name="SearchNode22" parent="SearchZones/A_1" unique_id=1537891412 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.128006, 0, -6.6856327)
 
-[node name="SearchNode17" parent="SearchNodes/ExploreNodes" unique_id=351879457 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 0, -12.5)
+[node name="SearchNode23" parent="SearchZones/A_1" unique_id=2115072447 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.073685, 0, -4.5378704)
 
-[node name="SearchNode18" parent="SearchNodes/ExploreNodes" unique_id=1625795717 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 0, -8.5)
+[node name="SearchNode24" parent="SearchZones/A_1" unique_id=94694739 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.9850235, 0, -1.4644012)
 
-[node name="SearchNode20" parent="SearchNodes/ExploreNodes" unique_id=1816096294 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.5, 0, -8.5)
+[node name="SearchNode25" parent="SearchZones/A_1" unique_id=511674664 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.866814, 0, 1.5795155)
 
-[node name="SearchNode21" parent="SearchNodes/ExploreNodes" unique_id=468600423 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.5, 0, -8.5)
+[node name="SearchNode26" parent="SearchZones/A_1" unique_id=403751424 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.014572, 0, 4.682535)
 
-[node name="SearchNode22" parent="SearchNodes/ExploreNodes" unique_id=539648288 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.5, 0, -2.1099758)
+[node name="SearchNode27" parent="SearchZones/A_1" unique_id=258639336 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.014572, 0, 6.682535)
 
-[node name="SearchNode23" parent="SearchNodes/ExploreNodes" unique_id=138977318 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.5, 0, -2.1099758)
+[node name="SearchNode28" parent="SearchZones/A_1" unique_id=1541949550 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.846832, 0, 8.692112)
 
-[node name="SearchNode24" parent="SearchNodes/ExploreNodes" unique_id=1464748622 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.5, 0, -14.562336)
+[node name="SearchNode29" parent="SearchZones/A_1" unique_id=1793793569 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.965042, 0, 8.401373)
 
-[node name="SearchNode26" parent="SearchNodes/ExploreNodes" unique_id=1528536659 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.5, 0, -14.562336)
+[node name="SearchNode30" parent="SearchZones/A_1" unique_id=1781531189 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.6942825, 0, 5.859852)
 
-[node name="SearchNode27" parent="SearchNodes/ExploreNodes" unique_id=137730941 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.5, 0, -8.562336)
+[node name="SearchNode31" parent="SearchZones/A_1" unique_id=324419725 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.098446, 0, 8.0467415)
 
-[node name="SearchNode28" parent="SearchNodes/ExploreNodes" unique_id=794100334 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.5, 0, -2.562336)
+[node name="SearchNode32" parent="SearchZones/A_1" unique_id=1928274623 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.2661858, 0, 6.066719)
 
-[node name="SearchNode25" parent="SearchNodes/ExploreNodes" unique_id=1211485192 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.5, 0, -14.562336)
+[node name="SearchNode33" parent="SearchZones/A_1" unique_id=891225746 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4930305, 0, 8.105846)
 
-[node name="SearchNode19" parent="SearchNodes/ExploreNodes" unique_id=195307320 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 0, -3.5)
+[node name="SearchNode34" parent="SearchZones/A_1" unique_id=929641094 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.28012466, 0, 6.007614)
 
-[node name="OtherNodes" type="Node3D" parent="SearchNodes" unique_id=1785816034]
+[node name="SearchNode35" parent="SearchZones/A_1" unique_id=783202397 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3735695, 0, 7.898979)
 
-[node name="SearchNode" parent="SearchNodes/OtherNodes" unique_id=26738981 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.663382, 0, -8.296309)
+[node name="SearchNode36" parent="SearchZones/A_1" unique_id=1582020766 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.507393, 0, 3.7616177)
 
-[node name="SearchNode2" parent="SearchNodes/OtherNodes" unique_id=1626343614 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.663383, 0, -8.296309)
+[node name="SearchNode37" parent="SearchZones/A_1" unique_id=1549287118 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.620819, 0, 1.1905422)
 
-[node name="SearchNode3" parent="SearchNodes/OtherNodes" unique_id=360499864 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -36.663383, 0, -8.296309)
+[node name="SearchNode38" parent="SearchZones/A_1" unique_id=160255724 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.423523, 0, -0.5235081)
 
-[node name="SearchNode4" parent="SearchNodes/OtherNodes" unique_id=402386470 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39.663383, 0, -8.296309)
+[node name="SearchNode39" parent="SearchZones/A_1" unique_id=1391645808 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.7781563, 0, -2.3461933)
 
-[node name="SearchNode5" parent="SearchNodes/OtherNodes" unique_id=581189552 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39.970707, 0, -11.082642)
+[node name="A_2" type="Node3D" parent="SearchZones" unique_id=1797698662]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -36.620872, 0, -10.961134)
 
-[node name="SearchNode6" parent="SearchNodes/OtherNodes" unique_id=468289887 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40.36538, 0, -15.136675)
+[node name="SearchNode" parent="SearchZones/A_2" unique_id=1241742464 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.348217, 0, -8.7109585)
 
-[node name="SearchNode7" parent="SearchNodes/OtherNodes" unique_id=125082106 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40.320038, 1.9073486e-06, -20.349077)
+[node name="SearchNode2" parent="SearchZones/A_2" unique_id=148723594 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.4860992, 0, -5.2639294)
 
-[node name="SearchNode8" parent="SearchNodes/OtherNodes" unique_id=1326415481 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40.064884, 1.9073486e-06, -23.33386)
+[node name="SearchNode3" parent="SearchZones/A_2" unique_id=1086245488 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.2448082, 0, -2.1960726)
 
-[node name="SearchNode9" parent="SearchNodes/OtherNodes" unique_id=1533235131 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -36.61116, 3.8146973e-06, -23.075083)
+[node name="SearchNode4" parent="SearchZones/A_2" unique_id=1815757532 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.2448082, 0, 0.6994333)
 
-[node name="SearchNode10" parent="SearchNodes/OtherNodes" unique_id=922700607 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.440742, 1.9073486e-06, -22.071222)
+[node name="SearchNode5" parent="SearchZones/A_2" unique_id=497839479 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.4516258, 0, 3.7328196)
 
-[node name="SearchNode11" parent="SearchNodes/OtherNodes" unique_id=1259120830 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.43466, 0, -17.501257)
+[node name="SearchNode6" parent="SearchZones/A_2" unique_id=519854629 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.830799, 0, 6.4225874)
 
-[node name="SearchNode12" parent="SearchNodes/OtherNodes" unique_id=1895700035 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.442184, 0, -12.573225)
+[node name="SearchNode7" parent="SearchZones/A_2" unique_id=1177069797 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.7963295, 0, 9.007858)
 
-[node name="SearchNode13" parent="SearchNodes/OtherNodes" unique_id=944484481 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.032166, 0, -4.399149)
+[node name="SearchNode8" parent="SearchZones/A_2" unique_id=53202467 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.76294327, 0, 9.283621)
 
-[node name="SearchNode14" parent="SearchNodes/OtherNodes" unique_id=740135096 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.608578, 0, -1.841124)
+[node name="SearchNode9" parent="SearchZones/A_2" unique_id=761447744 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5810356, 0, 9.1457405)
 
-[node name="SearchNode15" parent="SearchNodes/OtherNodes" unique_id=201725092 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -37.090023, 0, -1.8190424)
+[node name="SearchNode10" parent="SearchZones/A_2" unique_id=1660903811 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.476902, 0, 8.1805725)
 
-[node name="SearchNode16" parent="SearchNodes/OtherNodes" unique_id=234153801 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40.007977, 0, -2.0544553)
+[node name="SearchNode11" parent="SearchZones/A_2" unique_id=15283209 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.476902, 0, 5.1805725)
 
-[node name="SearchNode17" parent="SearchNodes/OtherNodes" unique_id=1148740000 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40.351643, 0, -4.796414)
+[node name="SearchNode12" parent="SearchZones/A_2" unique_id=612720534 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.339386, 0, 3.2847052)
 
-[node name="SearchNode18" parent="SearchNodes/OtherNodes" unique_id=950587536 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40.58673, -1.9073486e-06, -27.687439)
+[node name="SearchNode13" parent="SearchZones/A_2" unique_id=264247283 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.14247894, 0, 3.3881164)
 
-[node name="SearchNode19" parent="SearchNodes/OtherNodes" unique_id=64779658 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.171825, -5.722046e-06, -27.881516)
+[node name="SearchNode14" parent="SearchZones/A_2" unique_id=487180790 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.17659, 0, 1.3888378)
 
-[node name="SearchNode20" parent="SearchNodes/OtherNodes" unique_id=38845691 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43.92818, -7.6293945e-06, -23.323616)
+[node name="SearchNode15" parent="SearchZones/A_2" unique_id=98875850 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.305275, 0, 1.3543692)
 
-[node name="SearchNode21" parent="SearchNodes/OtherNodes" unique_id=742110447 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -37.038765, -7.6293945e-06, 3.0681915)
+[node name="SearchNode16" parent="SearchZones/A_2" unique_id=1808497203 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.305275, 0, 1.3543692)
 
-[node name="SearchNode22" parent="SearchNodes/OtherNodes" unique_id=637302439 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -36.993725, -7.6293945e-06, 6.574751)
+[node name="SearchNode17" parent="SearchZones/A_2" unique_id=1291344134 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.8564377, 0, 3.2157655)
 
-[node name="SearchNode23" parent="SearchNodes/OtherNodes" unique_id=1046645904 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.522385, -7.6293945e-06, 7.860075)
+[node name="SearchNode18" parent="SearchZones/A_2" unique_id=926411531 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.0295143, 0, -1.0930214)
 
-[node name="SearchNode24" parent="SearchNodes/OtherNodes" unique_id=179098908 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -37.055187, -7.6293945e-06, 10.178816)
+[node name="SearchNode19" parent="SearchZones/A_2" unique_id=143231267 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.995041, 0, -3.5748825)
 
-[node name="SearchNode25" parent="SearchNodes/OtherNodes" unique_id=775702842 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.711037, -7.6293945e-06, 11.353942)
+[node name="SearchNode20" parent="SearchZones/A_2" unique_id=1507455555 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.995041, 0, -5.5748825)
 
-[node name="SearchNode26" parent="SearchNodes/OtherNodes" unique_id=1369499606 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -36.7733, -7.6293945e-06, 13.794595)
+[node name="SearchNode21" parent="SearchZones/A_2" unique_id=744178080 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.1329193, 0, -7.953333)
 
-[node name="SearchNode27" parent="SearchNodes/OtherNodes" unique_id=202879534 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.44998, -7.6293945e-06, 15.088345)
+[node name="SearchNode22" parent="SearchZones/A_2" unique_id=1625642199 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.959482, 0, 1.4915304)
 
-[node name="SearchNode28" parent="SearchNodes/OtherNodes" unique_id=1310077118 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39.70175, -7.6293945e-06, 13.815211)
+[node name="B" type="Node3D" parent="SearchZones" unique_id=1730587241]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.734192, 0, -33.48607)
 
-[node name="SearchNode29" parent="SearchNodes/OtherNodes" unique_id=1636668203 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -37.676937, -7.6293945e-06, 17.900372)
+[node name="C" type="Node3D" parent="SearchZones" unique_id=923965858]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.751877, 0, -33.48607)
 
-[node name="SearchNode30" parent="SearchNodes/OtherNodes" unique_id=1816075988 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -37.676937, -7.6293945e-06, 20.900372)
+[node name="SearchNode" parent="SearchZones/C" unique_id=66119734 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.733774, 0, -4.0605164)
 
-[node name="SearchNode31" parent="SearchNodes/OtherNodes" unique_id=785689056 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38.008507, -7.6293945e-06, 24.556534)
+[node name="SearchNode2" parent="SearchZones/C" unique_id=1967137420 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.733774, 0, -1.7894096)
 
-[node name="SearchNode32" parent="SearchNodes/OtherNodes" unique_id=212641032 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -37.865803, -7.6293945e-06, 27.533213)
+[node name="SearchNode3" parent="SearchZones/C" unique_id=1199135010 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.733774, 0, 0.28064728)
 
-[node name="SearchNode33" parent="SearchNodes/OtherNodes" unique_id=834107215 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38.077995, -7.6293945e-06, 30.59997)
+[node name="SearchNode4" parent="SearchZones/C" unique_id=752808593 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.733774, 0, 2.630516)
 
-[node name="SearchNode34" parent="SearchNodes/OtherNodes" unique_id=1485375811 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39.240616, -7.6293945e-06, 33.112946)
+[node name="SearchNode5" parent="SearchZones/C" unique_id=1897580029 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.733774, 0, 4.817196)
 
-[node name="SearchNode35" parent="SearchNodes/OtherNodes" unique_id=1207359441 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39.456417, -7.6293945e-06, 36.26525)
+[node name="SearchNode6" parent="SearchZones/C" unique_id=2004452874 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.9056664, 0, -4.4978523)
 
-[node name="SearchNode36" parent="SearchNodes/OtherNodes" unique_id=2060722508 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -36.33779, -7.6293945e-06, 36.313614)
+[node name="SearchNode7" parent="SearchZones/C" unique_id=333275752 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.9056664, 0, -2.2267456)
 
-[node name="SearchNode37" parent="SearchNodes/OtherNodes" unique_id=1424521207 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -36.106068, -7.6293945e-06, 33.030903)
+[node name="SearchNode8" parent="SearchZones/C" unique_id=1122838625 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.9056664, 0, -0.15668869)
 
-[node name="SearchNode38" parent="SearchNodes/OtherNodes" unique_id=1805979902 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.724163, -7.6293945e-06, 30.668499)
+[node name="SearchNode9" parent="SearchZones/C" unique_id=16288621 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.9056664, 0, 2.19318)
 
-[node name="SearchNode39" parent="SearchNodes/OtherNodes" unique_id=119922909 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.524426, -7.6293945e-06, 27.140675)
+[node name="SearchNode10" parent="SearchZones/C" unique_id=798940951 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.9056664, 0, 4.37986)
 
-[node name="SearchNode40" parent="SearchNodes/OtherNodes" unique_id=1603919723 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.497356, -7.6293945e-06, 23.830648)
+[node name="SearchNode11" parent="SearchZones/C" unique_id=2044485417 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.27861452, 0, -4.4978523)
 
-[node name="SearchNode41" parent="SearchNodes/OtherNodes" unique_id=1242507458 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.434895, -7.6293945e-06, 20.622845)
+[node name="SearchNode12" parent="SearchZones/C" unique_id=1309398525 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.27861452, 0, -2.2267456)
 
-[node name="SearchNode42" parent="SearchNodes/OtherNodes" unique_id=2112632466 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.42287, -7.6293945e-06, 17.834663)
+[node name="SearchNode13" parent="SearchZones/C" unique_id=2075787485 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.27861452, 0, -0.15668869)
 
-[node name="SearchNode43" parent="SearchNodes/OtherNodes" unique_id=1086238204 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.057053, -7.6293945e-06, 34.53871)
+[node name="SearchNode14" parent="SearchZones/C" unique_id=575937769 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.27861452, 0, 2.19318)
 
-[node name="SearchNode44" parent="SearchNodes/OtherNodes" unique_id=277382273 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.177795, -7.6293945e-06, 36.9964)
+[node name="SearchNode15" parent="SearchZones/C" unique_id=1638990506 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.27861452, 0, 4.37986)
 
-[node name="SearchNode45" parent="SearchNodes/OtherNodes" unique_id=2100344939 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.01035, -7.6293945e-06, 34.52781)
+[node name="SearchNode36" parent="SearchZones/C" unique_id=849477675 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.035843372, 0, 6.8687267)
 
-[node name="SearchNode46" parent="SearchNodes/OtherNodes" unique_id=1790352964 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.00753, -7.6293945e-06, 32.03542)
+[node name="SearchNode21" parent="SearchZones/C" unique_id=2021281278 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.14739, 0, -4.4978523)
 
-[node name="SearchNode47" parent="SearchNodes/OtherNodes" unique_id=350168651 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.774326, -7.6293945e-06, 32.28258)
+[node name="SearchNode22" parent="SearchZones/C" unique_id=622339801 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.14739, 0, -2.2267456)
 
-[node name="SearchNode48" parent="SearchNodes/OtherNodes" unique_id=184827502 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.642979, -7.6293945e-06, 34.82851)
+[node name="SearchNode23" parent="SearchZones/C" unique_id=448119643 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.14739, 0, -0.15668869)
 
-[node name="SearchNode49" parent="SearchNodes/OtherNodes" unique_id=692361422 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.295378, -7.6293945e-06, 32.509495)
+[node name="SearchNode24" parent="SearchZones/C" unique_id=415158519 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.14739, 0, 2.19318)
 
-[node name="SearchNode50" parent="SearchNodes/OtherNodes" unique_id=1178602158 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.204481, -7.6293945e-06, 34.918575)
+[node name="SearchNode25" parent="SearchZones/C" unique_id=1615429193 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.14739, 0, 4.37986)
 
-[node name="SearchNode51" parent="SearchNodes/OtherNodes" unique_id=1428424840 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.636942, -7.6293945e-06, 37.179287)
+[node name="SearchNode26" parent="SearchZones/C" unique_id=1522456685 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.870203, 0, -4.4978523)
 
-[node name="SearchNode52" parent="SearchNodes/OtherNodes" unique_id=1459419321 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.737759, -7.6293945e-06, 34.58316)
+[node name="SearchNode27" parent="SearchZones/C" unique_id=1270547441 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.870203, 0, -2.2267456)
 
-[node name="SearchNode54" parent="SearchNodes/OtherNodes" unique_id=557285241 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.657135, -7.6293945e-06, 32.4835)
+[node name="SearchNode28" parent="SearchZones/C" unique_id=1601213406 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.870203, 0, -0.15668869)
 
-[node name="SearchNode55" parent="SearchNodes/OtherNodes" unique_id=1098309965 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.508564, -7.6293945e-06, 32.52676)
+[node name="SearchNode29" parent="SearchZones/C" unique_id=430639709 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.870203, 0, 2.19318)
 
-[node name="SearchNode56" parent="SearchNodes/OtherNodes" unique_id=453284300 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.427187, -7.6293945e-06, 35.330765)
+[node name="SearchNode30" parent="SearchZones/C" unique_id=508505145 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.870203, 0, 4.37986)
 
-[node name="SearchNode57" parent="SearchNodes/OtherNodes" unique_id=633804244 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.08913, -7.6293945e-06, 29.165567)
+[node name="SearchNode31" parent="SearchZones/C" unique_id=400181010 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5525303, 0, -4.1479836)
 
-[node name="SearchNode58" parent="SearchNodes/OtherNodes" unique_id=878131353 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.174847, -7.6293945e-06, 25.660192)
+[node name="SearchNode32" parent="SearchZones/C" unique_id=312124179 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5525303, 0, -1.8768768)
 
-[node name="SearchNode59" parent="SearchNodes/OtherNodes" unique_id=338797174 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.798649, -7.6293945e-06, 22.600805)
+[node name="SearchNode33" parent="SearchZones/C" unique_id=603200349 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5525303, 0, 0.19318008)
 
-[node name="SearchNode60" parent="SearchNodes/OtherNodes" unique_id=856126914 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.781336, -7.6293945e-06, 22.536467)
+[node name="SearchNode34" parent="SearchZones/C" unique_id=2060137619 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5525303, 0, 2.5430489)
 
-[node name="SearchNode61" parent="SearchNodes/OtherNodes" unique_id=873482173 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.789906, -7.6293945e-06, 19.856157)
+[node name="SearchNode35" parent="SearchZones/C" unique_id=2012044327 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5525303, 0, 4.7297287)
 
-[node name="SearchNode62" parent="SearchNodes/OtherNodes" unique_id=1070461042 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.056942, -7.6293945e-06, 19.254887)
+[node name="SearchNode16" parent="SearchZones/C" unique_id=932136298 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.339964, 0, -4.1479836)
 
-[node name="SearchNode63" parent="SearchNodes/OtherNodes" unique_id=842234509 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.367847, -7.6293945e-06, 15.686985)
+[node name="SearchNode17" parent="SearchZones/C" unique_id=1848498436 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.339964, 0, -1.8768768)
 
-[node name="SearchNode64" parent="SearchNodes/OtherNodes" unique_id=656807502 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.861074, -7.6293945e-06, 16.630363)
+[node name="SearchNode18" parent="SearchZones/C" unique_id=2118747402 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.339964, 0, 0.19318008)
 
-[node name="SearchNode65" parent="SearchNodes/OtherNodes" unique_id=710704523 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.623838, -7.6293945e-06, 12.984604)
+[node name="SearchNode19" parent="SearchZones/C" unique_id=1275782776 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.339964, 0, 2.5430489)
 
-[node name="SearchNode66" parent="SearchNodes/OtherNodes" unique_id=1043872750 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.623838, -7.6293945e-06, 12.984604)
+[node name="SearchNode20" parent="SearchZones/C" unique_id=1867262624 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.339964, 0, 4.7297287)
 
-[node name="SearchNode67" parent="SearchNodes/OtherNodes" unique_id=643350009 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.90894, -7.6293945e-06, 13.112156)
+[node name="D_1" type="Node3D" parent="SearchZones" unique_id=63730715]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.895313, 0, -29.445436)
 
-[node name="SearchNode68" parent="SearchNodes/OtherNodes" unique_id=1974349549 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.15879, -7.6293945e-06, 16.468872)
+[node name="SearchNode" parent="SearchZones/D_1" unique_id=461938207 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.439192, 0, -7.588377)
 
-[node name="SearchNode69" parent="SearchNodes/OtherNodes" unique_id=1553028242 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.463928, -7.6293945e-06, 10.134201)
+[node name="SearchNode2" parent="SearchZones/D_1" unique_id=713163995 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.975746, 0, -6.1305866)
 
-[node name="SearchNode70" parent="SearchNodes/OtherNodes" unique_id=131886989 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.714012, -7.6293945e-06, 10.508029)
+[node name="SearchNode3" parent="SearchZones/D_1" unique_id=73521741 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.5588627, 0, -5.5970783)
 
-[node name="SearchNode71" parent="SearchNodes/OtherNodes" unique_id=1346385927 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.569347, -7.6293945e-06, 9.286751)
+[node name="SearchNode4" parent="SearchZones/D_1" unique_id=238303133 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.8621693, 0, -3.6727962)
 
-[node name="SearchNode72" parent="SearchNodes/OtherNodes" unique_id=661226852 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.083172, -7.6293945e-06, 7.3474426)
+[node name="SearchNode5" parent="SearchZones/D_1" unique_id=807457896 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.2411957, 0, -5.4103947)
 
-[node name="SearchNode73" parent="SearchNodes/OtherNodes" unique_id=1928245596 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.226292, -7.6293945e-06, 7.406105)
+[node name="SearchNode6" parent="SearchZones/D_1" unique_id=471888603 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.0780106, 0, -2.9613094)
 
-[node name="SearchNode74" parent="SearchNodes/OtherNodes" unique_id=46811415 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.444824, -7.6293945e-06, 4.650095)
+[node name="SearchNode7" parent="SearchZones/D_1" unique_id=572610584 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.6580791, 0, -1.8533878)
 
-[node name="SearchNode75" parent="SearchNodes/OtherNodes" unique_id=601172647 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.561071, -7.6293945e-06, 4.2880783)
+[node name="SearchNode8" parent="SearchZones/D_1" unique_id=1003206193 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.576706, 0, -1.0953388)
 
-[node name="SearchNode76" parent="SearchNodes/OtherNodes" unique_id=1962607236 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.083681, -7.6293945e-06, 1.5262699)
+[node name="SearchNode9" parent="SearchZones/D_1" unique_id=1125855326 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.460083, 0, 1.8202419)
 
-[node name="SearchNode77" parent="SearchNodes/OtherNodes" unique_id=1850394857 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.677366, -7.6293945e-06, -18.851973)
+[node name="SearchNode10" parent="SearchZones/D_1" unique_id=169101650 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.1654797, 0, 2.1992664)
 
-[node name="SearchNode78" parent="SearchNodes/OtherNodes" unique_id=27350785 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.908703, -7.6293945e-06, -22.764782)
+[node name="SearchNode11" parent="SearchZones/D_1" unique_id=210514942 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.90873337, 0, 0.1292057)
 
-[node name="SearchNode79" parent="SearchNodes/OtherNodes" unique_id=841113076 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.775494, -7.6293945e-06, -23.007364)
+[node name="SearchNode12" parent="SearchZones/D_1" unique_id=561347399 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5997696, 0, 1.9660206)
 
-[node name="SearchNode80" parent="SearchNodes/OtherNodes" unique_id=1146255186 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.908655, -7.6293945e-06, -22.824633)
+[node name="SearchNode13" parent="SearchZones/D_1" unique_id=1994678921 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1613274, 0, 1.9368649)
 
-[node name="SearchNode81" parent="SearchNodes/OtherNodes" unique_id=804788273 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.118376, -7.6293945e-06, -22.85676)
+[node name="SearchNode14" parent="SearchZones/D_1" unique_id=74684758 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.307106, 0, -1.7950764)
 
-[node name="SearchNode82" parent="SearchNodes/OtherNodes" unique_id=1066255017 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.41712, -5.722046e-06, -23.073107)
+[node name="SearchNode15" parent="SearchZones/D_1" unique_id=1177881374 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.87957764, 0, -7.85948)
 
-[node name="SearchNode83" parent="SearchNodes/OtherNodes" unique_id=1646182043 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.2817745, -5.722046e-06, -23.083803)
+[node name="SearchNode16" parent="SearchZones/D_1" unique_id=59271883 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7629547, 0, 7.680559)
 
-[node name="SearchNode84" parent="SearchNodes/OtherNodes" unique_id=1723259245 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.1541758, -5.722046e-06, -23.049517)
+[node name="SearchNode17" parent="SearchZones/D_1" unique_id=1710138827 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.0390472, 0, 7.3306885)
 
-[node name="SearchNode85" parent="SearchNodes/OtherNodes" unique_id=1225206017 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.7678785, -5.722046e-06, -22.957544)
+[node name="SearchNode18" parent="SearchZones/D_1" unique_id=1755045791 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.068203, 0, 2.272377)
 
-[node name="SearchNode86" parent="SearchNodes/OtherNodes" unique_id=751218925 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.2978263, -5.722046e-06, -23.088577)
+[node name="SearchNode19" parent="SearchZones/D_1" unique_id=913502679 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.068203, 0, -2.3050823)
 
-[node name="SearchNode87" parent="SearchNodes/OtherNodes" unique_id=1441682331 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.595961, -5.722046e-06, -22.917187)
+[node name="SearchNode20" parent="SearchZones/D_1" unique_id=986777247 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.980732, 0, -7.5239697)
 
-[node name="SearchNode88" parent="SearchNodes/OtherNodes" unique_id=420882433 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.741108, -5.722046e-06, -22.716274)
+[node name="SearchNode21" parent="SearchZones/D_1" unique_id=1181121906 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.8478165, 0, 7.2871723)
 
-[node name="SearchNode89" parent="SearchNodes/OtherNodes" unique_id=773422030 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.267216, -5.722046e-06, -22.950424)
+[node name="SearchNode22" parent="SearchZones/D_1" unique_id=331488547 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.4744492, 0, 7.31633)
 
-[node name="SearchNode90" parent="SearchNodes/OtherNodes" unique_id=1666856648 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.20850968, -7.6293945e-06, 2.7182188)
+[node name="SearchNode23" parent="SearchZones/D_1" unique_id=1901072567 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.5736656, 0, 8.074381)
 
-[node name="SearchNode91" parent="SearchNodes/OtherNodes" unique_id=2017515870 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.12806273, -7.6293945e-06, 5.9553976)
+[node name="SearchNode24" parent="SearchZones/D_1" unique_id=1794661210 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.255997, 0, 4.75062)
 
-[node name="SearchNode92" parent="SearchNodes/OtherNodes" unique_id=1464142795 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.8691633, -7.6293945e-06, 7.846361)
+[node name="SearchNode25" parent="SearchZones/D_1" unique_id=937623837 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.4570427, 0, 5.071333)
 
-[node name="SearchNode93" parent="SearchNodes/OtherNodes" unique_id=5456126 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.6897144, -7.6293945e-06, 11.063306)
+[node name="SearchNode26" parent="SearchZones/D_1" unique_id=1040191518 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.0371094, 0, 4.663151)
 
-[node name="SearchNode94" parent="SearchNodes/OtherNodes" unique_id=1318189791 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.33986, -7.6293945e-06, 9.62905)
+[node name="SearchNode27" parent="SearchZones/D_1" unique_id=1281007390 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.7444382, 0, 7.316328)
 
-[node name="SearchNode95" parent="SearchNodes/OtherNodes" unique_id=884761228 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.369134, -7.6293945e-06, 12.855618)
+[node name="SearchNode28" parent="SearchZones/D_1" unique_id=478059180 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.219635, 0, 4.75062)
 
-[node name="SearchNode96" parent="SearchNodes/OtherNodes" unique_id=1183498635 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.206068, -7.6293945e-06, 13.698992)
+[node name="SearchNode29" parent="SearchZones/D_1" unique_id=1508638652 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5403519, 0, -4.287676)
 
-[node name="SearchNode97" parent="SearchNodes/OtherNodes" unique_id=1481293721 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.3191423, -7.6293945e-06, 13.547642)
+[node name="SearchNode30" parent="SearchZones/D_1" unique_id=817988317 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.656971, 0, -7.4073467)
 
-[node name="SearchNode98" parent="SearchNodes/OtherNodes" unique_id=1616219588 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.376138, -5.722046e-06, 16.241426)
+[node name="SearchNode31" parent="SearchZones/D_1" unique_id=250784993 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.951576, 0, -4.6667004)
 
-[node name="SearchNode99" parent="SearchNodes/OtherNodes" unique_id=2075717030 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.484252, -5.722046e-06, 15.962357)
+[node name="SearchNode32" parent="SearchZones/D_1" unique_id=1938072352 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.143917, 0, 3.4094524)
 
-[node name="SearchNode100" parent="SearchNodes/OtherNodes" unique_id=1926785862 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.688285, -5.722046e-06, 16.999378)
+[node name="SearchNode33" parent="SearchZones/D_1" unique_id=1128086877 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.960285, 0, 5.0887394)
 
-[node name="SearchNode101" parent="SearchNodes/OtherNodes" unique_id=1784666431 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.688285, -5.722046e-06, 16.999378)
+[node name="SearchNode34" parent="SearchZones/D_1" unique_id=924751426 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.7009315, 0, 7.8585415)
 
-[node name="SearchNode102" parent="SearchNodes/OtherNodes" unique_id=1595701647 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.053605556, -5.722046e-06, 15.671652)
+[node name="SearchNode35" parent="SearchZones/D_1" unique_id=5821693 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.671772, 0, 5.1296463)
 
-[node name="SearchNode103" parent="SearchNodes/OtherNodes" unique_id=140681475 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9013042, -5.722046e-06, 13.678408)
+[node name="SearchNode36" parent="SearchZones/D_1" unique_id=1915793069 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.671772, 0, 2.1296463)
 
-[node name="SearchNode104" parent="SearchNodes/OtherNodes" unique_id=171781827 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.63353, -5.722046e-06, 9.827083)
+[node name="SearchNode37" parent="SearchZones/D_1" unique_id=1863585583 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.321903, 0, -2.331192)
 
-[node name="SearchNode105" parent="SearchNodes/OtherNodes" unique_id=635114039 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5373797, -5.722046e-06, 6.7156744)
+[node name="SearchNode38" parent="SearchZones/D_1" unique_id=136503602 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.321903, 0, -4.9434643)
 
-[node name="SearchNode106" parent="SearchNodes/OtherNodes" unique_id=1185408528 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.8189874, -5.722046e-06, 10.044683)
+[node name="SearchNode39" parent="SearchZones/D_1" unique_id=1563206526 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.321903, 0, -7.4800167)
 
-[node name="SearchNode107" parent="SearchNodes/OtherNodes" unique_id=1853167938 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.6417136, -5.722046e-06, 14.133158)
+[node name="D_2" type="Node3D" parent="SearchZones" unique_id=1648571537]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50.289474, 0, -29.445436)
 
-[node name="SearchNode108" parent="SearchNodes/OtherNodes" unique_id=1818501565 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.6417136, -5.722046e-06, 17.133158)
+[node name="SearchNode" parent="SearchZones/D_2" unique_id=289039535 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.315556, 0, -7.542818)
 
-[node name="SearchNode109" parent="SearchNodes/OtherNodes" unique_id=1659042835 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.22224951, -5.722046e-06, 19.111767)
+[node name="SearchNode2" parent="SearchZones/D_2" unique_id=826578067 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.084854, 0, -7.7468624)
 
-[node name="SearchNode110" parent="SearchNodes/OtherNodes" unique_id=1266271133 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5138001, -5.722046e-06, 20.247585)
+[node name="SearchNode3" parent="SearchZones/D_2" unique_id=2075781113 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.56831, 0, -7.6788464)
 
-[node name="SearchNode111" parent="SearchNodes/OtherNodes" unique_id=1372998108 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.4943347, -5.722046e-06, 20.263388)
+[node name="SearchNode4" parent="SearchZones/D_2" unique_id=1463272180 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.21535873, 0, -7.6788464)
 
-[node name="SearchNode112" parent="SearchNodes/OtherNodes" unique_id=365310009 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.482742, -5.722046e-06, 23.853247)
+[node name="SearchNode5" parent="SearchZones/D_2" unique_id=1999802801 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.464794, 0, -7.7468624)
 
-[node name="SearchNode113" parent="SearchNodes/OtherNodes" unique_id=2101426892 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.0333686, -5.722046e-06, 24.065323)
+[node name="SearchNode6" parent="SearchZones/D_2" unique_id=1506919496 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.7028465, 0, -0.19722366)
 
-[node name="SearchNode114" parent="SearchNodes/OtherNodes" unique_id=2018576465 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8606539, -5.722046e-06, 21.968412)
+[node name="SearchNode7" parent="SearchZones/D_2" unique_id=51455496 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.328762, 0, 6.9103203)
 
-[node name="SearchNode115" parent="SearchNodes/OtherNodes" unique_id=971979593 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.860654, -5.722046e-06, 18.968412)
+[node name="SearchNode8" parent="SearchZones/D_2" unique_id=1285610267 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.15286636, 0, 7.6584835)
 
-[node name="SearchNode116" parent="SearchNodes/OtherNodes" unique_id=388244437 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.865141, -5.722046e-06, 14.656474)
+[node name="SearchNode9" parent="SearchZones/D_2" unique_id=1898889226 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.2604065, 0, 7.5904694)
 
-[node name="SearchNode117" parent="SearchNodes/OtherNodes" unique_id=1592119375 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.072326, -5.722046e-06, 17.204979)
+[node name="SearchNode10" parent="SearchZones/D_2" unique_id=1929195317 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.954338, 0, 0.01234436)
 
-[node name="SearchNode118" parent="SearchNodes/OtherNodes" unique_id=634111650 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.289688, -5.722046e-06, 21.233576)
+[node name="SearchNode11" parent="SearchZones/D_2" unique_id=1464670954 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.056362, 0, -1.9536476)
 
-[node name="SearchNode119" parent="SearchNodes/OtherNodes" unique_id=1651529990 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.402919, -5.722046e-06, 24.290054)
+[node name="SearchNode42" parent="SearchZones/D_2" unique_id=1703403797 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.076588, 0, -4.606226)
 
-[node name="SearchNode120" parent="SearchNodes/OtherNodes" unique_id=1320871907 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5120187, -5.722046e-06, 26.328695)
+[node name="SearchNode12" parent="SearchZones/D_2" unique_id=943541885 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.737423, 0, -1.9536476)
 
-[node name="SearchNode121" parent="SearchNodes/OtherNodes" unique_id=531328368 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3572826, -5.722046e-06, 26.926989)
+[node name="SearchNode13" parent="SearchZones/D_2" unique_id=423223867 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.533375, 0, 2.2292595)
 
-[node name="SearchNode53" parent="SearchNodes/OtherNodes" unique_id=1631602205 instance=ExtResource("7_nflc7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.737759, -1.2154083, 31.604507)
+[node name="SearchNode14" parent="SearchZones/D_2" unique_id=860295941 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.192387, 0, 1.8211727)
+
+[node name="SearchNode15" parent="SearchZones/D_2" unique_id=2052255591 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.872536, 0, 7.7724648)
+
+[node name="SearchNode16" parent="SearchZones/D_2" unique_id=2032593459 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.4791489, 0, 7.5344143)
+
+[node name="SearchNode17" parent="SearchZones/D_2" unique_id=2122711187 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.0848465, 0, 2.4333076)
+
+[node name="SearchNode18" parent="SearchZones/D_2" unique_id=1161128678 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3572464, 0, -0.110809326)
+
+[node name="SearchNode19" parent="SearchZones/D_2" unique_id=619568568 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.1933098, 0, -2.0832367)
+
+[node name="SearchNode20" parent="SearchZones/D_2" unique_id=1710389541 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1936417, 0, -2.0492306)
+
+[node name="SearchNode21" parent="SearchZones/D_2" unique_id=555341365 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9555969, 0, 2.1676865)
+
+[node name="SearchNode22" parent="SearchZones/D_2" unique_id=766305408 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.2956696, 0, 7.302801)
+
+[node name="SearchNode23" parent="SearchZones/D_2" unique_id=1052925186 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.614609, 0, 2.473751)
+
+[node name="SearchNode24" parent="SearchZones/D_2" unique_id=1450073426 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.512581, 0, -2.1852608)
+
+[node name="SearchNode25" parent="SearchZones/D_2" unique_id=382045671 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.4445648, 0, -7.5593433)
+
+[node name="SearchNode26" parent="SearchZones/D_2" unique_id=1213379840 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5205154, 0, -7.4573193)
+
+[node name="SearchNode27" parent="SearchZones/D_2" unique_id=1717317843 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.206184, 0, 4.8193474)
+
+[node name="SearchNode28" parent="SearchZones/D_2" unique_id=429556243 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.8670273, 0, 4.581297)
+
+[node name="SearchNode29" parent="SearchZones/D_2" unique_id=1640220394 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.4184952, 0, 4.9893837)
+
+[node name="SearchNode30" parent="SearchZones/D_2" unique_id=418945089 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1044884, 0, 4.717325)
+
+[node name="SearchNode31" parent="SearchZones/D_2" unique_id=338389059 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.4169884, 0, 2.3708153)
+
+[node name="SearchNode32" parent="SearchZones/D_2" unique_id=952108687 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.859089, 0, 7.3018856)
+
+[node name="SearchNode33" parent="SearchZones/D_2" unique_id=683085694 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.6550484, 0, 4.7439823)
+
+[node name="SearchNode34" parent="SearchZones/D_2" unique_id=1444008652 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.8590965, 0, 4.7439823)
+
+[node name="SearchNode35" parent="SearchZones/D_2" unique_id=1710089023 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.2745323, 0, -1.989481)
+
+[node name="SearchNode36" parent="SearchZones/D_2" unique_id=1452788742 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.954685, 0, -7.6347103)
+
+[node name="SearchNode37" parent="SearchZones/D_2" unique_id=804787639 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.567383, 0, -5.016142)
+
+[node name="SearchNode38" parent="SearchZones/D_2" unique_id=1499108876 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.4313545, 0, -4.2541904)
+
+[node name="SearchNode39" parent="SearchZones/D_2" unique_id=315919490 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.2276611, 0, -4.8323154)
+
+[node name="SearchNode40" parent="SearchZones/D_2" unique_id=1562037951 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.792, 0, -5.614485)
+
+[node name="SearchNode41" parent="SearchZones/D_2" unique_id=1358464731 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.159645, 0, -4.1586056)
+
+[node name="D_3" type="Node3D" parent="SearchZones" unique_id=385868225]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37.02904, 0, -11.253845)
+
+[node name="SearchNode" parent="SearchZones/D_3" unique_id=504604122 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.52705, 0, -8.687628)
+
+[node name="SearchNode2" parent="SearchZones/D_3" unique_id=763911043 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.3828964, 0, -8.337757)
+
+[node name="SearchNode3" parent="SearchZones/D_3" unique_id=1085730447 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.3828964, 0, -2.812951)
+
+[node name="SearchNode4" parent="SearchZones/D_3" unique_id=1336747850 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.7602959, 0, -2.7837963)
+
+[node name="SearchNode5" parent="SearchZones/D_3" unique_id=308052937 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.5096474, 0, 2.9307594)
+
+[node name="SearchNode6" parent="SearchZones/D_3" unique_id=997273594 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.2938004, 0, 4.184463)
+
+[node name="SearchNode7" parent="SearchZones/D_3" unique_id=921836080 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.235489, 0, 9.140966)
+
+[node name="SearchNode8" parent="SearchZones/D_3" unique_id=271355804 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1813889, 0, 8.2954445)
+
+[node name="SearchNode9" parent="SearchZones/D_3" unique_id=1405230094 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.9890556, 0, 10.044799)
+
+[node name="SearchNode10" parent="SearchZones/D_3" unique_id=598620680 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.534317, 0, 3.1348495)
+
+[node name="SearchNode11" parent="SearchZones/D_3" unique_id=967177608 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.6187286, 0, 3.8929033)
+
+[node name="SearchNode12" parent="SearchZones/D_3" unique_id=1393020006 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.31847, 0, 6.283688)
+
+[node name="SearchNode13" parent="SearchZones/D_3" unique_id=911519790 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.005302429, 0, 9.578305)
+
+[node name="SearchNode14" parent="SearchZones/D_3" unique_id=446455954 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.3290749, 0, 7.012587)
+
+[node name="SearchNode15" parent="SearchZones/D_3" unique_id=664605210 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.35517502, 0, 3.601346)
+
+[node name="SearchNode16" parent="SearchZones/D_3" unique_id=2021453342 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.7558098, 0, 1.4729652)
+
+[node name="SearchNode17" parent="SearchZones/D_3" unique_id=1848290053 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0151558, 0, -2.492237)
+
+[node name="SearchNode18" parent="SearchZones/D_3" unique_id=1817669900 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5388069, 0, -2.2006779)
+
+[node name="SearchNode19" parent="SearchZones/D_3" unique_id=1908395312 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.3756294, 0, 0.044326782)
+
+[node name="SearchNode20" parent="SearchZones/D_3" unique_id=908341341 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.2590065, 0, 2.114396)
+
+[node name="SearchNode21" parent="SearchZones/D_3" unique_id=791592757 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.92653275, 0, 1.2397194)
+
+[node name="SearchNode22" parent="SearchZones/D_3" unique_id=1805892770 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5691147, 0, -0.4687214)
+
+[node name="SearchNode23" parent="SearchZones/D_3" unique_id=809928526 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3650246, 0, 1.7645264)
+
+[node name="SearchNode24" parent="SearchZones/D_3" unique_id=1656206730 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.843277, 0, -0.59710217)
+
+[node name="SearchNode25" parent="SearchZones/D_3" unique_id=828584853 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.2018433, 0, -5.436981)
+
+[node name="SearchNode26" parent="SearchZones/D_3" unique_id=1751240770 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.7955742, 0, -5.5244484)
+
+[node name="SearchNode27" parent="SearchZones/D_3" unique_id=1948817905 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7925148, 0, -8.673286)
+
+[node name="SearchNode28" parent="SearchZones/D_3" unique_id=847240962 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.13282394, 0, 12.05423)
+
+[node name="E" type="Node3D" parent="SearchZones" unique_id=117028773]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.3364983, 0, -22.692877)
+
+[node name="SearchNode" parent="SearchZones/E" unique_id=1586499525 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.904728, 0, -0.013069153)
+
+[node name="SearchNode2" parent="SearchZones/E" unique_id=1163308286 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.299911, 0, -0.06703377)
+
+[node name="SearchNode3" parent="SearchZones/E" unique_id=1037730089 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.151055, 0, -1.6860123)
+
+[node name="SearchNode4" parent="SearchZones/E" unique_id=445079072 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.151055, 0, 0.90761185)
+
+[node name="SearchNode5" parent="SearchZones/E" unique_id=1688635028 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.378105, 0, -2.5462074)
+
+[node name="SearchNode6" parent="SearchZones/E" unique_id=1619151204 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.378105, 0, 0.45379257)
+
+[node name="SearchNode7" parent="SearchZones/E" unique_id=935725172 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.993824, 0, 0.022066116)
+
+[node name="SearchNode8" parent="SearchZones/E" unique_id=1891879307 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.7493477, 0, -0.40966225)
+
+[node name="SearchNode9" parent="SearchZones/E" unique_id=1003675770 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.3241386, 0, 0.23792839)
+
+[node name="SearchNode10" parent="SearchZones/E" unique_id=422811566 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19411469, 0, -0.5175953)
+
+[node name="SearchNode11" parent="SearchZones/E" unique_id=865951439 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.8058853, 0, 0.4824047)
+
+[node name="SearchNode12" parent="SearchZones/E" unique_id=354063479 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.7740135, 0, -0.5969162)
+
+[node name="SearchNode13" parent="SearchZones/E" unique_id=49044161 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.958004, 0, 0.10464096)
+
+[node name="SearchNode14" parent="SearchZones/E" unique_id=652533343 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.688175, 0, -0.30173492)
+
+[node name="SearchNode15" parent="SearchZones/E" unique_id=379433666 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.47231, 0, -0.13983536)
+
+[node name="F_1" type="Node3D" parent="SearchZones" unique_id=1363808732]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -52.68119, 0, -0.1857028)
+
+[node name="SearchNode" parent="SearchZones/F_1" unique_id=23503786 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.1962357, 0, -14.595945)
+
+[node name="SearchNode2" parent="SearchZones/F_1" unique_id=437963684 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6529541, 0, -14.745924)
+
+[node name="SearchNode3" parent="SearchZones/F_1" unique_id=270745459 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.627262, 0, -14.970894)
+
+[node name="SearchNode4" parent="SearchZones/F_1" unique_id=1625136308 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.101921, 0, -9.546644)
+
+[node name="SearchNode5" parent="SearchZones/F_1" unique_id=1152864594 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.026932, 0, -12.271683)
+
+[node name="SearchNode6" parent="SearchZones/F_1" unique_id=1475493098 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8526459, 0, -9.4970665)
+
+[node name="SearchNode7" parent="SearchZones/F_1" unique_id=1839649554 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.6964455, 0, -8.847157)
+
+[node name="SearchNode8" parent="SearchZones/F_1" unique_id=1191898104 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.551998, 0, -5.9475584)
+
+[node name="SearchNode9" parent="SearchZones/F_1" unique_id=1509561684 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.8580666, 0, 5.6150026)
+
+[node name="SearchNode10" parent="SearchZones/F_1" unique_id=996068525 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.466442, 0, -5.573476)
+
+[node name="SearchNode11" parent="SearchZones/F_1" unique_id=1997619683 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.33041, 0, 5.4109564)
+
+[node name="SearchNode12" parent="SearchZones/F_1" unique_id=1925823769 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5620155, 0, 8.3015995)
+
+[node name="SearchNode13" parent="SearchZones/F_1" unique_id=228555230 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.0896797, 0, 8.165569)
+
+[node name="SearchNode14" parent="SearchZones/F_1" unique_id=1853698986 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.354084, 0, 9.901442)
+
+[node name="SearchNode15" parent="SearchZones/F_1" unique_id=1584762456 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5682487, 0, 10.115747)
+
+[node name="SearchNode16" parent="SearchZones/F_1" unique_id=2139607864 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1960144, 0, 7.9014425)
+
+[node name="SearchNode17" parent="SearchZones/F_1" unique_id=265381313 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5042267, 0, 4.772585)
+
+[node name="SearchNode18" parent="SearchZones/F_1" unique_id=1849004252 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.4529152, 0, 4.7369585)
+
+[node name="SearchNode19" parent="SearchZones/F_1" unique_id=1364409172 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5175972, 0, 5.569954)
+
+[node name="SearchNode20" parent="SearchZones/F_1" unique_id=486026912 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.3383827, 0, 2.039642)
+
+[node name="SearchNode21" parent="SearchZones/F_1" unique_id=1865583614 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.4177132, 0, -0.72235864)
+
+[node name="SearchNode22" parent="SearchZones/F_1" unique_id=325621388 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.2193794, 0, -3.1023455)
+
+[node name="SearchNode23" parent="SearchZones/F_1" unique_id=1626677364 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.6953812, 0, -5.6806645)
+
+[node name="SearchNode24" parent="SearchZones/F_1" unique_id=40426651 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.2942543, 0, -4.4906707)
+
+[node name="SearchNode25" parent="SearchZones/F_1" unique_id=442650480 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.175251, 0, -1.8330195)
+
+[node name="SearchNode26" parent="SearchZones/F_1" unique_id=681278988 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.2149162, 0, 0.30896735)
+
+[node name="SearchNode27" parent="SearchZones/F_1" unique_id=481203690 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.2149162, 0, 2.3089674)
+
+[node name="SearchNode28" parent="SearchZones/F_1" unique_id=1873182989 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5175972, 0, 2.9832957)
+
+[node name="SearchNode29" parent="SearchZones/F_1" unique_id=440165448 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.43826675, 0, 0.36530948)
+
+[node name="SearchNode30" parent="SearchZones/F_1" unique_id=283203065 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.43826675, 0, -2.4113405)
+
+[node name="SearchNode31" parent="SearchZones/F_1" unique_id=637134390 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.39860153, 0, -5.5846562)
+
+[node name="SearchNode32" parent="SearchZones/F_1" unique_id=969035464 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.7389183, 0, -6.972982)
+
+[node name="SearchNode33" parent="SearchZones/F_1" unique_id=1375030876 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.9289093, 0, -9.075302)
+
+[node name="SearchNode34" parent="SearchZones/F_1" unique_id=1909070617 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0710907, 0, -8.075302)
+
+[node name="SearchNode35" parent="SearchZones/F_1" unique_id=1256305055 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.4510803, 0, -7.9959702)
+
+[node name="SearchNode36" parent="SearchZones/F_1" unique_id=262863778 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.077408, 0, -11.724615)
+
+[node name="SearchNode37" parent="SearchZones/F_1" unique_id=2108848974 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.3007622, 0, -14.818598)
+
+[node name="SearchNode38" parent="SearchZones/F_1" unique_id=878524124 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.35688782, 0, -12.3196125)
+
+[node name="SearchNode39" parent="SearchZones/F_1" unique_id=1095914354 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5387573, 0, -12.557611)
+
+[node name="SearchNode40" parent="SearchZones/F_1" unique_id=957791975 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.1420975, 0, -9.860292)
+
+[node name="SearchNode41" parent="SearchZones/F_1" unique_id=715930006 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.3683853, 0, -14.875126)
+
+[node name="F_2" type="Node3D" parent="SearchZones" unique_id=1335250730]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -52.564682, 0, 25.445795)
+
+[node name="SearchNode" parent="SearchZones/F_2" unique_id=434147663 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.373371, 0, -13.079337)
+
+[node name="SearchNode2" parent="SearchZones/F_2" unique_id=1053038247 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.0714264, 0, -13.356939)
+
+[node name="SearchNode3" parent="SearchZones/F_2" unique_id=1654511614 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.44472504, 0, -11.321192)
+
+[node name="SearchNode4" parent="SearchZones/F_2" unique_id=944375403 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.98955154, 0, -9.239178)
+
+[node name="SearchNode5" parent="SearchZones/F_2" unique_id=425076919 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.3879356, 0, -9.239178)
+
+[node name="SearchNode6" parent="SearchZones/F_2" unique_id=1968417761 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.1818275, 0, -7.9437027)
+
+[node name="SearchNode7" parent="SearchZones/F_2" unique_id=932793276 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.1818275, 0, 5.4737206)
+
+[node name="SearchNode8" parent="SearchZones/F_2" unique_id=1976661341 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.135559, 0, -0.8648567)
+
+[node name="SearchNode9" parent="SearchZones/F_2" unique_id=1818680462 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.228092, 0, -4.427414)
+
+[node name="SearchNode10" parent="SearchZones/F_2" unique_id=678641045 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.228092, 0, 2.572586)
+
+[node name="SearchNode11" parent="SearchZones/F_2" unique_id=1580969782 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9252625, 0, 6.088875)
+
+[node name="SearchNode12" parent="SearchZones/F_2" unique_id=532689671 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.53741074, 0, 6.0247326)
+
+[node name="SearchNode13" parent="SearchZones/F_2" unique_id=1191437221 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.3491783, 0, 6.163534)
+
+[node name="SearchNode14" parent="SearchZones/F_2" unique_id=1375384106 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.989563, 0, 6.5336704)
+
+[node name="SearchNode15" parent="SearchZones/F_2" unique_id=935436440 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.3491783, 0, -8.456833)
+
+[node name="SearchNode16" parent="SearchZones/F_2" unique_id=88796362 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.082096, 0, -9.243372)
+
+[node name="SearchNode17" parent="SearchZones/F_2" unique_id=1227231402 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.886509, 0, -11.094051)
+
+[node name="SearchNode18" parent="SearchZones/F_2" unique_id=1333144393 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.879158, 0, -11.371653)
+
+[node name="SearchNode19" parent="SearchZones/F_2" unique_id=2012986792 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.783287, 0, -9.567241)
+
+[node name="SearchNode20" parent="SearchZones/F_2" unique_id=1221760649 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.783287, 0, -11.567241)
+
+[node name="SearchNode21" parent="SearchZones/F_2" unique_id=571812916 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.0998077, 0, -11.613507)
+
+[node name="SearchNode22" parent="SearchZones/F_2" unique_id=474974273 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.3207855, 0, -5.367464)
+
+[node name="SearchNode23" parent="SearchZones/F_2" unique_id=348117882 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.274517, 0, -3.0078487)
+
+[node name="SearchNode24" parent="SearchZones/F_2" unique_id=1621142967 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.690922, 0, -0.5556984)
+
+[node name="SearchNode25" parent="SearchZones/F_2" unique_id=361220713 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.2282486, 0, 3.0068588)
+
+[node name="SearchNode26" parent="SearchZones/F_2" unique_id=768258046 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5551262, 0, 3.5157967)
+
+[node name="SearchNode27" parent="SearchZones/F_2" unique_id=1623731144 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6476593, 0, 0.23083878)
+
+[node name="SearchNode28" parent="SearchZones/F_2" unique_id=1477904544 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6476593, 0, -2.7691612)
+
+[node name="SearchNode29" parent="SearchZones/F_2" unique_id=1626591682 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.31046295, 0, -5.393177)
+
+[node name="SearchNode30" parent="SearchZones/F_2" unique_id=829414270 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8327217, 0, -7.765993)
+
+[node name="SearchNode31" parent="SearchZones/F_2" unique_id=673899906 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.1569176, 0, 8.417936)
+
+[node name="SearchNode32" parent="SearchZones/F_2" unique_id=1890634473 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.6329155, 0, 12.131933)
+
+[node name="SearchNode33" parent="SearchZones/F_2" unique_id=155224809 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.4340324, 0, 11.695604)
+
+[node name="SearchNode34" parent="SearchZones/F_2" unique_id=1476940448 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.6720314, 0, 9.434614)
+
+[node name="SearchNode35" parent="SearchZones/F_2" unique_id=393144642 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5613747, 0, 6.8562946)
+
+[node name="SearchNode36" parent="SearchZones/F_2" unique_id=1654692651 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.4027061, 0, 11.5536175)
+
+[node name="SearchNode37" parent="SearchZones/F_2" unique_id=1049608533 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0227165, 0, 11.751947)
+
+[node name="SearchNode38" parent="SearchZones/F_2" unique_id=1719594635 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5159378, 0, 11.791616)
+
+[node name="SearchNode39" parent="SearchZones/F_2" unique_id=1738311255 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.6579285, 0, 11.3156185)
+
+[node name="SearchNode40" parent="SearchZones/F_2" unique_id=1296612629 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.300926, 0, 10.3156185)
+
+[node name="SearchNode41" parent="SearchZones/F_2" unique_id=702456259 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.252922, 0, 9.275953)
+
+[node name="SearchNode42" parent="SearchZones/F_2" unique_id=365522388 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9522629, 0, 7.966959)
+
+[node name="SearchNode43" parent="SearchZones/F_2" unique_id=99005638 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5159302, 0, 10.10895)
+
+[node name="SearchNode44" parent="SearchZones/F_2" unique_id=462174604 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4840698, 0, 7.7916164)
+
+[node name="SearchNode45" parent="SearchZones/F_2" unique_id=454088585 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1187363, 0, 10.092276)
+
+[node name="SearchNode46" parent="SearchZones/F_2" unique_id=588706838 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.6260643, 0, 8.624613)
+
+[node name="G_1" type="Node3D" parent="SearchZones" unique_id=194346981]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.000935, 0, -8.807203)
+
+[node name="SearchNode" parent="SearchZones/G_1" unique_id=371513750 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.220324, 0, -8.419107)
+
+[node name="SearchNode2" parent="SearchZones/G_1" unique_id=1579259934 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.648323, 0, -6.1184397)
+
+[node name="SearchNode3" parent="SearchZones/G_1" unique_id=1535275122 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.648323, 0, -6.1184397)
+
+[node name="SearchNode4" parent="SearchZones/G_1" unique_id=750752053 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.320658, 0, 1.219893)
+
+[node name="SearchNode5" parent="SearchZones/G_1" unique_id=915465267 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.614992, 0, -0.44610596)
+
+[node name="SearchNode6" parent="SearchZones/G_1" unique_id=1414515586 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.019991, 0, 1.9338932)
+
+[node name="SearchNode7" parent="SearchZones/G_1" unique_id=1175482471 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.543991, 0, 7.0528936)
+
+[node name="SearchNode8" parent="SearchZones/G_1" unique_id=662305723 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.22666, 0, 9.44956)
+
+[node name="SearchNode9" parent="SearchZones/G_1" unique_id=283932995 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6106739, 0, 6.5935597)
+
+[node name="SearchNode10" parent="SearchZones/G_1" unique_id=863860077 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.7296734, 0, 1.1592269)
+
+[node name="SearchNode11" parent="SearchZones/G_1" unique_id=426442426 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.7693424, 0, -1.300107)
+
+[node name="SearchNode12" parent="SearchZones/G_1" unique_id=1281866817 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6106777, 0, -4.909775)
+
+[node name="SearchNode13" parent="SearchZones/G_1" unique_id=1522934162 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6503448, 0, -3.1874418)
+
+[node name="SearchNode14" parent="SearchZones/G_1" unique_id=625765207 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.913321, 0, -3.504776)
+
+[node name="SearchNode15" parent="SearchZones/G_1" unique_id=1382394376 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.4289875, 0, -4.020443)
+
+[node name="SearchNode16" parent="SearchZones/G_1" unique_id=364439128 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.023987, 0, -1.7344437)
+
+[node name="SearchNode17" parent="SearchZones/G_1" unique_id=61137256 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.86532, 0, 0.56622314)
+
+[node name="SearchNode18" parent="SearchZones/G_1" unique_id=972087142 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.570988, 0, 4.8502245)
+
+[node name="SearchNode19" parent="SearchZones/G_1" unique_id=951912520 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.547987, 0, 3.3825588)
+
+[node name="SearchNode20" parent="SearchZones/G_1" unique_id=722392669 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.309986, 0, 6.4368925)
+
+[node name="SearchNode21" parent="SearchZones/G_1" unique_id=1458815878 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.8109856, 0, 6.992225)
+
+[node name="SearchNode22" parent="SearchZones/G_1" unique_id=217971006 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.8359833, 0, 6.7145586)
+
+[node name="SearchNode23" parent="SearchZones/G_1" unique_id=528058125 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3453159, 0, 6.833559)
+
+[node name="SearchNode24" parent="SearchZones/G_1" unique_id=1748985505 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8676834, 0, 4.0172243)
+
+[node name="SearchNode25" parent="SearchZones/G_1" unique_id=765217781 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.59165, 0, 0.5662241)
+
+[node name="SearchNode26" parent="SearchZones/G_1" unique_id=2056911250 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5123177, 0, 0.44722366)
+
+[node name="SearchNode27" parent="SearchZones/G_1" unique_id=1633474138 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.1553173, 0, 0.4868908)
+
+[node name="SearchNode28" parent="SearchZones/G_1" unique_id=1525049227 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.591652, 0, 0.68522453)
+
+[node name="SearchNode29" parent="SearchZones/G_1" unique_id=1600252010 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.155319, 0, -5.7907743)
+
+[node name="SearchNode30" parent="SearchZones/G_1" unique_id=2142705504 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.537319, 0, -5.7907743)
+
+[node name="SearchNode31" parent="SearchZones/G_1" unique_id=2128962563 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.117653, 0, -5.8304415)
+
+[node name="SearchNode32" parent="SearchZones/G_1" unique_id=1158337530 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.14334679, 0, -6.1477747)
+
+[node name="SearchNode33" parent="SearchZones/G_1" unique_id=38473262 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.8176804, 0, -6.266775)
+
+[node name="SearchNode34" parent="SearchZones/G_1" unique_id=1430043701 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.364685, 0, -2.3397741)
+
+[node name="SearchNode35" parent="SearchZones/G_1" unique_id=1870157060 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.2060223, 0, 2.2635593)
+
+[node name="SearchNode36" parent="SearchZones/G_1" unique_id=649279014 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.888689, 0, 2.184227)
+
+[node name="SearchNode37" parent="SearchZones/G_1" unique_id=1468952642 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.690355, 0, -2.0601063)
+
+[node name="SearchNode38" parent="SearchZones/G_1" unique_id=1428404112 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.897024, 0, -2.6634388)
+
+[node name="SearchNode39" parent="SearchZones/G_1" unique_id=1455452344 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.9763546, 0, 2.5725617)
+
+[node name="SearchNode40" parent="SearchZones/G_1" unique_id=1549531029 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.38769, 0, -0.0057725906)
+
+[node name="SearchNode41" parent="SearchZones/G_1" unique_id=1127424280 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.0096893, 0, -0.20410442)
+
+[node name="SearchNode42" parent="SearchZones/G_1" unique_id=1436696650 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.9450207, 0, -6.0351057)
+
+[node name="SearchNode43" parent="SearchZones/G_1" unique_id=69718142 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5170193, 0, -4.289772)
+
+[node name="SearchNode44" parent="SearchZones/G_1" unique_id=651758266 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5170193, 0, -3.805439)
+
+[node name="SearchNode45" parent="SearchZones/G_1" unique_id=1550073195 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.3980198, 0, 2.858561)
+
+[node name="SearchNode46" parent="SearchZones/G_1" unique_id=1810663678 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.39802, 0, 6.858561)
+
+[node name="SearchNode47" parent="SearchZones/G_1" unique_id=933613291 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.57769, 0, 6.6205606)
+
+[node name="SearchNode48" parent="SearchZones/G_1" unique_id=1245979826 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.379356, 0, 4.557893)
+
+[node name="SearchNode49" parent="SearchZones/G_1" unique_id=669122849 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.206024, 0, 7.1758947)
+
+[node name="SearchNode50" parent="SearchZones/G_1" unique_id=246420673 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.761356, 0, 4.9942293)
+
+[node name="SearchNode51" parent="SearchZones/G_1" unique_id=1496543147 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.7070236, 0, 4.875231)
+
+[node name="SearchNode52" parent="SearchZones/G_1" unique_id=674644691 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.744694, 0, -4.525771)
+
+[node name="SearchNode53" parent="SearchZones/G_1" unique_id=1610883308 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.966026, 0, -5.9934387)
+
+[node name="SearchNode54" parent="SearchZones/G_1" unique_id=370615384 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.728027, 0, -3.350438)
+
+[node name="SearchNode55" parent="SearchZones/G_1" unique_id=1634556285 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.045361, 0, 2.3615623)
+
+[node name="G_2" type="Node3D" parent="SearchZones" unique_id=2078052428]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.329601, 0, -8.574188)
+
+[node name="SearchNode" parent="SearchZones/G_2" unique_id=1168404557 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.270531, 0, -5.984913)
+
+[node name="SearchNode2" parent="SearchZones/G_2" unique_id=1118274256 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.13653, 0, -1.6114731)
+
+[node name="SearchNode3" parent="SearchZones/G_2" unique_id=1839933570 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.670029, 0, 0.33021545)
+
+[node name="SearchNode4" parent="SearchZones/G_2" unique_id=317411523 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.670029, 0, 3.3302155)
+
+[node name="SearchNode5" parent="SearchZones/G_2" unique_id=1075597676 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.486404, 0, 5.3128424)
+
+[node name="SearchNode6" parent="SearchZones/G_2" unique_id=1678610266 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.2823105, 0, 6.895967)
+
+[node name="SearchNode7" parent="SearchZones/G_2" unique_id=1663665426 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.057747, 0, 2.0851855)
+
+[node name="SearchNode8" parent="SearchZones/G_2" unique_id=1302881203 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.203529, 0, -2.2882538)
+
+[node name="SearchNode9" parent="SearchZones/G_2" unique_id=1774170959 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.2035294, 0, -0.28825378)
+
+[node name="SearchNode10" parent="SearchZones/G_2" unique_id=1327709696 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.728342, 0, -2.241723)
+
+[node name="SearchNode11" parent="SearchZones/G_2" unique_id=89878371 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.553404, 0, 2.015091)
+
+[node name="SearchNode12" parent="SearchZones/G_2" unique_id=405255457 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.206623, 0, 4.7266235)
+
+[node name="SearchNode13" parent="SearchZones/G_2" unique_id=147460486 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.206623, 0, 6.7266235)
+
+[node name="SearchNode14" parent="SearchZones/G_2" unique_id=404439981 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.1861553, 0, 4.3358107)
+
+[node name="SearchNode15" parent="SearchZones/G_2" unique_id=1975907635 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.2909985, 0, 6.6099997)
+
+[node name="SearchNode16" parent="SearchZones/G_2" unique_id=2108800184 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2909985, 0, 6.6099997)
+
+[node name="SearchNode17" parent="SearchZones/G_2" unique_id=1496667712 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4659367, 0, 3.7526865)
+
+[node name="SearchNode18" parent="SearchZones/G_2" unique_id=69970636 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2618408, 0, 0.19562244)
+
+[node name="SearchNode19" parent="SearchZones/G_2" unique_id=1952962349 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.7381592, 0, 0.19562244)
+
+[node name="SearchNode20" parent="SearchZones/G_2" unique_id=233637574 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3524036, 0, -3.040722)
+
+[node name="SearchNode21" parent="SearchZones/G_2" unique_id=716239932 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4174423, 0, -6.393692)
+
+[node name="SearchNode22" parent="SearchZones/G_2" unique_id=324924542 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4398708, 0, -5.810567)
+
+[node name="SearchNode23" parent="SearchZones/G_2" unique_id=1585706430 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.005623, 0, 3.4902802)
+
+[node name="SearchNode24" parent="SearchZones/G_2" unique_id=51883586 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.8306847, 0, 0.9828415)
+
+[node name="SearchNode25" parent="SearchZones/G_2" unique_id=1939371250 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.8598404, 0, -1.9327831)
+
+[node name="SearchNode26" parent="SearchZones/G_2" unique_id=757328930 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.85984, 0, -5.932783)
+
+[node name="SearchNode27" parent="SearchZones/G_2" unique_id=406634285 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.959091, 0, -3.7169075)
+
+[node name="SearchNode28" parent="SearchZones/G_2" unique_id=854419177 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.0260925, 0, -4.3291883)
+
+[node name="SearchNode29" parent="SearchZones/G_2" unique_id=255264525 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.110466, 0, -4.270877)
+
+[node name="SearchNode30" parent="SearchZones/G_2" unique_id=1276118808 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.4516544, 0, -6.428439)
+
+[node name="SearchNode31" parent="SearchZones/G_2" unique_id=1710323049 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5166912, 0, 6.546097)
+
+[node name="SearchNode32" parent="SearchZones/G_2" unique_id=796062147 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.516691, 0, 6.546097)
+
+[node name="SearchNode33" parent="SearchZones/G_2" unique_id=1527975021 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.6364117, 0, 6.691878)
+
+[node name="SearchNode34" parent="SearchZones/G_2" unique_id=1952749299 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.697819, 0, 6.6044087)
+
+[node name="SearchNode35" parent="SearchZones/G_2" unique_id=2051523793 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.514193, 0, 3.6887827)
+
+[node name="SearchNode36" parent="SearchZones/G_2" unique_id=921859923 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.718285, 0, 1.0095019)
+
+[node name="SearchNode37" parent="SearchZones/G_2" unique_id=1069728064 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.7443466, 0, 0.5721588)
+
+[node name="SearchNode38" parent="SearchZones/G_2" unique_id=1694396019 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.120283, 0, 0.36806488)
+
+[node name="SearchNode39" parent="SearchZones/G_2" unique_id=30954647 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.120283, 0, -1.6319351)
+
+[node name="SearchNode40" parent="SearchZones/G_2" unique_id=42589392 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.032814, 0, -4.518405)
+
+[node name="SearchNode41" parent="SearchZones/G_2" unique_id=1483956466 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.962721, 0, -6.3260927)
+
+[node name="SearchNode42" parent="SearchZones/G_2" unique_id=1312614053 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.601061, 0, -6.005375)
+
+[node name="SearchNode43" parent="SearchZones/G_2" unique_id=209717213 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.918686, 0, -6.1219997)
+
+[node name="SearchNode44" parent="SearchZones/G_2" unique_id=297402816 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.22822, 0, -7.5506554)
+
+[node name="SearchNode45" parent="SearchZones/G_2" unique_id=259586345 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.22822, 0, -5.5506554)
+
+[node name="SearchNode46" parent="SearchZones/G_2" unique_id=802408943 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.140751, 0, -2.9588432)
+
+[node name="SearchNode47" parent="SearchZones/G_2" unique_id=2029940611 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.820034, 0, 0.68568945)
+
+[node name="SearchNode48" parent="SearchZones/G_2" unique_id=1386045392 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.607254, 0, 0.33581448)
+
+[node name="SearchNode49" parent="SearchZones/G_2" unique_id=1863911792 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.336161, 0, 4.085191)
+
+[node name="SearchNode50" parent="SearchZones/G_2" unique_id=393953142 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.56941, 0, 6.8810973)
+
+[node name="SearchNode51" parent="SearchZones/G_2" unique_id=1862532973 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.672276, 0, 8.853556)
+
+[node name="H_1" type="Node3D" parent="SearchZones" unique_id=51967986]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 52.40794, 0, -0.76823616)
+
+[node name="SearchNode" parent="SearchZones/H_1" unique_id=357980569 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5062866, 0, -13.4197855)
+
+[node name="SearchNode2" parent="SearchZones/H_1" unique_id=669160980 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5991669, 0, -15.693979)
+
+[node name="SearchNode3" parent="SearchZones/H_1" unique_id=771138556 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.0365105, 0, -13.431573)
+
+[node name="SearchNode4" parent="SearchZones/H_1" unique_id=1934188426 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.065662384, 0, -12.081697)
+
+[node name="SearchNode5" parent="SearchZones/H_1" unique_id=572760743 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.9343376, 0, -11.081697)
+
+[node name="SearchNode6" parent="SearchZones/H_1" unique_id=282899549 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.0656624, 0, -11.081697)
+
+[node name="SearchNode7" parent="SearchZones/H_1" unique_id=1560831318 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.9343376, 0, -7.0816975)
+
+[node name="SearchNode8" parent="SearchZones/H_1" unique_id=1079900787 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.9343376, 0, -9.081697)
+
+[node name="SearchNode9" parent="SearchZones/H_1" unique_id=74736021 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.7593994, 0, -5.641253)
+
+[node name="SearchNode10" parent="SearchZones/H_1" unique_id=943499056 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.02223587, 0, 0.62735605)
+
+[node name="SearchNode11" parent="SearchZones/H_1" unique_id=485285068 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.124256134, 0, 12.938237)
+
+[node name="SearchNode12" parent="SearchZones/H_1" unique_id=225422048 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.8757439, 0, 11.938237)
+
+[node name="SearchNode13" parent="SearchZones/H_1" unique_id=448483942 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.113804, 0, 10.781968)
+
+[node name="SearchNode14" parent="SearchZones/H_1" unique_id=400415830 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.8417397, 0, 8.815974)
+
+[node name="SearchNode15" parent="SearchZones/H_1" unique_id=353856033 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.1202736, 0, 6.605458)
+
+[node name="SearchNode16" parent="SearchZones/H_1" unique_id=1775969119 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.1202736, 0, 4.605458)
+
+[node name="SearchNode17" parent="SearchZones/H_1" unique_id=1851844671 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.2287674, 0, 2.020853)
+
+[node name="SearchNode18" parent="SearchZones/H_1" unique_id=1495864823 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.6846428, 0, 0.7487901)
+
+[node name="SearchNode19" parent="SearchZones/H_1" unique_id=31394836 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.8951607, 0, -1.1216478)
+
+[node name="SearchNode20" parent="SearchZones/H_1" unique_id=485467037 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.820675, 0, -3.740261)
+
+[node name="SearchNode21" parent="SearchZones/H_1" unique_id=1776345959 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.0652046, 0, 13.229712)
+
+[node name="SearchNode22" parent="SearchZones/H_1" unique_id=29829931 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.1987267, 0, 12.141458)
+
+[node name="SearchNode34" parent="SearchZones/H_1" unique_id=2125729792 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.303997, 0, 14.639903)
+
+[node name="SearchNode35" parent="SearchZones/H_1" unique_id=1165475072 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.2861137, 0, 14.177228)
+
+[node name="SearchNode36" parent="SearchZones/H_1" unique_id=1769275748 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.7138863, 0, 14.177228)
+
+[node name="SearchNode23" parent="SearchZones/H_1" unique_id=953426725 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.0489235, 0, 11.855625)
+
+[node name="SearchNode24" parent="SearchZones/H_1" unique_id=1365882087 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.396305, 0, 9.747131)
+
+[node name="SearchNode25" parent="SearchZones/H_1" unique_id=441019054 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.192257, 0, 8.005426)
+
+[node name="SearchNode26" parent="SearchZones/H_1" unique_id=28782276 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.192257, 0, 6.0054264)
+
+[node name="SearchNode27" parent="SearchZones/H_1" unique_id=1012688614 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.9946785, 0, 4.0329633)
+
+[node name="SearchNode28" parent="SearchZones/H_1" unique_id=1888649455 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.1582527, 0, 1.5503836)
+
+[node name="SearchNode29" parent="SearchZones/H_1" unique_id=684859859 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.0286903, 0, -0.52410245)
+
+[node name="SearchNode30" parent="SearchZones/H_1" unique_id=1062184218 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9882126, 0, -2.4625564)
+
+[node name="SearchNode31" parent="SearchZones/H_1" unique_id=1876161032 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.0286903, 0, -4.3329954)
+
+[node name="SearchNode32" parent="SearchZones/H_1" unique_id=285970117 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9201965, 0, -6.3734736)
+
+[node name="SearchNode33" parent="SearchZones/H_1" unique_id=964759133 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.9201965, 0, -8.645537)
+
+[node name="H_2" type="Node3D" parent="SearchZones" unique_id=1556909333]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 52.40794, 0, 25.911821)
+
+[node name="SearchNode" parent="SearchZones/H_2" unique_id=1305504031 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.6993637, 0, -10.957409)
+
+[node name="SearchNode2" parent="SearchZones/H_2" unique_id=611831853 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.293457, 0, -9.708187)
+
+[node name="SearchNode3" parent="SearchZones/H_2" unique_id=1299257305 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1975975, 0, -11.690302)
+
+[node name="SearchNode4" parent="SearchZones/H_2" unique_id=1455171722 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.0199165, 0, -10.903754)
+
+[node name="SearchNode5" parent="SearchZones/H_2" unique_id=1851330422 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.0199165, 0, -8.903753)
+
+[node name="SearchNode6" parent="SearchZones/H_2" unique_id=866596179 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.881115, 0, -7.320162)
+
+[node name="SearchNode7" parent="SearchZones/H_2" unique_id=741253995 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.148224, 0, -4.96052)
+
+[node name="SearchNode8" parent="SearchZones/H_2" unique_id=110963265 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.0199165, 0, -3.1560879)
+
+[node name="SearchNode9" parent="SearchZones/H_2" unique_id=1213210121 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.1944923, 0, -1.2128525)
+
+[node name="SearchNode10" parent="SearchZones/H_2" unique_id=2030845813 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5572433, 0, 0.4065113)
+
+[node name="SearchNode11" parent="SearchZones/H_2" unique_id=1535140369 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.518368, 0, 1.470665)
+
+[node name="SearchNode12" parent="SearchZones/H_2" unique_id=1282467737 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.518368, 0, 4.470665)
+
+[node name="SearchNode13" parent="SearchZones/H_2" unique_id=2069291593 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.518368, 0, 7.470663)
+
+[node name="SearchNode14" parent="SearchZones/H_2" unique_id=2099825167 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.2333717, 0, 6.915453)
+
+[node name="SearchNode15" parent="SearchZones/H_2" unique_id=1150327975 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.52147293, 0, 3.8155308)
+
+[node name="SearchNode16" parent="SearchZones/H_2" unique_id=877899838 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.080005646, 0, 0.7156086)
+
+[node name="SearchNode17" parent="SearchZones/H_2" unique_id=1765927533 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.7172546, 0, -0.7649536)
+
+[node name="SearchNode18" parent="SearchZones/H_2" unique_id=1278533368 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.48592, 0, -4.2812843)
+
+[node name="SearchNode19" parent="SearchZones/H_2" unique_id=1277657080 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5321884, 0, -7.1887493)
+
+[node name="SearchNode20" parent="SearchZones/H_2" unique_id=2003148937 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.7992935, 0, -8.067831)
+
+[node name="SearchNode21" parent="SearchZones/H_2" unique_id=2087764422 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.9843674, 0, -5.152979)
+
+[node name="SearchNode22" parent="SearchZones/H_2" unique_id=762306174 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.030632, 0, -1.9605217)
+
+[node name="SearchNode23" parent="SearchZones/H_2" unique_id=737430395 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.123165, 0, 0.9080639)
+
+[node name="SearchNode24" parent="SearchZones/H_2" unique_id=964819008 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.6783752, 0, 3.9154491)
+
+[node name="SearchNode25" parent="SearchZones/H_2" unique_id=202025520 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.845558, 0, 6.9691067)
+
+[node name="SearchNode26" parent="SearchZones/H_2" unique_id=738336293 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9307022, 0, 6.645235)
+
+[node name="SearchNode27" parent="SearchZones/H_2" unique_id=1549956026 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.11556625, 0, 5.997492)
+
+[node name="SearchNode28" parent="SearchZones/H_2" unique_id=972639834 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.7782974, 0, 8.357134)
+
+[node name="SearchNode29" parent="SearchZones/H_2" unique_id=835482399 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.927597, 0, 11.040651)
+
+[node name="SearchNode30" parent="SearchZones/H_2" unique_id=813550160 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5395737, 0, 9.004881)
+
+[node name="SearchNode31" parent="SearchZones/H_2" unique_id=1682675610 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5963402, 0, 11.08692)
+
+[node name="SearchNode32" parent="SearchZones/H_2" unique_id=1011304486 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5216942, 0, 8.688395)
+
+[node name="SearchNode33" parent="SearchZones/H_2" unique_id=2090580388 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6528778, 0, 11.001772)
+
+[node name="SearchNode34" parent="SearchZones/H_2" unique_id=285295517 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.1902008, 0, 8.816698)
+
+[node name="SearchNode35" parent="SearchZones/H_2" unique_id=1441309729 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.855831, 0, 10.8524685)
+
+[node name="I_1" type="Node3D" parent="SearchZones" unique_id=1944511948]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -36.370235, 0, 13.562105)
+
+[node name="SearchNode" parent="SearchZones/I_1" unique_id=38816391 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.77428436, 0, -11.26225)
+
+[node name="SearchNode2" parent="SearchZones/I_1" unique_id=1002855830 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.2699432, 0, -8.504183)
+
+[node name="SearchNode3" parent="SearchZones/I_1" unique_id=1530530272 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1413574, 0, -8.504183)
+
+[node name="SearchNode4" parent="SearchZones/I_1" unique_id=886367732 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.1413574, 0, -6.504183)
+
+[node name="SearchNode5" parent="SearchZones/I_1" unique_id=1900070810 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.7362747, 0, -5.308769)
+
+[node name="SearchNode6" parent="SearchZones/I_1" unique_id=1860942370 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.1444626, 0, -3.6003332)
+
+[node name="SearchNode7" parent="SearchZones/I_1" unique_id=2104215191 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8642197, 0, -5.716959)
+
+[node name="SearchNode8" parent="SearchZones/I_1" unique_id=1225810483 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.72758865, 0, -6.1543045)
+
+[node name="SearchNode10" parent="SearchZones/I_1" unique_id=1535798976 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5701904, 0, 0.049791336)
+
+[node name="SearchNode11" parent="SearchZones/I_1" unique_id=1395939656 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.0249023, 0, -2.8366928)
+
+[node name="SearchNode12" parent="SearchZones/I_1" unique_id=1191467200 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6574898, 0, -3.4781332)
+
+[node name="SearchNode13" parent="SearchZones/I_1" unique_id=1407068047 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.045207977, 0, 1.536767)
+
+[node name="SearchNode14" parent="SearchZones/I_1" unique_id=1685496169 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.39213943, 0, -0.79574394)
+
+[node name="SearchNode15" parent="SearchZones/I_1" unique_id=1907573230 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.8442192, 0, -0.883214)
+
+[node name="SearchNode16" parent="SearchZones/I_1" unique_id=421996461 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.8442192, 0, 2.116786)
+
+[node name="SearchNode17" parent="SearchZones/I_1" unique_id=597871692 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9665833, 0, 3.283041)
+
+[node name="SearchNode18" parent="SearchZones/I_1" unique_id=1095550220 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6458626, 0, 6.548559)
+
+[node name="SearchNode19" parent="SearchZones/I_1" unique_id=234006177 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8499565, 0, 9.726604)
+
+[node name="SearchNode20" parent="SearchZones/I_1" unique_id=1265347309 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5583916, 0, 12.700558)
+
+[node name="SearchNode21" parent="SearchZones/I_1" unique_id=204308336 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5875435, 0, 15.703667)
+
+[node name="SearchNode23" parent="SearchZones/I_1" unique_id=803963285 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.3777275, 0, 15.936918)
+
+[node name="SearchNode24" parent="SearchZones/I_1" unique_id=1106411850 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.3777275, 0, 12.936918)
+
+[node name="SearchNode25" parent="SearchZones/I_1" unique_id=1749880313 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.7859154, 0, 10.25453)
+
+[node name="SearchNode26" parent="SearchZones/I_1" unique_id=818335635 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.4943542, 0, 7.6012974)
+
+[node name="SearchNode27" parent="SearchZones/I_1" unique_id=314939048 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.815075, 0, 4.8605957)
+
+[node name="I_2" type="Node3D" parent="SearchZones" unique_id=942857377]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28.098251, 0, 33.60127)
+
+[node name="SearchNode" parent="SearchZones/I_2" unique_id=1702476939 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15872192, 0, 0.51693344)
+
+[node name="SearchNode28" parent="SearchZones/I_2" unique_id=1165495223 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.929634, 0, -1.9124069)
+
+[node name="SearchNode29" parent="SearchZones/I_2" unique_id=286631836 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.346504, 0, 0.6242027)
+
+[node name="SearchNode30" parent="SearchZones/I_2" unique_id=1677410659 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.133728, 0, 3.0733376)
+
+[node name="SearchNode31" parent="SearchZones/I_2" unique_id=775542371 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.897366, 0, 2.8692398)
+
+[node name="SearchNode32" parent="SearchZones/I_2" unique_id=352998516 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.576649, 0, -0.017246246)
+
+[node name="SearchNode33" parent="SearchZones/I_2" unique_id=1849498933 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.9525757, 0, 3.3065834)
+
+[node name="SearchNode34" parent="SearchZones/I_2" unique_id=1443225551 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.4860725, 0, 0.7116661)
+
+[node name="SearchNode35" parent="SearchZones/I_2" unique_id=564063812 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.281975, 0, -1.7374725)
+
+[node name="SearchNode36" parent="SearchZones/I_2" unique_id=666099509 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.1913986, 0, -1.3292809)
+
+[node name="SearchNode37" parent="SearchZones/I_2" unique_id=1920445283 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.832838, 0, 0.8574486)
+
+[node name="SearchNode38" parent="SearchZones/I_2" unique_id=522371024 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.34520912, 0, -1.4750633)
+
+[node name="SearchNode39" parent="SearchZones/I_2" unique_id=1046098005 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.3191624, 0, 1.2364807)
+
+[node name="SearchNode40" parent="SearchZones/I_2" unique_id=1174289723 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.0859127, 0, -1.504219)
+
+[node name="SearchNode41" parent="SearchZones/I_2" unique_id=1054724472 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.010235, 0, 3.6856194)
+
+[node name="SearchNode42" parent="SearchZones/I_2" unique_id=1265280849 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.3427467, 0, 3.7439346)
+
+[node name="SearchNode43" parent="SearchZones/I_2" unique_id=803613106 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.0307083, 0, 1.4988899)
+
+[node name="SearchNode44" parent="SearchZones/I_2" unique_id=828504503 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.742252, 0, 1.294796)
+
+[node name="SearchNode45" parent="SearchZones/I_2" unique_id=2100908113 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.742252, 0, 0.294796)
+
+[node name="SearchNode46" parent="SearchZones/I_2" unique_id=1107736026 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.051178, 0, -1.454586)
+
+[node name="SearchNode47" parent="SearchZones/I_2" unique_id=458480140 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.9897575, 0, -1.0755501)
+
+[node name="SearchNode48" parent="SearchZones/I_2" unique_id=1607415237 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.339636, 0, -3.0873432)
+
+[node name="SearchNode49" parent="SearchZones/I_2" unique_id=2117762563 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.085911, 0, -4.8075714)
+
+[node name="SearchNode22" parent="SearchZones/I_2" unique_id=1931982813 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.197617, 0, -2.3237038)
+
+[node name="J" type="Node3D" parent="SearchZones" unique_id=965999983]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.923393, 0, 14.494152)
+
+[node name="SearchNode" parent="SearchZones/J" unique_id=550615489 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.35694885, 0, -10.986496)
+
+[node name="SearchNode2" parent="SearchZones/J" unique_id=1698919367 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5867348, 0, -9.003146)
+
+[node name="SearchNode3" parent="SearchZones/J" unique_id=299491256 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3025894, 0, -9.161814)
+
+[node name="SearchNode4" parent="SearchZones/J" unique_id=1380512416 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.141962, 0, -5.948786)
+
+[node name="SearchNode5" parent="SearchZones/J" unique_id=2013700825 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.3652725, 0, -7.3371315)
+
+[node name="SearchNode6" parent="SearchZones/J" unique_id=1804845879 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.436281, 0, -3.370431)
+
+[node name="SearchNode7" parent="SearchZones/J" unique_id=1547558860 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.2776127, 0, -1.1241035)
+
+[node name="SearchNode8" parent="SearchZones/J" unique_id=128345669 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6992569, 0, -0.13242912)
+
+[node name="SearchNode9" parent="SearchZones/J" unique_id=1078957873 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6595879, 0, 2.9615974)
+
+[node name="SearchNode10" parent="SearchZones/J" unique_id=1826162173 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5009212, 0, 6.055622)
+
+[node name="SearchNode11" parent="SearchZones/J" unique_id=1832552035 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6595898, 0, 8.5149765)
+
+[node name="SearchNode12" parent="SearchZones/J" unique_id=298827115 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9852505, 0, 11.609001)
+
+[node name="SearchNode13" parent="SearchZones/J" unique_id=1999029722 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.34041214, 0, 9.450335)
+
+[node name="SearchNode14" parent="SearchZones/J" unique_id=1960993990 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.3404121, 0, 8.767668)
+
+[node name="SearchNode15" parent="SearchZones/J" unique_id=395105378 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.83306694, 0, 6.546316)
+
+[node name="SearchNode16" parent="SearchZones/J" unique_id=1790965352 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.6974163, 0, 4.8009663)
+
+[node name="SearchNode17" parent="SearchZones/J" unique_id=516392868 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.680765, 0, 3.571291)
+
+[node name="SearchNode18" parent="SearchZones/J" unique_id=900858525 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.680765, 0, 1.571291)
+
+[node name="SearchNode19" parent="SearchZones/J" unique_id=1624143175 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.3404121, 0, -0.13438988)
+
+[node name="SearchNode20" parent="SearchZones/J" unique_id=423852988 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.023077, 0, 1.9679623)
+
+[node name="SearchNode21" parent="SearchZones/J" unique_id=417635177 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.60338783, 0, 3.4753075)
+
+[node name="SearchNode22" parent="SearchZones/J" unique_id=486554608 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8017216, 0, 0.57961464)
+
+[node name="SearchNode23" parent="SearchZones/J" unique_id=2124722183 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.92072296, 0, -2.4350758)
+
+[node name="SearchNode24" parent="SearchZones/J" unique_id=1135979168 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6429405, 0, -2.6334105)
+
+[node name="SearchNode25" parent="SearchZones/J" unique_id=1263288629 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.951952, 0, -5.0134306)
+
+[node name="SearchNode26" parent="SearchZones/J" unique_id=1258600259 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5322647, 0, -6.7191105)
+
+[node name="SearchNode27" parent="SearchZones/J" unique_id=1503843505 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.7684212, 0, -6.322441)
+
+[node name="SearchNode28" parent="SearchZones/J" unique_id=1282586847 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2545967, 0, -4.497759)
+
+[node name="SearchNode29" parent="SearchZones/J" unique_id=148421370 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.4677315, 0, -4.220091)
+
+[node name="K" type="Node3D" parent="SearchZones" unique_id=2146739172]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.21289444, 0, 19.387434)
+
+[node name="SearchNode" parent="SearchZones/K" unique_id=1820796030 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.10475159, 0, -17.399977)
+
+[node name="SearchNode2" parent="SearchZones/K" unique_id=1908563117 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.10475159, 0, -14.861285)
+
+[node name="SearchNode3" parent="SearchZones/K" unique_id=1225729173 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.2356052, 0, -14.266279)
+
+[node name="SearchNode4" parent="SearchZones/K" unique_id=1370268904 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9607792, 0, -14.028276)
+
+[node name="SearchNode5" parent="SearchZones/K" unique_id=995848954 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.4847736, 0, -12.552271)
+
+[node name="SearchNode6" parent="SearchZones/K" unique_id=775514396 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.8766556, 0, -11.75893)
+
+[node name="SearchNode7" parent="SearchZones/K" unique_id=1153423425 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.2566795, 0, -10.608585)
+
+[node name="SearchNode8" parent="SearchZones/K" unique_id=1962777301 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.676369, 0, -10.806921)
+
+[node name="SearchNode9" parent="SearchZones/K" unique_id=1772903490 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.064716, 0, -8.585566)
+
+[node name="SearchNode10" parent="SearchZones/K" unique_id=513593062 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.175394, 0, -5.412201)
+
+[node name="SearchNode11" parent="SearchZones/K" unique_id=334660894 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.691066, 0, -3.134533)
+
+[node name="SearchNode12" parent="SearchZones/K" unique_id=1799556332 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.07304, 0, -3.134533)
+
+[node name="SearchNode13" parent="SearchZones/K" unique_id=2108706672 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.9143715, 0, -0.27850533)
+
+[node name="SearchNode14" parent="SearchZones/K" unique_id=947914085 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.962362, 0, 2.4585228)
+
+[node name="SearchNode15" parent="SearchZones/K" unique_id=222625204 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.899676, 0, 4.6798763)
+
+[node name="SearchNode16" parent="SearchZones/K" unique_id=429788853 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.899676, 0, 6.6798763)
+
+[node name="SearchNode17" parent="SearchZones/K" unique_id=1661509135 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8996758, 0, 7.6798763)
+
+[node name="SearchNode18" parent="SearchZones/K" unique_id=1408337895 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1003242, 0, 7.6798763)
+
+[node name="SearchNode19" parent="SearchZones/K" unique_id=2060570826 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.100324, 0, 6.6798763)
+
+[node name="SearchNode20" parent="SearchZones/K" unique_id=768146275 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.901991, 0, 5.0368805)
+
+[node name="SearchNode21" parent="SearchZones/K" unique_id=558971895 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.5680065, 0, 3.0138588)
+
+[node name="SearchNode22" parent="SearchZones/K" unique_id=145417267 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.647345, 0, 0.53785515)
+
+[node name="SearchNode23" parent="SearchZones/K" unique_id=2034912128 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.528341, 0, -2.5958424)
+
+[node name="SearchNode24" parent="SearchZones/K" unique_id=984907407 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.083677, 0, -3.1511822)
+
+[node name="SearchNode25" parent="SearchZones/K" unique_id=553830030 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.901991, 0, -5.174202)
+
+[node name="SearchNode26" parent="SearchZones/K" unique_id=991101240 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.901991, 0, -8.174202)
+
+[node name="SearchNode27" parent="SearchZones/K" unique_id=1196254791 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.6806355, 0, -9.007211)
+
+[node name="SearchNode28" parent="SearchZones/K" unique_id=1973424441 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.759966, 0, -10.213869)
+
+[node name="SearchNode29" parent="SearchZones/K" unique_id=905920564 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.546938, 0, -10.769208)
+
+[node name="SearchNode30" parent="SearchZones/K" unique_id=1950826609 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.141945, 0, -6.7628345)
+
+[node name="SearchNode31" parent="SearchZones/K" unique_id=446993061 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5155945, 0, -4.462144)
+
+[node name="SearchNode32" parent="SearchZones/K" unique_id=479187422 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4991035, 0, -4.3431425)
+
+[node name="SearchNode33" parent="SearchZones/K" unique_id=62149689 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.0064507, 0, -6.326495)
+
+[node name="SearchNode34" parent="SearchZones/K" unique_id=108798181 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.2047863, 0, -8.5331545)
+
+[node name="SearchNode35" parent="SearchZones/K" unique_id=937624709 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.0627651, 0, -10.476841)
+
+[node name="SearchNode36" parent="SearchZones/K" unique_id=1768375096 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3965931, 0, -11.468516)
+
+[node name="SearchNode37" parent="SearchZones/K" unique_id=1576514256 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1587448, 0, -12.754509)
+
+[node name="SearchNode38" parent="SearchZones/K" unique_id=1802923492 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3006153, 0, -13.071845)
+
+[node name="SearchNode39" parent="SearchZones/K" unique_id=1844600073 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.426138, 0, -8.232464)
+
+[node name="SearchNode40" parent="SearchZones/K" unique_id=2023315109 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.417814, 0, -6.0507755)
+
+[node name="SearchNode41" parent="SearchZones/K" unique_id=449738800 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.378147, 0, -3.2344131)
+
+[node name="SearchNode42" parent="SearchZones/K" unique_id=1078001421 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.100477, 0, -0.53705406)
+
+[node name="SearchNode43" parent="SearchZones/K" unique_id=1844603258 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.3551254, 0, 1.7239685)
+
+[node name="SearchNode44" parent="SearchZones/K" unique_id=1815767472 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.3551254, 0, 3.7239685)
+
+[node name="SearchNode45" parent="SearchZones/K" unique_id=1458515051 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4344578, 0, 4.882637)
+
+[node name="SearchNode46" parent="SearchZones/K" unique_id=373184489 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.7785759, 0, 5.199972)
+
+[node name="SearchNode47" parent="SearchZones/K" unique_id=394732518 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.9519386, 0, 3.7322903)
+
+[node name="SearchNode48" parent="SearchZones/K" unique_id=1438315746 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.9519386, 0, 1.7322903)
+
+[node name="SearchNode49" parent="SearchZones/K" unique_id=1752746523 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.459286, 0, -0.44939804)
+
+[node name="SearchNode50" parent="SearchZones/K" unique_id=936278772 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.617954, 0, -3.8210983)
+
+[node name="SearchNode51" parent="SearchZones/K" unique_id=2094553054 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.705612, 0, -6.3201237)
+
+[node name="SearchNode52" parent="SearchZones/K" unique_id=753892852 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.48426, 0, -7.668804)
+
+[node name="SearchNode53" parent="SearchZones/K" unique_id=1213487599 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.2462573, 0, -4.89211)
+
+[node name="SearchNode54" parent="SearchZones/K" unique_id=1019237425 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.356933, 0, -2.4724178)
+
+[node name="SearchNode55" parent="SearchZones/K" unique_id=1711027748 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.7536044, 0, 0.122587204)
+
+[node name="SearchNode56" parent="SearchZones/K" unique_id=579274918 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.0479217, 0, 1.9869366)
+
+[node name="SearchNode57" parent="SearchZones/K" unique_id=1524908639 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.35055876, 0, 2.5026093)
+
+[node name="SearchNode58" parent="SearchZones/K" unique_id=1132961603 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.6641374, 0, 1.3522663)
+
+[node name="SearchNode59" parent="SearchZones/K" unique_id=1315185117 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.8061585, 0, -0.63108826)
+
+[node name="SearchNode60" parent="SearchZones/K" unique_id=1004803952 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.8061585, 0, -3.6310883)
+
+[node name="SearchNode61" parent="SearchZones/K" unique_id=1799070771 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.687157, 0, -6.194751)
+
+[node name="SearchNode62" parent="SearchZones/K" unique_id=640693883 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5054688, 0, -3.2593899)
+
+[node name="SearchNode63" parent="SearchZones/K" unique_id=1629186076 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.2361226, 0, -1.0776997)
+
+[node name="SearchNode64" parent="SearchZones/K" unique_id=1777525559 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.54057074, 0, -0.28435898)
+
+[node name="SearchNode65" parent="SearchZones/K" unique_id=33605002 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.999929, 0, -1.6727066)
+
+[node name="SearchNode66" parent="SearchZones/K" unique_id=327143265 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.8329368, 0, -3.8147278)
+
+[node name="SearchNode67" parent="SearchZones/K" unique_id=527330966 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0544343, 0, -2.743719)
+
+[node name="L" type="Node3D" parent="SearchZones" unique_id=1030533077]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.232677, 0, 15.19319)
+
+[node name="SearchNode" parent="SearchZones/L" unique_id=22893619 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.008375168, 0, -11.927728)
+
+[node name="SearchNode32" parent="SearchZones/L" unique_id=1172655988 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.048044, 0, -6.729392)
+
+[node name="SearchNode2" parent="SearchZones/L" unique_id=1918515536 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0229683, 0, -9.7460375)
+
+[node name="SearchNode3" parent="SearchZones/L" unique_id=187923785 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.0773354, 0, -9.230366)
+
+[node name="SearchNode4" parent="SearchZones/L" unique_id=1832393907 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.0773354, 0, -6.1363316)
+
+[node name="SearchNode5" parent="SearchZones/L" unique_id=1613272161 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.1170006, 0, -3.9943085)
+
+[node name="SearchNode6" parent="SearchZones/L" unique_id=845752609 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.0543118, 0, -1.8126192)
+
+[node name="SearchNode7" parent="SearchZones/L" unique_id=180879881 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.1796894, 0, 1.1227436)
+
+[node name="SearchNode8" parent="SearchZones/L" unique_id=1008739973 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.4426594, 0, 0.8847408)
+
+[node name="SearchNode9" parent="SearchZones/L" unique_id=1446324777 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8956451, 0, 3.621769)
+
+[node name="SearchNode10" parent="SearchZones/L" unique_id=697903080 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.3946724, 0, 5.684458)
+
+[node name="SearchNode11" parent="SearchZones/L" unique_id=1807358529 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.6243515, 0, 7.8744698)
+
+[node name="SearchNode12" parent="SearchZones/L" unique_id=2140165907 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6806641, 0, 6.089451)
+
+[node name="SearchNode13" parent="SearchZones/L" unique_id=723734822 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.13364792, 0, 7.993471)
+
+[node name="SearchNode14" parent="SearchZones/L" unique_id=289015447 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0250206, 0, 11.047838)
+
+[node name="SearchNode15" parent="SearchZones/L" unique_id=1812646817 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.4843788, 0, 7.676134)
+
+[node name="SearchNode16" parent="SearchZones/L" unique_id=1330335397 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.3173904, 0, 4.899437)
+
+[node name="SearchNode17" parent="SearchZones/L" unique_id=1901604042 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9770336, 0, 5.772114)
+
+[node name="SearchNode18" parent="SearchZones/L" unique_id=208108672 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8183651, 0, 2.9557495)
+
+[node name="SearchNode19" parent="SearchZones/L" unique_id=726095468 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.23806, 0, 1.6864014)
+
+[node name="SearchNode20" parent="SearchZones/L" unique_id=2095919888 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.006321, 0, 0.45672226)
+
+[node name="SearchNode21" parent="SearchZones/L" unique_id=1577721442 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4927044, 0, -0.5746212)
+
+[node name="SearchNode22" parent="SearchZones/L" unique_id=174533385 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.476059, 0, -0.6936207)
+
+[node name="SearchNode23" parent="SearchZones/L" unique_id=2104811316 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.476059, 0, -3.6936207)
+
+[node name="SearchNode24" parent="SearchZones/L" unique_id=2015100332 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.476059, 0, -6.0736456)
+
+[node name="SearchNode25" parent="SearchZones/L" unique_id=238109906 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.515726, 0, -8.572674)
+
+[node name="SearchNode26" parent="SearchZones/L" unique_id=565325142 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6347275, 0, -9.771009)
+
+[node name="SearchNode27" parent="SearchZones/L" unique_id=1602906910 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.1733131, 0, -7.43065)
+
+[node name="SearchNode28" parent="SearchZones/L" unique_id=305842445 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7620506, 0, -7.390983)
+
+[node name="SearchNode29" parent="SearchZones/L" unique_id=1896929846 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8163109, 0, -4.574621)
+
+[node name="SearchNode30" parent="SearchZones/L" unique_id=1105006023 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.198389, 0, -4.812623)
+
+[node name="SearchNode31" parent="SearchZones/L" unique_id=2030253325 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.43639183, 0, -2.534954)
+
+[node name="M_1" type="Node3D" parent="SearchZones" unique_id=838037332]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.912525, 0, 13.212572)
+
+[node name="SearchNode" parent="SearchZones/M_1" unique_id=942503077 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.3319855, 0, -8.090843)
+
+[node name="SearchNode2" parent="SearchZones/M_1" unique_id=211632186 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6742859, 0, -8.527182)
+
+[node name="SearchNode3" parent="SearchZones/M_1" unique_id=928913761 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6347275, 0, -10.113869)
+
+[node name="SearchNode4" parent="SearchZones/M_1" unique_id=1555430173 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.023079, 0, -7.813173)
+
+[node name="SearchNode5" parent="SearchZones/M_1" unique_id=1351294102 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.1651, 0, -7.8925066)
+
+[node name="SearchNode6" parent="SearchZones/M_1" unique_id=1405165763 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.4509964, 0, -5.59181)
+
+[node name="SearchNode7" parent="SearchZones/M_1" unique_id=31104713 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.75169, 0, -4.7588005)
+
+[node name="SearchNode8" parent="SearchZones/M_1" unique_id=1214487682 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.2526588, 0, -3.2514496)
+
+[node name="SearchNode9" parent="SearchZones/M_1" unique_id=1768969566 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19828796, 0, -2.6167746)
+
+[node name="SearchNode10" parent="SearchZones/M_1" unique_id=1442442878 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.4990807, 0, -3.5291195)
+
+[node name="SearchNode11" parent="SearchZones/M_1" unique_id=1726011540 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.300743, 0, -5.591812)
+
+[node name="SearchNode12" parent="SearchZones/M_1" unique_id=906995032 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.0461006, 0, -5.7108145)
+
+[node name="SearchNode13" parent="SearchZones/M_1" unique_id=2020089313 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.125435, 0, -2.5374403)
+
+[node name="SearchNode14" parent="SearchZones/M_1" unique_id=664654818 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9834061, 0, -1.1887589)
+
+[node name="SearchNode15" parent="SearchZones/M_1" unique_id=448232415 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.6889954, 0, -1.1094246)
+
+[node name="SearchNode16" parent="SearchZones/M_1" unique_id=378005631 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.92699814, 0, -0.3954153)
+
+[node name="SearchNode17" parent="SearchZones/M_1" unique_id=418085059 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.9520607, 0, 0.39792728)
+
+[node name="SearchNode18" parent="SearchZones/M_1" unique_id=421083473 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.252758, 0, 1.5086079)
+
+[node name="SearchNode19" parent="SearchZones/M_1" unique_id=714230184 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.0000572, 0, 3.0556278)
+
+[node name="SearchNode20" parent="SearchZones/M_1" unique_id=1189598534 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.039608, 0, 3.0159588)
+
+[node name="SearchNode21" parent="SearchZones/M_1" unique_id=1615101976 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.2379417, 0, 6.3876686)
+
+[node name="SearchNode22" parent="SearchZones/M_1" unique_id=1118492528 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.3172798, 0, 9.402372)
+
+[node name="SearchNode23" parent="SearchZones/M_1" unique_id=528534361 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.2776108, 0, 12.496412)
+
+[node name="SearchNode24" parent="SearchZones/M_1" unique_id=1811204073 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.14390182, 0, 13.2104225)
+
+[node name="SearchNode25" parent="SearchZones/M_1" unique_id=1988187799 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.2278023, 0, 11.901407)
+
+[node name="SearchNode26" parent="SearchZones/M_1" unique_id=1866540709 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.2278023, 0, 9.005703)
+
+[node name="SearchNode27" parent="SearchZones/M_1" unique_id=209883620 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.188137, 0, 6.189335)
+
+[node name="SearchNode28" parent="SearchZones/M_1" unique_id=256678285 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.7518005, 0, 14.916113)
+
+[node name="SearchNode29" parent="SearchZones/M_1" unique_id=405872306 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9104729, 0, 17.494476)
+
+[node name="SearchNode30" parent="SearchZones/M_1" unique_id=1745373219 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7785759, 0, 16.542465)
+
+[node name="SearchNode31" parent="SearchZones/M_1" unique_id=1921900275 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.198269, 0, 15.590458)
+
+[node name="M_2" type="Node3D" parent="SearchZones" unique_id=238630994]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.456089, 0, 34.3003)
+
+[node name="SearchNode" parent="SearchZones/M_2" unique_id=1536603851 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.3653793, 0, -3.1574059)
+
+[node name="SearchNode2" parent="SearchZones/M_2" unique_id=1475523036 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.9123993, 0, -1.3723831)
+
+[node name="SearchNode3" parent="SearchZones/M_2" unique_id=641964460 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.50547, 0, -0.8567085)
+
+[node name="SearchNode4" parent="SearchZones/M_2" unique_id=1286550570 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.9897995, 0, 0.22262573)
+
+[node name="SearchNode5" parent="SearchZones/M_2" unique_id=173704635 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.490768, 0, 1.6903114)
+
+[node name="SearchNode6" parent="SearchZones/M_2" unique_id=816929460 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.110741, 0, 2.7216568)
+
+[node name="SearchNode7" parent="SearchZones/M_2" unique_id=688302684 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.1107407, 0, 2.7216568)
+
+[node name="SearchNode8" parent="SearchZones/M_2" unique_id=434505197 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.317398, 0, 0.65896225)
+
+[node name="SearchNode9" parent="SearchZones/M_2" unique_id=549213710 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.3340378, 0, 2.7613258)
+
+[node name="SearchNode10" parent="SearchZones/M_2" unique_id=242964786 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.4426632, 0, 2.9993286)
+
+[node name="SearchNode11" parent="SearchZones/M_2" unique_id=984027167 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.6953697, 0, 2.4439926)
+
+[node name="SearchNode12" parent="SearchZones/M_2" unique_id=1930967544 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.591076, 0, 2.880333)
+
+[node name="SearchNode13" parent="SearchZones/M_2" unique_id=1589023792 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.48678, 0, 2.7216644)
+
+[node name="SearchNode14" parent="SearchZones/M_2" unique_id=1471515701 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.827143, 0, 2.8009987)
+
+[node name="SearchNode15" parent="SearchZones/M_2" unique_id=621165728 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.827143, 0, 0.5796356)
+
+[node name="SearchNode16" parent="SearchZones/M_2" unique_id=1371738868 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.827143, 0, -1.4203644)
+
+[node name="SearchNode17" parent="SearchZones/M_2" unique_id=1157488193 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.628807, 0, -3.6417294)
+
+[node name="SearchNode18" parent="SearchZones/M_2" unique_id=573707159 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.812439, 0, -3.6020622)
+
+[node name="SearchNode19" parent="SearchZones/M_2" unique_id=1825850357 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.956402, 0, -3.3243904)
+
+[node name="SearchNode20" parent="SearchZones/M_2" unique_id=777903031 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.4970398, 0, -2.0947113)
+
+[node name="SearchNode21" parent="SearchZones/M_2" unique_id=933745414 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.27134132, 0, -2.0947113)
+
+[node name="SearchNode22" parent="SearchZones/M_2" unique_id=840075817 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.812441, 0, -0.58735657)
+
+[node name="SearchNode23" parent="SearchZones/M_2" unique_id=1566219415 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.8770695, 0, -0.07168198)
+
+[node name="SearchNode24" parent="SearchZones/M_2" unique_id=307884625 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.1483574, 0, 0.08698654)
+
+[node name="SearchNode25" parent="SearchZones/M_2" unique_id=1414365856 instance=ExtResource("7_nflc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9456806, 0, 0.32498932)
 
 [node name="EbCameraDebug" type="Node" parent="." unique_id=1649887304 node_paths=PackedStringArray("eb", "camera")]
 script = ExtResource("8_lkn71")
@@ -634,11 +2386,18 @@ render_target_update_mode = 4
 
 [node name="Camera3D" type="Camera3D" parent="EbCameraDebug/SubViewportContainer/SubViewport" unique_id=1989817473]
 
-[node name="EbSmartestDebug" type="Node" parent="." unique_id=1229544847 node_paths=PackedStringArray("eb", "player_guess_mesh")]
+[node name="EbSmartestDebug" type="Node" parent="." unique_id=1229544847 node_paths=PackedStringArray("eb", "player_guess_mesh", "nav_target_mesh")]
 script = ExtResource("9_1mc3e")
 eb = NodePath("../EB")
-player_guess_mesh = NodePath("MeshInstance3D")
+player_guess_mesh = NodePath("PlayerGuessMesh")
+nav_target_mesh = NodePath("NavTargetMesh")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="EbSmartestDebug" unique_id=118694929]
+[node name="PlayerGuessMesh" type="MeshInstance3D" parent="EbSmartestDebug" unique_id=118694929]
 mesh = SubResource("SphereMesh_i2t4f")
 surface_material_override/0 = SubResource("StandardMaterial3D_i2t4f")
+
+[node name="NavTargetMesh" type="MeshInstance3D" parent="EbSmartestDebug" unique_id=404311465]
+mesh = SubResource("SphereMesh_i2t4f")
+surface_material_override/0 = SubResource("StandardMaterial3D_uac3q")
+
+[editable path="NavigationRegion3D/Level/Geometry"]

@@ -31,17 +31,18 @@ func _ready():
 
 	_waypoints = _root.path.get_children()
 	
-	if _root.explore_nodes_parent != null:
-		var tmp_explore_nodes: Array[Node] = _root.explore_nodes_parent.get_children()
-		for tmp_node in tmp_explore_nodes:
-			if tmp_node is SearchNode:
-				_explore_nodes.push_back(tmp_node)
-				_search_nodes.push_back(tmp_node)
-	if _root.other_search_nodes_parent != null:
-		var tmp_search_nodes: Array[Node] = _root.other_search_nodes_parent.get_children()
-		for tmp_node in tmp_search_nodes:
-			if tmp_node is SearchNode:
-				_search_nodes.push_back(tmp_node)
+	if _root.search_zones != null:
+		var zones: Array[Node] = _root.search_zones.get_children()
+		for zone in zones:
+			var is_explore_zone: bool
+			for ezone in _root.explore_zones:
+				if zone == ezone: is_explore_zone = true
+			var nodes: Array[Node] = zone.get_children()
+			for node in nodes:
+				if node is SearchNode:
+					if is_explore_zone:
+						_explore_nodes.push_back(node)
+					_search_nodes.push_back(node)
 	nav_goto_me()
 
 	if _root.use_smarter_ai:
@@ -81,7 +82,7 @@ func kill_player():
 	_root.player_killed_this_frame = true
 
 func position() -> Vector3:
-	return _root.position
+	return _root.global_position
 	
 func velocity() -> Vector3:
 	return _root.velocity
