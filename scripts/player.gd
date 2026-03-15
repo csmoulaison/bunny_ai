@@ -1,7 +1,7 @@
 extends CharacterBody3D
 
 signal sound(pos: Vector3, type: Sound.Type)
-const egg_scene = preload("res://thown_egg.tscn")
+const egg_scene = preload("res://scenes/thrown_egg.tscn")
 
 enum MoveState {
 	WALK,
@@ -65,7 +65,7 @@ func _process(dt: float):
 		
 	breath_cooldown -= dt
 	if breath_cooldown < 0.0:
-		print("breath!")
+		#print("breath!")
 		$BreathSound.play()
 		sound.emit(position, Sound.Type.BREATH)
 		breath_cooldown = breath_interval
@@ -128,7 +128,7 @@ func _physics_process(dt: float):
 			footstep_cooldown = footstep_interval
 			$FootstepSound.volume_db = footstep_volume_db
 			$FootstepSound.play()
-			emit_signal("sound", position, footstep_sound)
+			emit_signal("sound", global_position, footstep_sound)
 	else:
 		footstep_cooldown = 0.0
 			

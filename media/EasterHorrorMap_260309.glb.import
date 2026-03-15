@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://biw5iayvcbs4i"
-path="res://.godot/imported/EasterHorrorMap_260309.glb-b9bead41fd47631b1a4f95fd11dd731f.scn"
+path="res://.godot/imported/EasterHorrorMap_260309.glb-407e97e6abf3b199af673d20bc7a903a.scn"
 
 [deps]
 
-source_file="res://EasterHorrorMap_260309.glb"
-dest_files=["res://.godot/imported/EasterHorrorMap_260309.glb-b9bead41fd47631b1a4f95fd11dd731f.scn"]
+source_file="res://media/EasterHorrorMap_260309.glb"
+dest_files=["res://.godot/imported/EasterHorrorMap_260309.glb-407e97e6abf3b199af673d20bc7a903a.scn"]
 
 [params]
 
@@ -41,7 +41,7 @@ _subresources={
 "materials": {
 "Flat Shader": {
 "use_external/enabled": true,
-"use_external/fallback_path": "res://media/standard.tres",
+"use_external/fallback_path": "res://media/level_material.tres",
 "use_external/path": "uid://di52boueu7q4q"
 }
 }
