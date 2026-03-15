@@ -16,50 +16,192 @@ enum ExploreState {
 signal player_killed()
 
 @export_group("External References")
-@export var player: Node3D
+## This property should be set up to reference the SearchZoneParent node.[br][br]
+## The [SearchZone] nodes used by EB to explore and pathfind are assumed to be 
+## set up as children of a single parent node and as parents of multiple 
+## [SearchNode] nodes, with the hierarchical structure being as follows:[br][br]
+## [center][b]SearchZonesParent[/b] -> [SearchZone] -> [SearchNode].[/center][br][br]
 @export var search_zones_parent: Node3D
 @export_group("Initialization")
+## If this is set to [b]true[/b], debug visualizers will be made active. If not,
+## the associated nodes will be deleted on game start.
 @export var use_debug_info: bool = true
+## If this is set to [b]false[/b], situations which would normally kill the 
+## player will not. Useful for testing functionality without interruption.
 @export var can_kill_player: bool = true
+## The [SearchZone] nodes in this array define the set of nodes which EB will 
+## try to explore when he isn't in another state such as following the player or
+## being distracted.
+## [br][br]If using multiple zones, they should probably all be adjacent, 
+## otherwise poor EB is going to have a hard time going back and forth trying to
+## explore.
+## [br][br]This currently hooks some things up in the background at game start,
+## but we are going to deprecate this very soon to allow for setting new explore
+## zones at runtime.
+## @experimental
 @export var initial_explore_zones: Array[SearchZone]
 @export_group("Locomotion")
+## Determines the distance from the target node that the pathfinding system will
+## consider as having arrived. This should be set low, but not too low.
+## Something like [b]0.1[/b] seems fine.
 @export var nav_stop_distance: float = 0.1
+## Determines how quickly EB changes his velocity when stopping, starting, or
+## changing direction.
 @export var acceleration: float = 20.0
 @export_group("Exploration")
+## As EB moves between [SearchNode] nodes, he modifies its 
+## [member SearchNode.score] value, which represents how much EB wants to 
+## explore that particular node.
+## [br][br]For every node, if he is closer than this exploration distance 
+## threshold, he lowers the score. If he is farther, he raises it. The amount 
+## that it changes is directly proportional to how far the distance is from this
+## threshold.
 @export var exploration_distance_threshold: float = 10.0
-@export var search_node_forget_per_second: float = 0.1
-@export var search_node_explore_per_second: float = 0.5
-@export var explore_speed_distance_multiplier: float = 1.0
-@export var min_explore_speed: float = 3.0
-@export var max_explore_speed: float = 6.0
+## This is related to the [member exploration_distance_threshold]. If the 
+## distance to a node is higher than the threshold, the amount that the score 
+## raises is modulated by this value. He will "forget" about the node quicker 
+## the higher this number is, and slower the lower it is.
+@export var search_node_forget_speed: float = 0.1
+## This is related to the [member exploration_distance_threshold]. If the 
+## distance to a node is lower than the threshold, the amount that the score 
+## lowers is modulated by this value. He will explore the node quicker the 
+## higher this number is, and slower the lower it is.
+@export var search_node_explore_speed: float = 0.5
 @export_group("Hunting")
-@export var min_hunt_speed: float = 2.0
-@export var max_hunt_speed: float = 8.0
+## When EB has a guess as to the player's whereabouts, it is bounded by a
+## certain radius. EB assumes the player might be somewhere inside this radius.
+## Over time when EB isn't hearing any sounds, the radius passively grows, and
+## [member player_guess_max_radius] is the maximum size it grows toward.
 @export var player_guess_max_radius: float = 14.0
-@export var player_guess_reset_distance_threshold: float = 12.0
-@export var player_guess_velocity_depreciation_rate: float = 0.004
-@export var sound_wall_obstruction_modifier: float = 0.25
-@export var sound_obstacle_obstruction_modifier: float = 0.5
-@export var player_guess_intensity_depreciation_rate: float = 0.01
+## Determines the rate at which EB's player search radius grows. See [member
+## player_guess_max_radius] documentation for an explanation of the radius.
 @export var player_guess_radius_expansion_rate: float = 2.0
+## As EB hears successive sounds by the player, he integrates them together and,
+## inferring things like the player's possible velocity by comparing the 
+## difference in positions of recent sounds, and slowly converging towards a
+## more accurate picture the more sounds he hears. 
+## [br][br]However, if a sound he hears is further away from the last heard 
+## sound than [member player_guess_reset_distance_threshold], the radius and 
+## velocity guesses are reset, because the sound is far enough away that he 
+## isn't sure how to integrate them anymore.
+@export var player_guess_reset_distance_threshold: float = 12.0
+## As EB tries to integrate the sounds he hears, one of the variables he tracks
+## is a guess about the player's current direction and speed. He uses that 
+## guessed velocity to move his search radius in that direction over time.
+## [br][br][member player_guess_velocity_depreciation_rate] sets how quickly 
+## this speed slows down over time, as EB can't be sure the player is still 
+## moving in the same direction, and if he isn't hearing any more sounds, it is 
+## probably a good idea for him to assume the player might have stopped.
+@export var player_guess_velocity_depreciation_rate: float = 0.004
+## Hearing sounds causes the "intensity" of EB's guess about the player to rise,
+## and the intensity rising above a certain level is what triggers EB to start
+## actively hunting for the player. 
+## [br][br][member player_guess_intensity_depreciation_rate] sets how quickly
+## this intensity lowers over time, which eventually causes EB to lose interest
+## in the hunt and go back to exploring.
+@export var player_guess_intensity_depreciation_rate: float = 0.01
+## When EB hears a sound through a wall, his ability to hear it is is attenuated
+## by [member sound_wall_obstruction_modifier]. This is done by dividing the 
+## apparent distance to the sound by this value. This means lower numbers mean
+## a worse ability to hear, higher numbers means better hearing.
+@export var sound_wall_obstruction_modifier: float = 0.25
+## This works the same way as [member sound_wall_obstruction_modifier], but when
+## the sound is heard through an obstacle rather than a wall, when the player is
+## crouching behind a cabinet, for instance. It should be a higher number than
+## the wall variant, as walls are probably worse for hearing than obstacles.
+@export var sound_obstacle_obstruction_modifier: float = 0.5
+## Breath and player footsteps heard within this radius result in a player 
+## death, assuming [member can_kill_player] is true. Right now, death is a signal
+## picked up by the Director node to reset the positions of EB and the player,
+## and EB also does some resetting of his own state. We will want to discuss how
+## we want player death to work in the final game.
 @export var player_kill_radius: float = 3.0
-@export_group("Distractions")
-# TODO(conner): distraction parameters
+@export_group("Speed")
+## The speed at which EB moves when exploring is equal to ([member 
+## explore_speed_distance_multiplier] * distance to target), and then the result
+## is clamped between [member min_explore_speed] and [member max_explore_speed].
+## [br][br]The effect is that EB moves quicker to get to nodes he is further 
+## away from.
+@export var explore_speed_distance_multiplier: float = 1.0
+## The minimum speed for moving towards a target node while exploring. Ensures
+## that the speed doesn't go below this value after calculating the speed from
+## [member explore_speed_distance_multiplier].
+@export var min_explore_speed: float = 3.0
+## The maximum speed for moving towards a target node while exploring. Ensures
+## that the speed doesn't go above this value after calculating the speed from
+## [member explore_speed_distance_multiplier].
+@export var max_explore_speed: float = 6.0
+## See [member explore_speed_distance_multiplier]. This works exactly the same
+## way, but while hunting for the player.
+@export var hunt_speed_distance_multiplier: float = 1.0
+## See [member min_explore_speed]. This works exactly the same way, but while 
+## hunting for the player.
+@export var min_hunt_speed: float = 2.0
+## See [member max_explore_speed]. This works exactly the same way, but while 
+## hunting for the player.
+@export var max_hunt_speed: float = 8.0
+## See [member explore_speed_distance_multiplier]. This works exactly the same
+## way, but while distracted, by an egg for instance.
+@export var distracted_speed_distance_multiplier: float = 1.0
+## See [member min_explore_speed]. This works exactly the same way, but while 
+## distracted, by an egg for instance.
+@export var min_distracted_speed: float = 3.0
+## See [member max_explore_speed]. This works exactly the same way, but while 
+## distracted, by an egg for instance.
+@export var max_distracted_speed: float = 8.0
 @export_group("State lengths")
+## Determines the minimum amount of seconds that the player should move while
+## exploring before stopping to listen.
+## [br][br]Truth be told, after playing with it for a bit, I'm not sure I like
+## the random stops to listen. EB already sometimes stops when he reaches target
+## nodes, and the extra stops to listen just make it easier for the player to 
+## exploit his movement. I don't know, though, so I'm keeping it in for now.
 @export var min_move_seconds: float = 4.0
+## Determines the maximum amount of seconds that the player should move while
+## exploring before stopping to listen. See [member min_move_seconds].
 @export var max_move_seconds: float = 8.0
-@export var min_listen_seconds: float = 3.0
-@export var max_listen_seconds: float = 5.0
-@export var min_think_seconds: float = 1.0
+## After moving for some number of seconds while exploring, EB will randomly
+## stop to listen, and this is the minimum amount of seconds he will do so for. 
+## [br][br]As mentioned in the documentation for [member min_move_seconds], I'm 
+## not sure I like this behavior, but it's still here for now.
+@export var min_listen_seconds: float = 2.0
+## The maximum amount of seconds EB will listen for after randomly stopping 
+## during exploration.
+@export var max_listen_seconds: float = 3.0
+## When EB reaches a search node during explanation, he will think for a random
+## number of seconds before moving to the next search node. This is the minimum
+## seconds for that. I have it set here to a negative value, which ends up 
+## giving him a chance of not stopping at all, or more specifically, of immediately
+## returning to the move state after stopping to think. 
+## [br][br]Given that the time selected is in a random range, the current min 
+## and max values I have currently set (-1.0 to 2.0) will give a 1 in 3 chance
+## that EB immediately starts moving again.
+@export var min_think_seconds: float = -1.0
+## This is the maximum value for- oh jeez just read [member min_think_seconds].
 @export var max_think_seconds: float = 2.0
 @export_group("Sound response curves")
+## Sets EB's response to breath sounds. See [SoundCurve] for more information.
 @export var breath_response_curve: SoundCurve
+## Sets EB's response to crouch sounds. See [SoundCurve] for more information.
 @export var crouch_response_curve: SoundCurve
+## Sets EB's response to walk sounds. See [SoundCurve] for more information.
 @export var walk_response_curve: SoundCurve
+## Sets EB's response to run sounds. See [SoundCurve] for more information.
 @export var run_response_curve: SoundCurve
+## Sets EB's response to sounds from eggs thrown against the floor and walls.
+## See [SoundCurve] for more information.
 @export var egg_response_curve: SoundCurve
+## Sets EB's response to sounds from eggs being thrown into distraction objects.
+## See [SoundCurve] for more information.
 @export var glass_response_curve: SoundCurve
+## Sets EB's response to sounds from exhibit recordings. See [SoundCurve] for 
+## more information.
 @export var exhibit_response_curve: SoundCurve
+## Sets EB's response to airhorn sounds. See [SoundCurve] for more information.
+## [br][br]Right now, EB is stunned when the response goes above a certain 
+## threshold, but I'm going change the airhorn stuff to be based on a definite
+## radius and this response curve will then define how long he is stunned for
+## depending on the distance.
 @export var airhorn_response_curve: SoundCurve
 
 @onready var pivot: Node3D = $Pivot
@@ -122,14 +264,14 @@ func _process(dt: float):
 	# Are we distracted?
 	if distraction_timer > 0.0:
 		nav_goto_target(distraction_position)
-		nav_set_speed(clamp((global_position.distance_to(nav.get_final_position()) - 4.0) * explore_speed_distance_multiplier, min_hunt_speed, max_hunt_speed))
+		nav_set_speed(clamp((global_position.distance_to(nav.get_final_position()) - 4.0) * distracted_speed_distance_multiplier, min_distracted_speed, max_distracted_speed))
 		if global_position.distance_to(distraction_position) < 6.0:
 			distraction_timer -= dt
 		return
 	
 	# If we aren't distracted, do we have a guess of the player's whereabouts?
 	if player_guess_intensity > 0.2:
-		nav_set_speed(clamp((global_position.distance_to(nav.get_final_position()) - 4.0) * explore_speed_distance_multiplier, min_hunt_speed, max_hunt_speed))
+		nav_set_speed(clamp((global_position.distance_to(nav.get_final_position()) - 4.0) * hunt_speed_distance_multiplier, min_hunt_speed, max_hunt_speed))
 		if nav_at_target():
 			select_player_nav_target()
 		return
@@ -144,12 +286,9 @@ func _process(dt: float):
 				state_timer = randf_range(min_listen_seconds, max_listen_seconds)
 				explore_state = ExploreState.LISTEN
 			if nav_at_target():
-				if randf() > 0.5:
-					nav_set_speed(0.0)
-					state_timer = randf_range(min_think_seconds, max_think_seconds)
-					explore_state = ExploreState.THINK
-				else:
-					nav_goto_target(search_node.global_position)
+				nav_set_speed(0.0)
+				state_timer = randf_range(min_think_seconds, max_think_seconds)
+				explore_state = ExploreState.THINK
 		ExploreState.LISTEN:
 			state_timer -= dt
 			if state_timer < 0.0:
@@ -297,8 +436,8 @@ func update_explore_nodes(dt: float) -> SearchNode:
 	for node in explore_nodes:
 		var distance = global_position.distance_to(node.global_position)
 		var distance_contribution: float = lerp(-1.0, 1.0, clamp((distance / exploration_distance_threshold) / 2.0, 0.0, 1.0))
-		if distance_contribution > 0.0: distance_contribution *= search_node_forget_per_second
-		if distance_contribution < 0.0: distance_contribution *= search_node_explore_per_second
+		if distance_contribution > 0.0: distance_contribution *= search_node_forget_speed
+		if distance_contribution < 0.0: distance_contribution *= search_node_explore_speed
 		node.score += distance_contribution * dt
 		
 		var player_distance = player_guess_center.distance_to(node.global_position)

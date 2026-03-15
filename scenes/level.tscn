@@ -102,11 +102,10 @@ floor_constant_speed = true
 floor_max_angle = 1.0227629
 floor_snap_length = 0.25
 
-[node name="Bunny" parent="." unique_id=1494601571 node_paths=PackedStringArray("player", "search_zones_parent", "initial_explore_zones") instance=ExtResource("2_1ainy")]
+[node name="Bunny" parent="." unique_id=1494601571 node_paths=PackedStringArray("search_zones_parent", "initial_explore_zones") instance=ExtResource("2_1ainy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, -4)
 collision_layer = 1
 collision_mask = 15
-player = NodePath("../Player")
 search_zones_parent = NodePath("../SearchZones")
 initial_explore_zones = [NodePath("../SearchZones/G_1")]
 
