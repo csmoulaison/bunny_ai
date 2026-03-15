@@ -105,7 +105,8 @@ signal player_killed()
 ## apparent distance to the sound by this value. This means lower numbers mean
 ## a worse ability to hear, higher numbers means better hearing.
 @export var sound_wall_obstruction_modifier: float = 0.25
-## This works the same way as [member sound_wall_obstruction_modifier], but when
+## NOTE: This is not actually in place yet, the wall functions for both.
+## [br][br]This works the same way as [member sound_wall_obstruction_modifier], but when
 ## the sound is heard through an obstacle rather than a wall, when the player is
 ## crouching behind a cabinet, for instance. It should be a higher number than
 ## the wall variant, as walls are probably worse for hearing than obstacles.
@@ -228,6 +229,8 @@ var distraction_timer: float = 0.0
 var stun_timer: float = 0.0
 
 func _ready():
+	if !use_debug_info:
+		$DebugVisualizers.queue_free()
 	# Listen for sound emitting nodes. They all have to exist at game start
 	var sound_emitters = get_tree().get_nodes_in_group("SoundEmitters")
 	for emitter in sound_emitters:
