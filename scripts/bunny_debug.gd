@@ -23,9 +23,9 @@ func _process(_dt: float):
 	player_guess_sphere.set_surface_override_material(0, material)
 
 	var explore_zone_mesh = explore_zone_box.mesh
-	var explore_shape_size = bunny.initial_explore_zones[0].area.get_node("CollisionShape3D").shape.size
+	var explore_shape_size = bunny.explore_zones[0].area.get_node("CollisionShape3D").shape.size
 	explore_zone_mesh.size = explore_shape_size
-	explore_zone_box.global_position = bunny.initial_explore_zones[0].global_position
+	explore_zone_box.global_position = bunny.explore_zones[0].global_position
 	
 	if bunny.player_guess_zones.size() > 0:
 		var guess_zone_mesh = guess_zone_box.mesh

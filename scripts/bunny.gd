@@ -1,13 +1,64 @@
 class_name Bunny extends CharacterBody3D
-
+## The bunny, the bunny, Ooh I love the bunny.
+##
+## I need to do more of a high level description of the bunny here, but I 
+## thought it would be important to at least list out all of the signals that
+## EB responds to and what their function signatures are. If you want EB to
+## respond to a signal, the node emitting it must be part of the 
+## "EbEventEmitter" group and the signal must have the same signature and name
+## as one of the below options:[br]
+## [br][b]eb_sound[/b](origin: Vector3, type: Sound.Type)
+## [br][b]eb_set_explore_behavior[/b](zones: Array[lb]SearchZone[rb])
+## [br][b]eb_set_guard_behavior[/b](node: SearchNode, nearby_max_distance: float)
+## [br][b]eb_set_patrol_behavior[/b](path: Array[lb]SearchNode[rb])
+## [br][b]eb_set_hunt_behavior[/b](behavior: HuntBehavior)
+## [br][b]eb_set_can_kill_player[/b](value: bool)
+## [br][br]I'll document these a little better later, but for now, programmers, 
+## let me know if you have any questions for how these work. Also let me know if
+## we want to do other things at runtime other than these. I suspect we might
+## want to be able to tweak values like the speed, player guess properties, and
+## stuff like that, but it would be best if these were done through signals
+## rather than reaching directly into EB's state, as my assumptions about EB's
+## state throughout this logic would be preserved in that case.
+	
 class QueuedSound:
 	var origin: Vector3
 	var type: Sound.Type
 	func _init(org: Vector3, typ: Sound.Type):
 		origin = org
 		type = typ
+		
+enum IdleBehavior {
+	## The "regular" behavior for EB, which is to explore nodes in a zone.
+	EXPLORE,
+	## EB will guard a certain node, patrolling a small set of nodes around it.
+	GUARD_NODE,
+	## EB will patrol between a specific set of nodes in a cycle, stopping to
+	## listen every now and again.
+	PATROL_NODE_CYCLE
+}
 
-enum ExploreState {
+enum HuntBehavior {
+	## EB will hunt the player if he hears enough relevant sounds.
+	HUNT,
+	## EB will not hunt the player, but his player guessing logic still 
+	## continues to run.
+	IGNORE
+}
+
+enum ExploreZoneBehavior {
+	## EB will not change his explore zone unless it is explicitly set by an 
+	## eb_set_explore_zone signal emitted by an EbEventEmitter.
+	STATIC,
+	## EB will switch his explore zone to the zone he thinks the player is in 
+	## when his player guess radius moves into that zone.
+	MATCH_PLAYER_GUESS,
+	## EB will always omniciently switch his explore zone to the zone that the 
+	## player is actually inside of.
+	MATCH_PLAYER_ACTUAL
+}
+
+enum TraverseState {
 	MOVE,
 	LISTEN,
 	THINK
@@ -22,33 +73,30 @@ signal player_killed()
 ## [SearchNode] nodes, with the hierarchical structure being as follows:[br][br]
 ## [center][b]SearchZonesParent[/b] -> [SearchZone] -> [SearchNode].[/center][br][br]
 @export var search_zones_parent: Node3D
-@export_group("Initialization")
-## If this is set to [b]true[/b], debug visualizers will be made active. If not,
-## the associated nodes will be deleted on game start.
-@export var use_debug_info: bool = true
+@export_group("High level behavior")
+## Determines the default set of behaviors that EB follows when he is not either
+## currently hunting the player, distracted, or stunned.
+@export var idle_behavior: IdleBehavior = IdleBehavior.EXPLORE
+## Determines behavior with regards to the zones that EB explores when he isn't
+## actively hunting the player.
+@export var explore_behavior: ExploreZoneBehavior = ExploreZoneBehavior.STATIC
+## You can turn off EB's ability to hunt the player by setting this to 
+## [b]Ignore[/b].
+@export var hunt_behavior: HuntBehavior = HuntBehavior.HUNT
 ## If this is set to [b]false[/b], situations which would normally kill the 
 ## player will not. Useful for testing functionality without interruption.
 @export var can_kill_player: bool = true
+## If this is set to [b]true[/b], debug visualizers will be made active. If not,
+## the associated nodes will be deleted on game start.
+@export var use_debug_info: bool = true
+@export_group("Exploration")
 ## The [SearchZone] nodes in this array define the set of nodes which EB will 
 ## try to explore when he isn't in another state such as following the player or
 ## being distracted.
 ## [br][br]If using multiple zones, they should probably all be adjacent, 
 ## otherwise poor EB is going to have a hard time going back and forth trying to
 ## explore.
-## [br][br]This currently hooks some things up in the background at game start,
-## but we are going to deprecate this very soon to allow for setting new explore
-## zones at runtime.
-## @experimental
-@export var initial_explore_zones: Array[SearchZone]
-@export_group("Locomotion")
-## Determines the distance from the target node that the pathfinding system will
-## consider as having arrived. This should be set low, but not too low.
-## Something like [b]0.1[/b] seems fine.
-@export var nav_stop_distance: float = 0.1
-## Determines how quickly EB changes his velocity when stopping, starting, or
-## changing direction.
-@export var acceleration: float = 20.0
-@export_group("Exploration")
+@export var explore_zones: Array[SearchZone]
 ## As EB moves between [SearchNode] nodes, he modifies its 
 ## [member SearchNode.score] value, which represents how much EB wants to 
 ## explore that particular node.
@@ -61,12 +109,12 @@ signal player_killed()
 ## distance to a node is higher than the threshold, the amount that the score 
 ## raises is modulated by this value. He will "forget" about the node quicker 
 ## the higher this number is, and slower the lower it is.
-@export var search_node_forget_speed: float = 0.1
+@export var search_node_forget_rate: float = 0.1
 ## This is related to the [member exploration_distance_threshold]. If the 
 ## distance to a node is lower than the threshold, the amount that the score 
 ## lowers is modulated by this value. He will explore the node quicker the 
 ## higher this number is, and slower the lower it is.
-@export var search_node_explore_speed: float = 0.5
+@export var search_node_explore_rate: float = 0.5
 @export_group("Hunting")
 ## When EB has a guess as to the player's whereabouts, it is bounded by a
 ## certain radius. EB assumes the player might be somewhere inside this radius.
@@ -117,22 +165,34 @@ signal player_killed()
 ## and EB also does some resetting of his own state. We will want to discuss how
 ## we want player death to work in the final game.
 @export var player_kill_radius: float = 3.0
-@export_group("Speed")
-## The speed at which EB moves when exploring is equal to ([member 
-## explore_speed_distance_multiplier] * distance to target), and then the result
-## is clamped between [member min_explore_speed] and [member max_explore_speed].
+@export_group("Guard")
+## If using the guard node idle behavior, EB will guard this node and nodes that
+## are nearby.
+@export var guard_node: SearchNode
+## Determines how close a node needs to be to [member guard_node] in order to be
+## part of the random selection of nodes searched by EB 
+@export var guard_nearby_max_distance: float = 6.0
+@export_group("Patrol")
+## If using the patrol path cycle idle behavior, EB will patrol between the 
+## nodes in this array cyclically
+@export var patrol_path: Array[SearchNode]
+@export_group("Speeds")
+## The speed at which EB moves when doing the current goal behavior is equal to 
+## ([member explore_speed_distance_multiplier] * distance to target), and then 
+## the result is clamped between [member min_explore_speed] and 
+## [member max_explore_speed].
 ## [br][br]The effect is that EB moves quicker to get to nodes he is further 
 ## away from.
-@export var explore_speed_distance_multiplier: float = 1.0
-## The minimum speed for moving towards a target node while exploring. Ensures
-## that the speed doesn't go below this value after calculating the speed from
-## [member explore_speed_distance_multiplier].
-@export var min_explore_speed: float = 3.0
-## The maximum speed for moving towards a target node while exploring. Ensures
-## that the speed doesn't go above this value after calculating the speed from
-## [member explore_speed_distance_multiplier].
-@export var max_explore_speed: float = 6.0
-## See [member explore_speed_distance_multiplier]. This works exactly the same
+@export var idle_speed_distance_multiplier: float = 1.0
+## The minimum speed for moving towards a target node while doing the current 
+## goal behavior. state. Ensures that the speed doesn't go below this value 
+## after calculating the speed from [member explore_speed_distance_multiplier].
+@export var min_idle_speed: float = 3.0
+## The maximum speed for moving towards a target node while doing the current
+## goal behavior. Ensures that the speed doesn't go above this value after 
+## calculating the speed from [member idle_speed_distance_multiplier].
+@export var max_idle_speed: float = 6.0
+## See [member idle_speed_distance_multiplier]. This works exactly the same
 ## way, but while hunting for the player.
 @export var hunt_speed_distance_multiplier: float = 1.0
 ## See [member min_explore_speed]. This works exactly the same way, but while 
@@ -177,9 +237,9 @@ signal player_killed()
 ## [br][br]Given that the time selected is in a random range, the current min 
 ## and max values I have currently set (-1.0 to 2.0) will give a 1 in 3 chance
 ## that EB immediately starts moving again.
-@export var min_think_seconds: float = -1.0
+@export var min_think_seconds: float = 0.0
 ## This is the maximum value for- oh jeez just read [member min_think_seconds].
-@export var max_think_seconds: float = 2.0
+@export var max_think_seconds: float = 3.0
 @export_group("Sound response curves")
 ## Sets EB's response to breath sounds. See [SoundCurve] for more information.
 @export var breath_response_curve: SoundCurve
@@ -203,7 +263,15 @@ signal player_killed()
 ## threshold, but I'm going change the airhorn stuff to be based on a definite
 ## radius and this response curve will then define how long he is stunned for
 ## depending on the distance.
-@export var airhorn_response_curve: SoundCurve
+@export var airhorn_response_curve: SoundCurve # TODO(conner): airhorn as radius, response as stun length.
+@export_group("Locomotion")
+## Determines the distance from the target node that the pathfinding system will
+## consider as having arrived. This should be set low, but not too low.
+## Something like [b]0.1[/b] seems fine.
+@export var nav_stop_distance: float = 0.1
+## Determines how quickly EB changes his velocity when stopping, starting, or
+## changing direction.
+@export var acceleration: float = 20.0
 
 @onready var pivot: Node3D = $Pivot
 @onready var nav: NavigationAgent3D = $NavAgent
@@ -211,12 +279,13 @@ signal player_killed()
 var speed: float = 0.0
 var sound_queue: Array[QueuedSound]
 # Exploration state
-var explore_state: ExploreState = ExploreState.LISTEN
+var traverse_state: TraverseState = TraverseState.LISTEN
 var search_zones: Array[SearchZone]
 var search_nodes: Array[SearchNode]
 var explore_nodes: Array[SearchNode]
 var state_timer: float = 0.0
 # Hunting state
+var player_hunt_target: Vector3 = Vector3.ZERO
 var player_guess_center: Vector3 = Vector3.ZERO
 var player_guess_velocity: Vector3 = Vector3.ZERO
 var player_guess_radius: float = 0.0
@@ -227,83 +296,103 @@ var distraction_position: Vector3 = Vector3.ZERO
 var distraction_timer: float = 0.0
 # Airhorn state
 var stun_timer: float = 0.0
+# Guard node specific
+var nearby_guard_nodes: Array[SearchNode]
+# Patrol node cycle specific
+var current_patrol_node: int = 0
+
+
+########################
+# HIGH LEVEL FUNCTIONS #
+########################
+
+func reset():
+	nav_set_speed(0.0)
+	nav_goto_me()
+	velocity = Vector3.ZERO
+	traverse_state = TraverseState.LISTEN
+	state_timer = 0.0
+	player_guess_center = Vector3.ZERO
+	player_guess_intensity = 0.0
+	stun_timer = 0.0
+	distraction_timer = 0.0
+	player_guess_zones.clear()
+	
+	match idle_behavior:
+		IdleBehavior.EXPLORE:
+			_on_set_explore_behavior(explore_zones)
+		IdleBehavior.GUARD_NODE:
+			_on_set_guard_behavior(guard_node, guard_nearby_max_distance)
+		IdleBehavior.PATROL_NODE_CYCLE:
+			_on_set_patrol_behavior(patrol_path)
 
 func _ready():
 	if !use_debug_info:
 		$DebugVisualizers.queue_free()
-	# Listen for sound emitting nodes. They all have to exist at game start
-	var sound_emitters = get_tree().get_nodes_in_group("SoundEmitters")
-	for emitter in sound_emitters:
-		emitter.sound.connect(on_sound)
+	
+	# Listen for event emitters
+	var event_emitter = get_tree().get_nodes_in_group("EbEventEmitter")
+	for emitter in event_emitter:
+		var signal_list = emitter.get_signal_list()
+		for signal_dictionary in signal_list:
+			if signal_dictionary.name == "eb_sound":
+				emitter.eb_sound.connect(_on_sound)
+			if signal_dictionary.name == "eb_set_explore_behavior":
+				emitter.eb_set_explore_behavior.connect(_on_set_explore_behavior)
+			if signal_dictionary.name == "eb_set_guard_behavior":
+				emitter.eb_set_guard_behavior.connect(_on_set_guard_behavior)
+			if signal_dictionary.name == "eb_set_patrol_behavior":
+				emitter.eb_set_patrol_behavior.connect(_on_set_patrol_behavior)
+			if signal_dictionary.name == "eb_set_hunt_behavior":
+				emitter.eb_set_hunt_behavior.connect(_on_set_hunt_behavior)
+			if signal_dictionary.name == "eb_set_can_kill_player":
+				emitter.eb_set_can_kill_player.connect(_on_set_can_kill_player)
 
 	# Populate search and explore zones
-	# TODO(conner): Move explore zone stuff so we can set them at runtime
 	var tmp_zones = search_zones_parent.get_children()
 	for zone in tmp_zones:
 		if zone is SearchZone:
 			search_zones.push_back(zone as SearchZone)
-		var is_explore_zone: bool
-		for ezone in initial_explore_zones:
-			if zone == ezone: is_explore_zone = true
 		var nodes: Array[Node] = zone.get_children()
 		for node in nodes:
 			if node is SearchNode:
-				if is_explore_zone:
-					explore_nodes.push_back(node)
 				search_nodes.push_back(node)
 
 	# Initialize state
 	reset()
 
-func _process(dt: float):
-	var search_node: SearchNode = update_explore_nodes(dt)
-	
+func _process(dt: float):	
+	# Are we stunned?
 	stun_timer -= dt
 	if stun_timer > 0.0:
 		nav_goto_me()
 		nav_set_speed(0.0)
 		return
 	
-	# Are we distracted?
+	# If we aren't stunned, are we distracted?
 	if distraction_timer > 0.0:
 		nav_goto_target(distraction_position)
-		nav_set_speed(clamp((global_position.distance_to(nav.get_final_position()) - 4.0) * distracted_speed_distance_multiplier, min_distracted_speed, max_distracted_speed))
+		nav_set_distance_attenuated_speed(distracted_speed_distance_multiplier, min_distracted_speed, max_distracted_speed)
 		if global_position.distance_to(distraction_position) < 6.0:
 			distraction_timer -= dt
 		return
-	
-	# If we aren't distracted, do we have a guess of the player's whereabouts?
-	if player_guess_intensity > 0.2:
-		nav_set_speed(clamp((global_position.distance_to(nav.get_final_position()) - 4.0) * hunt_speed_distance_multiplier, min_hunt_speed, max_hunt_speed))
+		
+	# Do we have a guess of the player's whereabouts?
+	if hunt_behavior == HuntBehavior.HUNT && player_guess_intensity > 0.2:
+		nav_set_distance_attenuated_speed(hunt_speed_distance_multiplier, min_hunt_speed, max_hunt_speed)
 		if nav_at_target():
-			select_player_nav_target()
+			select_player_hunt_target()
+		nav_goto_target(player_hunt_target)
 		return
 	
-	# If we don't have a guess, start exploring.
-	match explore_state:
-		ExploreState.MOVE:
-			nav_set_speed(clamp((global_position.distance_to(nav_target_position()) - 4.0) * explore_speed_distance_multiplier, min_explore_speed, max_explore_speed))
-			state_timer -= dt
-			if state_timer < 0.0:
-				nav_set_speed(0.0)
-				state_timer = randf_range(min_listen_seconds, max_listen_seconds)
-				explore_state = ExploreState.LISTEN
-			if nav_at_target():
-				nav_set_speed(0.0)
-				state_timer = randf_range(min_think_seconds, max_think_seconds)
-				explore_state = ExploreState.THINK
-		ExploreState.LISTEN:
-			state_timer -= dt
-			if state_timer < 0.0:
-				nav_goto_target(search_node.global_position)
-				state_timer = randf_range(min_move_seconds, max_move_seconds)
-				explore_state = ExploreState.MOVE
-		ExploreState.THINK:
-			state_timer -= dt
-			if state_timer < 0.0:
-				nav_goto_target(search_node.global_position)
-				state_timer = randf_range(min_move_seconds, max_move_seconds)
-				explore_state = ExploreState.MOVE
+	# If we aren't distracted, follow our idle behavior.
+	match idle_behavior:
+		IdleBehavior.EXPLORE:
+			idle_explore_update(dt)
+		IdleBehavior.GUARD_NODE:
+			idle_guard_node_update(dt)
+		IdleBehavior.PATROL_NODE_CYCLE:
+			idle_patrol_node_cycle_update(dt)
 
 func _physics_process(dt: float):
 	for sound in sound_queue:
@@ -325,7 +414,6 @@ func _physics_process(dt: float):
 	var ray_query = PhysicsRayQueryParameters3D.create(ray_origin, ray_origin + player_guess_velocity * dt * 2.0, 0b00000000_00000000_00000000_00000110)
 	var result = space_state.intersect_ray(ray_query)
 	if !result.is_empty():
-		print("resetting the thing to 0!")
 		player_guess_velocity = Vector3.ZERO
 	player_guess_center += player_guess_velocity * dt
 	update_player_guess_zone()
@@ -334,37 +422,37 @@ func _physics_process(dt: float):
 	var target = nav.get_next_path_position()
 	var delta: Vector3 = target - global_transform.origin;
 
-	if(delta.length()) > nav_stop_distance:
+	if delta.length() > nav_stop_distance:
 		desired_velocity = delta.normalized() * speed
 		pivot.rotation.y = atan2(desired_velocity.x, desired_velocity.z)
 	else:
 		# TODO(conner): global position?
-		nav.target_position = position
+		nav.target_position = global_position
 	velocity = velocity.move_toward(desired_velocity, acceleration * dt)
 	move_and_slide()
-	
+
 func process_sound(origin: Vector3, type: Sound.Type):
 	var actual_distance: float = global_position.distance_to(origin) / 100.0
 	var distance_score = actual_distance
 	
-	var space_state: PhysicsDirectSpaceState3D = get_world_3d().direct_space_state
-	var ray_start = Vector3(global_position.x, 4.0, global_position.z)
-	var ray_end = Vector3(origin.x, 4.0, origin.z)
-	var ray_query = PhysicsRayQueryParameters3D.create(ray_start, ray_end, 0b00000000_00000000_00000000_00001110)
-	var result = space_state.intersect_ray(ray_query)
-	if !result.is_empty():
-		print("obstructed by wall")
-		distance_score *= 1.0 / sound_wall_obstruction_modifier
-	else:
-		print("not obstructed by wall")
-	#else:
-		#ray_start = Vector3(global_position.x, 1.0, global_position.z)
-		#ray_end = Vector3(origin.x, 0.1, origin.y)
-		#ray_query = PhysicsRayQueryParameters3D.create(ray_start, ray_end, 0b00000000_00000000_00000000_00000000)
-		#result = space_state.intersect_ray(ray_query)
-		#if !result.is_empty():
-			#print("obstructed by obstacle")
-			#distance_score *= 1.0 / sound_obstacle_obstruction_modifier
+	if(type != Sound.Type.EGG_NORMAL
+	&& type != Sound.Type.EGG_GLASS
+	&& type != Sound.Type.EXHIBIT_RECORDING):
+		var space_state: PhysicsDirectSpaceState3D = get_world_3d().direct_space_state
+		var ray_start = Vector3(global_position.x, 2.5, global_position.z)
+		var ray_end = origin
+		var ray_query = PhysicsRayQueryParameters3D.create(ray_start, ray_end, 0b00000000_00000000_00000000_00000010)
+		var result = space_state.intersect_ray(ray_query)
+		print("Checking obstruction:")
+		if !result.is_empty():
+			print("  Obstructed by wall.")
+			distance_score /= sound_wall_obstruction_modifier
+		else:
+			ray_query = PhysicsRayQueryParameters3D.create(ray_start, ray_end, 0b00000000_00000000_00000000_00000100)
+			result = space_state.intersect_ray(ray_query)
+			if !result.is_empty():
+				print("  Obstructed by obstacle.")
+				distance_score /= sound_obstacle_obstruction_modifier
 	
 	var response: float = 0.0
 	var sound_implied_speed: float = 0.0 
@@ -386,8 +474,6 @@ func process_sound(origin: Vector3, type: Sound.Type):
 	
 	if response <= 0.01:
 		return
-	
-	#print("sound heard: ", type)
 		
 	if(type == Sound.Type.BREATH
 	|| type == Sound.Type.CROUCH_FOOTSTEP
@@ -409,7 +495,7 @@ func process_sound(origin: Vector3, type: Sound.Type):
 			player_guess_center = lerp(player_guess_center, origin, response)
 			player_guess_intensity = lerp(player_guess_intensity, 1.0, response)
 		if player_guess_intensity > 0.1:
-			select_player_nav_target()
+			select_player_hunt_target()
 		update_player_guess_zone()
 		
 	else: if(type == Sound.Type.EGG_NORMAL
@@ -420,9 +506,135 @@ func process_sound(origin: Vector3, type: Sound.Type):
 	else: if(type == Sound.Type.AIRHORN):
 		stun_timer = 6.0
 
-func on_sound(origin: Vector3, type: Sound.Type):
+
+###########
+# SIGNALS #
+###########
+
+func _on_sound(origin: Vector3, type: Sound.Type):
 	sound_queue.push_back(QueuedSound.new(origin, type))
-		
+
+func _on_set_explore_behavior(zones: Array[SearchZone]):
+	idle_behavior = IdleBehavior.EXPLORE
+	explore_nodes.clear()
+	for zone in zones:
+		var nodes: Array[Node] = zone.get_children()
+		for node in nodes:
+			if node is SearchNode:
+				explore_nodes.push_back(node)
+
+func _on_set_guard_behavior(node: SearchNode, nearby_max_distance: float):
+	idle_behavior = IdleBehavior.GUARD_NODE
+	guard_node = node
+	guard_nearby_max_distance = nearby_max_distance
+	nearby_guard_nodes.clear()
+	for other in search_nodes:
+		if node.global_position.distance_to(other.global_position) <= guard_nearby_max_distance:
+			nearby_guard_nodes.push_back(other)
+
+func _on_set_patrol_behavior(path: Array[SearchNode]):
+	idle_behavior = IdleBehavior.PATROL_NODE_CYCLE
+	patrol_path = path
+
+func _on_set_hunt_behavior(behavior: HuntBehavior):
+	hunt_behavior = behavior
+	
+func _on_set_can_kill_player(value: bool):
+	can_kill_player = value
+
+##################s
+# IDLE BEHAVIORS #
+##################
+
+# TODO(conner): All of these behaviors are very similar, and factoring them 
+# should be quite easy. I just don't want to do it right now. Doing it later
+# might be worth it, though.
+
+func idle_explore_update(dt: float):
+	var search_node: SearchNode = update_explore_nodes(dt)
+	match traverse_state:
+		TraverseState.MOVE:
+			nav_set_traversal_speed()
+			state_timer -= dt
+			if state_timer < 0.0:
+				nav_set_speed(0.0)
+				state_timer = randf_range(min_listen_seconds, max_listen_seconds)
+				traverse_state = TraverseState.LISTEN
+			if nav_at_target():
+				nav_set_speed(0.0)
+				state_timer = randf_range(min_think_seconds, max_think_seconds)
+				traverse_state = TraverseState.THINK
+		TraverseState.LISTEN:
+			state_timer -= dt
+			if state_timer < 0.0:
+				nav_goto_target(search_node.global_position)
+				state_timer = randf_range(min_move_seconds, max_move_seconds)
+				traverse_state = TraverseState.MOVE
+		TraverseState.THINK:
+			state_timer -= dt
+			if state_timer < 0.0:
+				nav_goto_target(search_node.global_position)
+				state_timer = randf_range(min_move_seconds, max_move_seconds)
+				traverse_state = TraverseState.MOVE
+
+func idle_guard_node_update(dt: float):
+	match traverse_state:
+		TraverseState.MOVE:
+			nav_set_traversal_speed()
+			state_timer -= dt
+			if state_timer < 0.0:
+				nav_set_speed(0.0)
+				state_timer = randf_range(min_listen_seconds, max_listen_seconds)
+				traverse_state = TraverseState.LISTEN
+			if nav_at_target():
+				nav_set_speed(0.0)
+				state_timer = randf_range(min_think_seconds, max_think_seconds)
+				traverse_state = TraverseState.THINK
+		TraverseState.LISTEN:
+			state_timer -= dt
+			if state_timer < 0.0:
+				nav_goto_target(nearby_guard_nodes[randi_range(0, nearby_guard_nodes.size() - 1)].global_position)
+				state_timer = randf_range(min_move_seconds, max_move_seconds)
+				traverse_state = TraverseState.MOVE
+		TraverseState.THINK:
+			state_timer -= dt
+			if state_timer < 0.0:
+				nav_goto_target(nearby_guard_nodes[randi_range(0, nearby_guard_nodes.size() - 1)].global_position)
+				state_timer = randf_range(min_move_seconds, max_move_seconds)
+				traverse_state = TraverseState.MOVE
+
+func idle_patrol_node_cycle_update(dt: float):
+	match traverse_state:
+		TraverseState.MOVE:
+			nav_goto_target(patrol_path[current_patrol_node].global_position)
+			nav_set_traversal_speed()
+			state_timer -= dt
+			if state_timer < 0.0:
+				nav_set_speed(0.0)
+				state_timer = randf_range(min_listen_seconds, max_listen_seconds)
+				traverse_state = TraverseState.LISTEN
+			if nav_at_target():
+				nav_set_speed(0.0)
+				state_timer = randf_range(min_think_seconds, max_think_seconds)
+				traverse_state = TraverseState.THINK
+		TraverseState.LISTEN:
+			state_timer -= dt
+			if state_timer < 0.0:
+				state_timer = randf_range(min_move_seconds, max_move_seconds)
+				traverse_state = TraverseState.MOVE
+		TraverseState.THINK:
+			state_timer -= dt
+			if state_timer < 0.0:
+				current_patrol_node += 1
+				if current_patrol_node >= patrol_path.size(): current_patrol_node = 0
+				state_timer = randf_range(min_move_seconds, max_move_seconds)
+				traverse_state = TraverseState.MOVE
+
+
+#################
+# BIG UTILITIES #
+#################
+
 func update_player_guess_zone():
 	var space_state: PhysicsDirectSpaceState3D = get_world_3d().direct_space_state
 	player_guess_zones.clear()
@@ -439,8 +651,8 @@ func update_explore_nodes(dt: float) -> SearchNode:
 	for node in explore_nodes:
 		var distance = global_position.distance_to(node.global_position)
 		var distance_contribution: float = lerp(-1.0, 1.0, clamp((distance / exploration_distance_threshold) / 2.0, 0.0, 1.0))
-		if distance_contribution > 0.0: distance_contribution *= search_node_forget_speed
-		if distance_contribution < 0.0: distance_contribution *= search_node_explore_speed
+		if distance_contribution > 0.0: distance_contribution *= search_node_forget_rate
+		if distance_contribution < 0.0: distance_contribution *= search_node_explore_rate
 		node.score += distance_contribution * dt
 		
 		var player_distance = player_guess_center.distance_to(node.global_position)
@@ -456,29 +668,27 @@ func update_explore_nodes(dt: float) -> SearchNode:
 			highest_utility_node = node
 	return highest_utility_node
 
-func select_player_nav_target():
+func select_player_hunt_target():
 	var eligible_nodes: Array[SearchNode]
 	for zone in player_guess_zones:
 		for node in zone.nodes:
-			if player_guess_center.distance_to(node.position) < player_guess_radius:
+			if player_guess_center.distance_to(node.global_position) < player_guess_radius:
 				eligible_nodes.push_back(node)
 	if eligible_nodes.is_empty():
-		#print("NO ELIGIBLE NODES!")
-		nav_goto_target(player_guess_center)
+		player_hunt_target = player_guess_center
 	else:
-		nav_goto_target(eligible_nodes[randi_range(0, eligible_nodes.size() - 1)].position)
+		player_hunt_target = eligible_nodes[randi_range(0, eligible_nodes.size() - 1)].global_position
 
-func reset():
-	nav_set_speed(0.0)
-	nav_goto_me()
-	velocity = Vector3.ZERO
-	explore_state = ExploreState.LISTEN
-	state_timer = 0.0
-	player_guess_center = Vector3.ZERO
-	player_guess_intensity = 0.0
-	stun_timer = 0.0
-	distraction_timer = 0.0
-	player_guess_zones.clear()
+
+####################
+# LITTLE UTILITIES #
+####################
+
+func nav_set_distance_attenuated_speed(distance_multiplier: float, min_speed: float, max_speed: float):
+	nav_set_speed(clamp((global_position.distance_to(nav_target_position()) - 4.0) * distance_multiplier, min_speed, max_speed))
+	
+func nav_set_traversal_speed():
+	nav_set_distance_attenuated_speed(idle_speed_distance_multiplier, min_idle_speed, max_idle_speed)
 
 func nav_set_speed(value: float):
 	speed = value
