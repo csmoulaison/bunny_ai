@@ -276,6 +276,7 @@ signal player_killed()
 @onready var pivot: Node3D = $Pivot
 @onready var nav: NavigationAgent3D = $NavAgent
 
+var player: Node3D
 var speed: float = 0.0
 var sound_queue: Array[QueuedSound]
 # Exploration state
@@ -320,7 +321,7 @@ func reset():
 	
 	match idle_behavior:
 		IdleBehavior.EXPLORE:
-			_on_set_explore_behavior(explore_zones)
+			_on_set_explore_behavior(explore_zones, explore_behavior)
 		IdleBehavior.GUARD_NODE:
 			_on_set_guard_behavior(guard_node, guard_nearby_max_distance)
 		IdleBehavior.PATROL_NODE_CYCLE:
@@ -329,6 +330,8 @@ func reset():
 func _ready():
 	if !use_debug_info:
 		$DebugVisualizers.queue_free()
+	
+	player = get_tree().get_first_node_in_group("Player")
 	
 	# Listen for event emitters
 	var event_emitter = get_tree().get_nodes_in_group("EbEventEmitter")
@@ -416,7 +419,7 @@ func _physics_process(dt: float):
 	if !result.is_empty():
 		player_guess_velocity = Vector3.ZERO
 	player_guess_center += player_guess_velocity * dt
-	update_player_guess_zone()
+	update_zones_at_position(player_guess_center, player_guess_zones)
 	
 	var desired_velocity: Vector3 = Vector3.ZERO
 	var target = nav.get_next_path_position()
@@ -496,7 +499,7 @@ func process_sound(origin: Vector3, type: Sound.Type):
 			player_guess_intensity = lerp(player_guess_intensity, 1.0, response)
 		if player_guess_intensity > 0.1:
 			select_player_hunt_target()
-		update_player_guess_zone()
+		update_zones_at_position(player_guess_center, player_guess_zones)
 		
 	else: if(type == Sound.Type.EGG_NORMAL
 	|| type == Sound.Type.EGG_GLASS
@@ -514,10 +517,12 @@ func process_sound(origin: Vector3, type: Sound.Type):
 func _on_sound(origin: Vector3, type: Sound.Type):
 	sound_queue.push_back(QueuedSound.new(origin, type))
 
-func _on_set_explore_behavior(zones: Array[SearchZone]):
+func _on_set_explore_behavior(zones: Array[SearchZone], zone_behavior: ExploreZoneBehavior):
 	idle_behavior = IdleBehavior.EXPLORE
+	explore_behavior = zone_behavior
+	explore_zones = zones
 	explore_nodes.clear()
-	for zone in zones:
+	for zone in explore_zones:
 		var nodes: Array[Node] = zone.get_children()
 		for node in nodes:
 			if node is SearchNode:
@@ -576,6 +581,15 @@ func idle_explore_update(dt: float):
 				nav_goto_target(search_node.global_position)
 				state_timer = randf_range(min_move_seconds, max_move_seconds)
 				traverse_state = TraverseState.MOVE
+	#if explore_behavior == ExploreZoneBehavior.MATCH_PLAYER_GUESS || explore_behavior == ExploreZoneBehavior.MATCH_PLAYER_ACTUAL:
+	var target_explore_zones: Array[SearchZone]
+	var should_update_explore_zones: bool = true
+	match explore_behavior:
+		ExploreZoneBehavior.STATIC: should_update_explore_zones = false
+		ExploreZoneBehavior.MATCH_PLAYER_GUESS: target_explore_zones = player_guess_zones
+		ExploreZoneBehavior.MATCH_PLAYER_ACTUAL: update_zones_at_position(player.global_position, target_explore_zones)
+	if should_update_explore_zones && target_explore_zones != explore_zones:
+		_on_set_explore_behavior(target_explore_zones, explore_behavior)
 
 func idle_guard_node_update(dt: float):
 	match traverse_state:
@@ -635,17 +649,17 @@ func idle_patrol_node_cycle_update(dt: float):
 # BIG UTILITIES #
 #################
 
-func update_player_guess_zone():
+func update_zones_at_position(pos: Vector3, zones: Array[SearchZone]):
+	zones.clear()
 	var space_state: PhysicsDirectSpaceState3D = get_world_3d().direct_space_state
-	player_guess_zones.clear()
 	var query = PhysicsPointQueryParameters3D.new()
-	query.position = player_guess_center
+	query.position = pos
 	query.collide_with_areas = true 
 	var results = space_state.intersect_point(query)
 	for res in results:
 		for zone in search_zones:
 			if res["collider"] == zone.area:
-				player_guess_zones.push_back(zone)
+				zones.push_back(zone)
 
 func update_explore_nodes(dt: float) -> SearchNode:
 	for node in explore_nodes:

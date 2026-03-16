@@ -1,7 +1,7 @@
 class_name EbTrigger extends Area3D
 
 signal eb_sound(origin: Vector3, type: Sound.Type)
-signal eb_set_explore_behavior(zones: Array[SearchZone])
+signal eb_set_explore_behavior(zones: Array[SearchZone], zone_behavior: Bunny.ExploreZoneBehavior)
 signal eb_set_guard_behavior(node: SearchNode, nearby_max_distance: float)
 signal eb_set_patrol_behavior(path: Array[SearchNode])
 signal eb_set_hunt_behavior(behavior: Bunny.HuntBehavior)
@@ -16,6 +16,7 @@ signal eb_set_can_kill_player(value: bool)
 @export var behavior_to_set: Bunny.IdleBehavior
 @export_group("eb_set_explore_behavior")
 @export var trigger_explore_zones: Array[SearchZone]
+@export var trigger_explore_zone_behavior: Bunny.ExploreZoneBehavior
 @export_group("eb_set_guard_behavior")
 @export var trigger_guard_node: SearchNode
 @export var trigger_guard_nearby_max_distance: float
