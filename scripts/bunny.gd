@@ -27,15 +27,19 @@ class QueuedSound:
 	func _init(org: Vector3, typ: Sound.Type):
 		origin = org
 		type = typ
-		
-enum IdleBehavior {
-	## The "regular" behavior for EB, which is to explore nodes in a zone.
-	EXPLORE,
-	## EB will guard a certain node, patrolling a small set of nodes around it.
-	GUARD_NODE,
-	## EB will patrol between a specific set of nodes in a cycle, stopping to
-	## listen every now and again.
-	PATROL_NODE_CYCLE
+
+# TODO(conner): Document these options.
+enum ExploreBehavior {
+	ZONE_STATIC,
+	ZONE_FOLLOW_GUESS,
+	ZONE_FOLLOW_PLAYER,
+	ZONE_PREDICT_PLAYER,
+	RADIUS_STATIC,
+	RADIUS_DYNAMIC,
+	RADIUS_FOLLOW_PLAYER,
+	PATROL,
+	ALWAYS_HUNT,
+	STAY_IN_PLACE
 }
 
 enum HuntBehavior {
@@ -46,19 +50,7 @@ enum HuntBehavior {
 	IGNORE
 }
 
-enum ExploreZoneBehavior {
-	## EB will not change his explore zone unless it is explicitly set by an 
-	## eb_set_explore_zone signal emitted by an EbEventEmitter.
-	STATIC,
-	## EB will switch his explore zone to the zone he thinks the player is in 
-	## when his player guess radius moves into that zone.
-	MATCH_PLAYER_GUESS,
-	## EB will always omniciently switch his explore zone to the zone that the 
-	## player is actually inside of.
-	MATCH_PLAYER_ACTUAL
-}
-
-enum TraverseState {
+enum ExploreState {
 	MOVE,
 	LISTEN,
 	THINK
@@ -76,10 +68,7 @@ signal player_killed()
 @export_group("High level behavior")
 ## Determines the default set of behaviors that EB follows when he is not either
 ## currently hunting the player, distracted, or stunned.
-@export var idle_behavior: IdleBehavior = IdleBehavior.EXPLORE
-## Determines behavior with regards to the zones that EB explores when he isn't
-## actively hunting the player.
-@export var explore_behavior: ExploreZoneBehavior = ExploreZoneBehavior.STATIC
+@export var explore_behavior: ExploreBehavior = ExploreBehavior.ZONE_STATIC
 ## You can turn off EB's ability to hunt the player by setting this to 
 ## [b]Ignore[/b].
 @export var hunt_behavior: HuntBehavior = HuntBehavior.HUNT
@@ -183,16 +172,16 @@ signal player_killed()
 ## [member max_explore_speed].
 ## [br][br]The effect is that EB moves quicker to get to nodes he is further 
 ## away from.
-@export var idle_speed_distance_multiplier: float = 1.0
+@export var explore_speed_distance_multiplier: float = 1.0
 ## The minimum speed for moving towards a target node while doing the current 
-## goal behavior. state. Ensures that the speed doesn't go below this value 
+## explore behavior. Ensures that the speed doesn't go below this value 
 ## after calculating the speed from [member explore_speed_distance_multiplier].
-@export var min_idle_speed: float = 3.0
+@export var min_explore_speed: float = 3.0
 ## The maximum speed for moving towards a target node while doing the current
-## goal behavior. Ensures that the speed doesn't go above this value after 
+## explore behavior. Ensures that the speed doesn't go above this value after 
 ## calculating the speed from [member idle_speed_distance_multiplier].
-@export var max_idle_speed: float = 6.0
-## See [member idle_speed_distance_multiplier]. This works exactly the same
+@export var max_explore_speed: float = 6.0
+## See [member explore_speed_distance_multiplier]. This works exactly the same
 ## way, but while hunting for the player.
 @export var hunt_speed_distance_multiplier: float = 1.0
 ## See [member min_explore_speed]. This works exactly the same way, but while 
@@ -280,7 +269,7 @@ var player: Node3D
 var speed: float = 0.0
 var sound_queue: Array[QueuedSound]
 # Exploration state
-var traverse_state: TraverseState = TraverseState.LISTEN
+var explore_state: ExploreState = ExploreState.LISTEN
 var search_zones: Array[SearchZone]
 var search_nodes: Array[SearchNode]
 var explore_nodes: Array[SearchNode]
@@ -311,7 +300,7 @@ func reset():
 	nav_set_speed(0.0)
 	nav_goto_me()
 	velocity = Vector3.ZERO
-	traverse_state = TraverseState.LISTEN
+	explore_state = ExploreState.LISTEN
 	state_timer = 0.0
 	player_guess_center = Vector3.ZERO
 	player_guess_intensity = 0.0
@@ -319,13 +308,27 @@ func reset():
 	distraction_timer = 0.0
 	player_guess_zones.clear()
 	
-	match idle_behavior:
-		IdleBehavior.EXPLORE:
-			_on_set_explore_behavior(explore_zones, explore_behavior)
-		IdleBehavior.GUARD_NODE:
-			_on_set_guard_behavior(guard_node, guard_nearby_max_distance)
-		IdleBehavior.PATROL_NODE_CYCLE:
+	match explore_behavior:
+		ExploreBehavior.ZONE_STATIC:
+			_on_set_zone_static_behavior(explore_zones, explore_behavior)
+		ExploreBehavior.ZONE_FOLLOW_GUESS:
+			_on_set_zone_follow_guess_behavior(guard_node, guard_nearby_max_distance)
+		ExploreBehavior.ZONE_FOLLOW_PLAYER:
+			_on_set_zone_follow_player_behavior(patrol_path)
+		ExploreBehavior.ZONE_PREDICT_PLAYER:
+			on_set_zone_predict_player_behavior(patrol_path)
+		ExploreBehavior.RADIUS_STATIC:
+			_on_set_radius_static_behavior(patrol_path)
+		ExploreBehavior.RADIUS_DYNAMIC:
+			_on_set_radius_dynamic_behavior(patrol_path)
+		ExploreBehavior.RADIUS_FOLLOW_PLAYER:
+			_on_set_radius_follow_player(patrol_path)
+		ExploreBehavior.PATROL:
 			_on_set_patrol_behavior(patrol_path)
+		ExploreBehavior.ALWAYS_HUNT:
+			_on_set_always_hunt_behavior(patrol_path)
+		ExploreBehavior.STAY_IN_PLACE:
+			_on_set_stay_in_place_behavior(patrol_path)
 
 func _ready():
 	if !use_debug_info:
@@ -340,16 +343,30 @@ func _ready():
 		for signal_dictionary in signal_list:
 			if signal_dictionary.name == "eb_sound":
 				emitter.eb_sound.connect(_on_sound)
-			if signal_dictionary.name == "eb_set_explore_behavior":
-				emitter.eb_set_explore_behavior.connect(_on_set_explore_behavior)
-			if signal_dictionary.name == "eb_set_guard_behavior":
-				emitter.eb_set_guard_behavior.connect(_on_set_guard_behavior)
-			if signal_dictionary.name == "eb_set_patrol_behavior":
-				emitter.eb_set_patrol_behavior.connect(_on_set_patrol_behavior)
-			if signal_dictionary.name == "eb_set_hunt_behavior":
-				emitter.eb_set_hunt_behavior.connect(_on_set_hunt_behavior)
+			if signal_dictionary.name == "eb_set_can_hunt_player":
+				emitter.eb_set_can_hunt_player.connect(_on_set_can_hunt_player)
 			if signal_dictionary.name == "eb_set_can_kill_player":
 				emitter.eb_set_can_kill_player.connect(_on_set_can_kill_player)
+			if signal_dictionary.name == "eb_set_zone_static_behavior":
+				emitter.eb_set_zone_static_behavior.connect(_on_set_zone_static_behavior)
+			if signal_dictionary.name == "eb_set_zone_follow_guess_behavior":
+				emitter.eb_set_zone_follow_guess_behavior.connect(_on_set_zone_follow_guess_behavior)
+			if signal_dictionary.name == "eb_set_zone_follow_player_behavior":
+				emitter.eb_set_zone_follow_player_behavior.connect(_on_set_zone_follow_player_behavior)
+			if signal_dictionary.name == "eb_set_zone_predict_player_behavior":
+				emitter.eb_set_zone_predict_player_behavior.connect(on_set_zone_predict_player_behavior)
+			if signal_dictionary.name == "eb_set_radius_static_behavior":
+				emitter.eb_set_radius_static_behavior.connect(_on_set_radius_static_behavior)
+			if signal_dictionary.name == "eb_set_radius_dynamic_behavior":
+				emitter.eb_set_radius_dynamic_behavior.connect(_on_set_radius_dynamic_behavior)
+			if signal_dictionary.name == "eb_set_radius_follow_player":
+				emitter.eb_set_radius_follow_player.connect(_on_set_radius_follow_player)
+			if signal_dictionary.name == "eb_set_patrol_behavior":
+				emitter.eb_set_patrol_behavior.connect(_on_set_patrol_behavior)
+			if signal_dictionary.name == "eb_set_always_hunt_behavior":
+				emitter.eb_set_always_hunt_behavior.connect(_on_set_always_hunt_behavior)
+			if signal_dictionary.name == "eb_set_stay_in_place_behavior":
+				emitter.eb_set_stay_in_place_behavior.connect(_on_set_stay_in_place_behavior)
 
 	# Populate search and explore zones
 	var tmp_zones = search_zones_parent.get_children()
@@ -388,14 +405,28 @@ func _process(dt: float):
 		nav_goto_target(player_hunt_target)
 		return
 	
-	# If we aren't distracted, follow our idle behavior.
-	match idle_behavior:
-		IdleBehavior.EXPLORE:
-			idle_explore_update(dt)
-		IdleBehavior.GUARD_NODE:
-			idle_guard_node_update(dt)
-		IdleBehavior.PATROL_NODE_CYCLE:
-			idle_patrol_node_cycle_update(dt)
+	# If we aren't distracted, follow our explore behavior.
+	match explore_behavior:
+		ExploreBehavior.ZONE_STATIC:
+			explore_(dt)
+		ExploreBehavior.ZONE_FOLLOW_GUESS:
+			explore_(dt)
+		ExploreBehavior.ZONE_FOLLOW_PLAYER:
+			explore_(dt)
+		ExploreBehavior.ZONE_PREDICT_PLAYER:
+			explore_(dt)
+		ExploreBehavior.RADIUS_STATIC:
+			explore_(dt)
+		ExploreBehavior.RADIUS_DYNAMIC:
+			explore_(dt)
+		ExploreBehavior.RADIUS_FOLLOW_PLAYER:
+			explore_(dt)
+		ExploreBehavior.PATROL:
+			explore_(dt)
+		ExploreBehavior.ALWAYS_HUNT:
+			explore_(dt)
+		ExploreBehavior.STAY_IN_PLACE:
+			explore_(dt)
 
 func _physics_process(dt: float):
 	for sound in sound_queue:
@@ -546,6 +577,7 @@ func _on_set_hunt_behavior(behavior: HuntBehavior):
 	
 func _on_set_can_kill_player(value: bool):
 	can_kill_player = value
+
 
 ##################s
 # IDLE BEHAVIORS #
