@@ -20,7 +20,7 @@ class_name Bunny extends CharacterBody3D
 ## stuff like that, but it would be best if these were done through signals
 ## rather than reaching directly into EB's state, as my assumptions about EB's
 ## state throughout this logic would be preserved in that case.
-	
+
 class QueuedSound:
 	var origin: Vector3
 	var type: Sound.Type
@@ -35,7 +35,6 @@ enum ExploreBehavior {
 	ZONE_FOLLOW_PLAYER,
 	ZONE_PREDICT_PLAYER,
 	RADIUS_STATIC,
-	RADIUS_DYNAMIC,
 	RADIUS_FOLLOW_PLAYER,
 	PATROL,
 	ALWAYS_HUNT,
@@ -78,14 +77,14 @@ signal player_killed()
 ## If this is set to [b]true[/b], debug visualizers will be made active. If not,
 ## the associated nodes will be deleted on game start.
 @export var use_debug_info: bool = true
-@export_group("Exploration")
+@export_group("Explore: Zone")
 ## The [SearchZone] nodes in this array define the set of nodes which EB will 
 ## try to explore when he isn't in another state such as following the player or
 ## being distracted.
 ## [br][br]If using multiple zones, they should probably all be adjacent, 
 ## otherwise poor EB is going to have a hard time going back and forth trying to
 ## explore.
-@export var explore_zones: Array[SearchZone]
+@export var static_explore_zones: Array[SearchZone]
 ## As EB moves between [SearchNode] nodes, he modifies its 
 ## [member SearchNode.score] value, which represents how much EB wants to 
 ## explore that particular node.
@@ -104,6 +103,7 @@ signal player_killed()
 ## lowers is modulated by this value. He will explore the node quicker the 
 ## higher this number is, and slower the lower it is.
 @export var search_node_explore_rate: float = 0.5
+@export_group("Explore: Radius")
 @export_group("Hunting")
 ## When EB has a guess as to the player's whereabouts, it is bounded by a
 ## certain radius. EB assumes the player might be somewhere inside this radius.
@@ -268,11 +268,10 @@ signal player_killed()
 var player: Node3D
 var speed: float = 0.0
 var sound_queue: Array[QueuedSound]
-# Exploration state
 var explore_state: ExploreState = ExploreState.LISTEN
 var search_zones: Array[SearchZone]
 var search_nodes: Array[SearchNode]
-var explore_nodes: Array[SearchNode]
+#var explore_nodes: Array[SearchNode]
 var state_timer: float = 0.0
 # Hunting state
 var player_hunt_target: Vector3 = Vector3.ZERO
@@ -310,25 +309,24 @@ func reset():
 	
 	match explore_behavior:
 		ExploreBehavior.ZONE_STATIC:
-			_on_set_zone_static_behavior(explore_zones, explore_behavior)
+			_on_set_explore_zone_static(static_explore_zones)
 		ExploreBehavior.ZONE_FOLLOW_GUESS:
-			_on_set_zone_follow_guess_behavior(guard_node, guard_nearby_max_distance)
+			_on_set_explore_zone_follow_guess(static_explore_zones)
 		ExploreBehavior.ZONE_FOLLOW_PLAYER:
-			_on_set_zone_follow_player_behavior(patrol_path)
+			_on_set_explore_zone_follow_player()
 		ExploreBehavior.ZONE_PREDICT_PLAYER:
-			on_set_zone_predict_player_behavior(patrol_path)
+			_on_set_explore_zone_predict_player()
+		# TODO(conner): 
 		ExploreBehavior.RADIUS_STATIC:
-			_on_set_radius_static_behavior(patrol_path)
-		ExploreBehavior.RADIUS_DYNAMIC:
-			_on_set_radius_dynamic_behavior(patrol_path)
+			_on_set_explore_radius_static(x, x)
 		ExploreBehavior.RADIUS_FOLLOW_PLAYER:
-			_on_set_radius_follow_player(patrol_path)
+			_on_set_explore_radius_follow_player(radiussss)
 		ExploreBehavior.PATROL:
-			_on_set_patrol_behavior(patrol_path)
-		ExploreBehavior.ALWAYS_HUNT:
-			_on_set_always_hunt_behavior(patrol_path)
+			_on_set_explore_patrol(patrol_path)
 		ExploreBehavior.STAY_IN_PLACE:
-			_on_set_stay_in_place_behavior(patrol_path)
+			_on_set_explore_stay_in_place(poossisition)
+		ExploreBehavior.ALWAYS_HUNT:
+			_on_set_explore_always_hunt()
 
 func _ready():
 	if !use_debug_info:
@@ -347,26 +345,24 @@ func _ready():
 				emitter.eb_set_can_hunt_player.connect(_on_set_can_hunt_player)
 			if signal_dictionary.name == "eb_set_can_kill_player":
 				emitter.eb_set_can_kill_player.connect(_on_set_can_kill_player)
-			if signal_dictionary.name == "eb_set_zone_static_behavior":
-				emitter.eb_set_zone_static_behavior.connect(_on_set_zone_static_behavior)
-			if signal_dictionary.name == "eb_set_zone_follow_guess_behavior":
-				emitter.eb_set_zone_follow_guess_behavior.connect(_on_set_zone_follow_guess_behavior)
-			if signal_dictionary.name == "eb_set_zone_follow_player_behavior":
-				emitter.eb_set_zone_follow_player_behavior.connect(_on_set_zone_follow_player_behavior)
-			if signal_dictionary.name == "eb_set_zone_predict_player_behavior":
-				emitter.eb_set_zone_predict_player_behavior.connect(on_set_zone_predict_player_behavior)
-			if signal_dictionary.name == "eb_set_radius_static_behavior":
-				emitter.eb_set_radius_static_behavior.connect(_on_set_radius_static_behavior)
-			if signal_dictionary.name == "eb_set_radius_dynamic_behavior":
-				emitter.eb_set_radius_dynamic_behavior.connect(_on_set_radius_dynamic_behavior)
-			if signal_dictionary.name == "eb_set_radius_follow_player":
-				emitter.eb_set_radius_follow_player.connect(_on_set_radius_follow_player)
-			if signal_dictionary.name == "eb_set_patrol_behavior":
-				emitter.eb_set_patrol_behavior.connect(_on_set_patrol_behavior)
-			if signal_dictionary.name == "eb_set_always_hunt_behavior":
-				emitter.eb_set_always_hunt_behavior.connect(_on_set_always_hunt_behavior)
-			if signal_dictionary.name == "eb_set_stay_in_place_behavior":
-				emitter.eb_set_stay_in_place_behavior.connect(_on_set_stay_in_place_behavior)
+			if signal_dictionary.name == "eb_set_explore_zone_static":
+				emitter.eb_set_explore_zone_static.connect(_on_set_explore_zone_static)
+			if signal_dictionary.name == "eb_set_explore_zone_follow_guess":
+				emitter.eb_set_explore_zone_follow_guess.connect(_on_set_explore_zone_follow_guess)
+			if signal_dictionary.name == "eb_set_explore_zone_follow_player":
+				emitter.eb_set_explore_zone_follow_player.connect(_on_set_explore_zone_follow_player)
+			if signal_dictionary.name == "eb_set_explore_zone_predict_player":
+				emitter.eb_set_explore_zone_predict_player.connect(_on_set_explore_zone_predict_player)
+			if signal_dictionary.name == "eb_set_explore_radius_static":
+				emitter.eb_set_explore_radius_static.connect(_on_set_explore_radius_static)
+			if signal_dictionary.name == "eb_set_explore_radius_follow_player":
+				emitter.eb_set_explore_radius_follow_player.connect(_on_set_explore_radius_follow_player)
+			if signal_dictionary.name == "eb_set_explore_patrol":
+				emitter.eb_set_explore_patrol.connect(_on_set_explore_patrol)
+			if signal_dictionary.name == "eb_set_explore_always_hunt":
+				emitter.eb_set_explore_always_hunt.connect(_on_set_explore_always_hunt)
+			if signal_dictionary.name == "eb_set_explore_stay_in_place":
+				emitter.eb_set_explore_stay_in_place.connect(_on_set_explore_stay_in_place)
 
 	# Populate search and explore zones
 	var tmp_zones = search_zones_parent.get_children()
@@ -406,27 +402,26 @@ func _process(dt: float):
 		return
 	
 	# If we aren't distracted, follow our explore behavior.
+	# TODO(conner): implement explore behaviors
 	match explore_behavior:
 		ExploreBehavior.ZONE_STATIC:
-			explore_(dt)
+			explore_zone_static(dt)
 		ExploreBehavior.ZONE_FOLLOW_GUESS:
-			explore_(dt)
+			explore_zone_follow_guess(dt)
 		ExploreBehavior.ZONE_FOLLOW_PLAYER:
-			explore_(dt)
+			explore_zone_follow_player(dt)
 		ExploreBehavior.ZONE_PREDICT_PLAYER:
-			explore_(dt)
+			explore_zone_predict_player(dt)
 		ExploreBehavior.RADIUS_STATIC:
-			explore_(dt)
-		ExploreBehavior.RADIUS_DYNAMIC:
-			explore_(dt)
+			explore_radius_static(dt)
 		ExploreBehavior.RADIUS_FOLLOW_PLAYER:
-			explore_(dt)
+			explore_radius_follow_player(dt)
 		ExploreBehavior.PATROL:
-			explore_(dt)
+			explore_patrol(dt)
 		ExploreBehavior.ALWAYS_HUNT:
-			explore_(dt)
+			explore_always_hunt(dt)
 		ExploreBehavior.STAY_IN_PLACE:
-			explore_(dt)
+			explore_stay_in_place(dt)
 
 func _physics_process(dt: float):
 	for sound in sound_queue:
@@ -548,71 +543,92 @@ func process_sound(origin: Vector3, type: Sound.Type):
 func _on_sound(origin: Vector3, type: Sound.Type):
 	sound_queue.push_back(QueuedSound.new(origin, type))
 
-func _on_set_explore_behavior(zones: Array[SearchZone], zone_behavior: ExploreZoneBehavior):
-	idle_behavior = IdleBehavior.EXPLORE
-	explore_behavior = zone_behavior
-	explore_zones = zones
-	explore_nodes.clear()
-	for zone in explore_zones:
-		var nodes: Array[Node] = zone.get_children()
-		for node in nodes:
-			if node is SearchNode:
-				explore_nodes.push_back(node)
-
-func _on_set_guard_behavior(node: SearchNode, nearby_max_distance: float):
-	idle_behavior = IdleBehavior.GUARD_NODE
-	guard_node = node
-	guard_nearby_max_distance = nearby_max_distance
-	nearby_guard_nodes.clear()
-	for other in search_nodes:
-		if node.global_position.distance_to(other.global_position) <= guard_nearby_max_distance:
-			nearby_guard_nodes.push_back(other)
-
-func _on_set_patrol_behavior(path: Array[SearchNode]):
-	idle_behavior = IdleBehavior.PATROL_NODE_CYCLE
-	patrol_path = path
-
-func _on_set_hunt_behavior(behavior: HuntBehavior):
+func _on_set_can_hunt_player(behavior: HuntBehavior):
 	hunt_behavior = behavior
 	
 func _on_set_can_kill_player(value: bool):
 	can_kill_player = value
 
+func _on_set_explore_zone_static(zones: Array[SearchZone]):
+	explore_behavior = ExploreBehavior.ZONE_STATIC
+	static_explore_zones = zones
+	
+func _on_set_explore_zone_follow_guess(initial_zones: Array[SearchZone]):
+	explore_behavior = ExploreBehavior.ZONE_FOLLOW_GUESS
+	static_explore_zones = initial_zones
+	# TODO(conner): Set zone to guess zone IF the guess zone is active.
+	
+func _on_set_explore_zone_follow_player():
+	explore_behavior = ExploreBehavior.ZONE_FOLLOW_PLAYER
+	# TODO(conner): Set zone to the player zone.
+	
+func _on_set_explore_zone_predict_player():
+	explore_behavior = ExploreBehavior.ZONE_PREDICT_PLAYER
+	# TODO(conner): Set zone to prediction
+	
+func _on_set_explore_radius_static(center: Vector3, radius: float):
+	explore_behavior = ExploreBehavior.RADIUS_STATIC
+	explore_point_center = center
+	explore_point_radius = radius
+	
+func _on_set_explore_radius_follow_player(radius: float):
+	explore_point_center = player.global_position
+	explore_point_radius = radius
 
-##################s
-# IDLE BEHAVIORS #
-##################
+func _on_set_explore_patrol(path: Array[SearchNode]):
+	explore_behavior = ExploreBehavior.PATROL
+	patrol_path = path
+	
+func _on_set_explore_stay_in_place(pos: Vector3):
+	explore_behavior = ExploreBehavior.STAY_IN_PLACE
+	explore_point_center = pos
+	
+func _on_set_explore_always_hunt():
+	explore_behavior = ExploreBehavior.ALWAYS_HUNT
+
+
+#####################
+# EXPLORE BEHAVIORS #
+#####################
 
 # TODO(conner): All of these behaviors are very similar, and factoring them 
 # should be quite easy. I just don't want to do it right now. Doing it later
 # might be worth it, though.
 
+# TODO(conner): implement all the exploration behaviors. It will involve pre-
+# computing all the search nodes as indices in a PackedInt32Array, ideally, and 
+# then exploring within those nodes. 
+# What is the commonality point here? Is computing the search nodes the common
+# functionality? Probably not to the extent that it can exist in the outer loop,
+# but perhaps to the extent that the inner implementations become mostly small
+# functions that call out to shared utilities. 
+
 func idle_explore_update(dt: float):
 	var search_node: SearchNode = update_explore_nodes(dt)
-	match traverse_state:
-		TraverseState.MOVE:
+	match explore_state:
+		ExploreState.MOVE:
 			nav_set_traversal_speed()
 			state_timer -= dt
 			if state_timer < 0.0:
 				nav_set_speed(0.0)
 				state_timer = randf_range(min_listen_seconds, max_listen_seconds)
-				traverse_state = TraverseState.LISTEN
+				explore_state = ExploreState.LISTEN
 			if nav_at_target():
 				nav_set_speed(0.0)
 				state_timer = randf_range(min_think_seconds, max_think_seconds)
-				traverse_state = TraverseState.THINK
-		TraverseState.LISTEN:
+				explore_state = ExploreState.THINK
+		ExploreState.LISTEN:
 			state_timer -= dt
 			if state_timer < 0.0:
 				nav_goto_target(search_node.global_position)
 				state_timer = randf_range(min_move_seconds, max_move_seconds)
-				traverse_state = TraverseState.MOVE
-		TraverseState.THINK:
+				explore_state = ExploreState.MOVE
+		ExploreState.THINK:
 			state_timer -= dt
 			if state_timer < 0.0:
 				nav_goto_target(search_node.global_position)
 				state_timer = randf_range(min_move_seconds, max_move_seconds)
-				traverse_state = TraverseState.MOVE
+				explore_state = ExploreState.MOVE
 	#if explore_behavior == ExploreZoneBehavior.MATCH_PLAYER_GUESS || explore_behavior == ExploreZoneBehavior.MATCH_PLAYER_ACTUAL:
 	var target_explore_zones: Array[SearchZone]
 	var should_update_explore_zones: bool = true
@@ -624,57 +640,57 @@ func idle_explore_update(dt: float):
 		_on_set_explore_behavior(target_explore_zones, explore_behavior)
 
 func idle_guard_node_update(dt: float):
-	match traverse_state:
-		TraverseState.MOVE:
+	match explore_state:
+		ExploreState.MOVE:
 			nav_set_traversal_speed()
 			state_timer -= dt
 			if state_timer < 0.0:
 				nav_set_speed(0.0)
 				state_timer = randf_range(min_listen_seconds, max_listen_seconds)
-				traverse_state = TraverseState.LISTEN
+				explore_state = ExploreState.LISTEN
 			if nav_at_target():
 				nav_set_speed(0.0)
 				state_timer = randf_range(min_think_seconds, max_think_seconds)
-				traverse_state = TraverseState.THINK
-		TraverseState.LISTEN:
+				explore_state = ExploreState.THINK
+		ExploreState.LISTEN:
 			state_timer -= dt
 			if state_timer < 0.0:
 				nav_goto_target(nearby_guard_nodes[randi_range(0, nearby_guard_nodes.size() - 1)].global_position)
 				state_timer = randf_range(min_move_seconds, max_move_seconds)
-				traverse_state = TraverseState.MOVE
-		TraverseState.THINK:
+				explore_state = ExploreState.MOVE
+		ExploreState.THINK:
 			state_timer -= dt
 			if state_timer < 0.0:
 				nav_goto_target(nearby_guard_nodes[randi_range(0, nearby_guard_nodes.size() - 1)].global_position)
 				state_timer = randf_range(min_move_seconds, max_move_seconds)
-				traverse_state = TraverseState.MOVE
+				explore_state = ExploreState.MOVE
 
 func idle_patrol_node_cycle_update(dt: float):
-	match traverse_state:
-		TraverseState.MOVE:
+	match explore_state:
+		ExploreState.MOVE:
 			nav_goto_target(patrol_path[current_patrol_node].global_position)
 			nav_set_traversal_speed()
 			state_timer -= dt
 			if state_timer < 0.0:
 				nav_set_speed(0.0)
 				state_timer = randf_range(min_listen_seconds, max_listen_seconds)
-				traverse_state = TraverseState.LISTEN
+				explore_state = ExploreState.LISTEN
 			if nav_at_target():
 				nav_set_speed(0.0)
 				state_timer = randf_range(min_think_seconds, max_think_seconds)
-				traverse_state = TraverseState.THINK
-		TraverseState.LISTEN:
+				explore_state = ExploreState.THINK
+		ExploreState.LISTEN:
 			state_timer -= dt
 			if state_timer < 0.0:
 				state_timer = randf_range(min_move_seconds, max_move_seconds)
-				traverse_state = TraverseState.MOVE
-		TraverseState.THINK:
+				explore_state = ExploreState.MOVE
+		ExploreState.THINK:
 			state_timer -= dt
 			if state_timer < 0.0:
 				current_patrol_node += 1
 				if current_patrol_node >= patrol_path.size(): current_patrol_node = 0
 				state_timer = randf_range(min_move_seconds, max_move_seconds)
-				traverse_state = TraverseState.MOVE
+				explore_state = ExploreState.MOVE
 
 
 #################
@@ -734,7 +750,7 @@ func nav_set_distance_attenuated_speed(distance_multiplier: float, min_speed: fl
 	nav_set_speed(clamp((global_position.distance_to(nav_target_position()) - 4.0) * distance_multiplier, min_speed, max_speed))
 	
 func nav_set_traversal_speed():
-	nav_set_distance_attenuated_speed(idle_speed_distance_multiplier, min_idle_speed, max_idle_speed)
+	nav_set_distance_attenuated_speed(explore_speed_distance_multiplier, min_explore_speed, max_explore_speed)
 
 func nav_set_speed(value: float):
 	speed = value
