@@ -41,14 +41,6 @@ enum ExploreBehavior {
 	STAY_IN_PLACE
 }
 
-enum HuntBehavior {
-	## EB will hunt the player if he hears enough relevant sounds.
-	HUNT,
-	## EB will not hunt the player, but his player guessing logic still 
-	## continues to run.
-	IGNORE
-}
-
 enum ExploreState {
 	MOVE,
 	LISTEN,
@@ -69,8 +61,8 @@ signal player_killed()
 ## currently hunting the player, distracted, or stunned.
 @export var explore_behavior: ExploreBehavior = ExploreBehavior.ZONE_STATIC
 ## You can turn off EB's ability to hunt the player by setting this to 
-## [b]Ignore[/b].
-@export var hunt_behavior: HuntBehavior = HuntBehavior.HUNT
+## [b]false[/b].
+@export var can_hunt_player: bool = true
 ## If this is set to [b]false[/b], situations which would normally kill the 
 ## player will not. Useful for testing functionality without interruption.
 @export var can_kill_player: bool = true
@@ -271,8 +263,11 @@ var sound_queue: Array[QueuedSound]
 var explore_state: ExploreState = ExploreState.LISTEN
 var search_zones: Array[SearchZone]
 var search_nodes: Array[SearchNode]
-#var explore_nodes: Array[SearchNode]
+var explore_zones: Array[SearchZone]
+var explore_nodes: PackedInt32Array
 var state_timer: float = 0.0
+var explore_point_center: Vector3 = Vector3.ZERO
+var explore_point_radius: float = 5.0
 # Hunting state
 var player_hunt_target: Vector3 = Vector3.ZERO
 var player_guess_center: Vector3 = Vector3.ZERO
@@ -316,15 +311,15 @@ func reset():
 			_on_set_explore_zone_follow_player()
 		ExploreBehavior.ZONE_PREDICT_PLAYER:
 			_on_set_explore_zone_predict_player()
-		# TODO(conner): 
+		# TODO(conner): proper API parameters
 		ExploreBehavior.RADIUS_STATIC:
-			_on_set_explore_radius_static(x, x)
+			_on_set_explore_radius_static(explore_point_center, explore_point_radius)
 		ExploreBehavior.RADIUS_FOLLOW_PLAYER:
-			_on_set_explore_radius_follow_player(radiussss)
+			_on_set_explore_radius_follow_player(explore_point_radius)
 		ExploreBehavior.PATROL:
 			_on_set_explore_patrol(patrol_path)
 		ExploreBehavior.STAY_IN_PLACE:
-			_on_set_explore_stay_in_place(poossisition)
+			_on_set_explore_stay_in_place(explore_point_center)
 		ExploreBehavior.ALWAYS_HUNT:
 			_on_set_explore_always_hunt()
 
@@ -394,7 +389,7 @@ func _process(dt: float):
 		return
 		
 	# Do we have a guess of the player's whereabouts?
-	if hunt_behavior == HuntBehavior.HUNT && player_guess_intensity > 0.2:
+	if explore_behavior == ExploreBehavior.ALWAYS_HUNT || (can_hunt_player && player_guess_intensity > 0.2):
 		nav_set_distance_attenuated_speed(hunt_speed_distance_multiplier, min_hunt_speed, max_hunt_speed)
 		if nav_at_target():
 			select_player_hunt_target()
@@ -402,26 +397,37 @@ func _process(dt: float):
 		return
 	
 	# If we aren't distracted, follow our explore behavior.
-	# TODO(conner): implement explore behaviors
 	match explore_behavior:
 		ExploreBehavior.ZONE_STATIC:
-			explore_zone_static(dt)
+			generate_explore_nodes_from_zones(explore_zones)
+			update_and_explore_nodes()
 		ExploreBehavior.ZONE_FOLLOW_GUESS:
-			explore_zone_follow_guess(dt)
+			generate_explore_nodes_from_zone_at_position(player_guess_center)
+			update_and_explore_nodes()
 		ExploreBehavior.ZONE_FOLLOW_PLAYER:
-			explore_zone_follow_player(dt)
+			generate_explore_nodes_from_zone_at_position(player.global_position)
+			update_and_explore_nodes()
 		ExploreBehavior.ZONE_PREDICT_PLAYER:
-			explore_zone_predict_player(dt)
+			# TODO(conner): Predict player zone by adjacency
+			var prediction_zone = null
+			generate_explore_nodes_from_zones(prediction_zone)
+			update_and_explore_nodes()
 		ExploreBehavior.RADIUS_STATIC:
-			explore_radius_static(dt)
+			generate_explore_nodes_from_point(explore_point_center, explore_point_radius)
+			update_and_explore_nodes()
 		ExploreBehavior.RADIUS_FOLLOW_PLAYER:
-			explore_radius_follow_player(dt)
+			generate_explore_nodes_from_point(player.global_position, explore_point_radius)
+			update_and_explore_nodes()
 		ExploreBehavior.PATROL:
-			explore_patrol(dt)
+			pass
+			# TODO(conner): Patrol nodes
 		ExploreBehavior.ALWAYS_HUNT:
-			explore_always_hunt(dt)
+			# NOTE: The ALWAYS_HUNT behavior made it so that we should never reach this
+			# point, as its part of the hunt behavior conditional statement above.
+			pass
 		ExploreBehavior.STAY_IN_PLACE:
-			explore_stay_in_place(dt)
+			pass
+			# TODO(conner): Move to point and stay there if we are there.
 
 func _physics_process(dt: float):
 	for sound in sound_queue:
@@ -543,8 +549,8 @@ func process_sound(origin: Vector3, type: Sound.Type):
 func _on_sound(origin: Vector3, type: Sound.Type):
 	sound_queue.push_back(QueuedSound.new(origin, type))
 
-func _on_set_can_hunt_player(behavior: HuntBehavior):
-	hunt_behavior = behavior
+func _on_set_can_hunt_player(value: bool):
+	can_hunt_player = value
 	
 func _on_set_can_kill_player(value: bool):
 	can_kill_player = value
@@ -556,15 +562,12 @@ func _on_set_explore_zone_static(zones: Array[SearchZone]):
 func _on_set_explore_zone_follow_guess(initial_zones: Array[SearchZone]):
 	explore_behavior = ExploreBehavior.ZONE_FOLLOW_GUESS
 	static_explore_zones = initial_zones
-	# TODO(conner): Set zone to guess zone IF the guess zone is active.
 	
 func _on_set_explore_zone_follow_player():
 	explore_behavior = ExploreBehavior.ZONE_FOLLOW_PLAYER
-	# TODO(conner): Set zone to the player zone.
 	
 func _on_set_explore_zone_predict_player():
 	explore_behavior = ExploreBehavior.ZONE_PREDICT_PLAYER
-	# TODO(conner): Set zone to prediction
 	
 func _on_set_explore_radius_static(center: Vector3, radius: float):
 	explore_behavior = ExploreBehavior.RADIUS_STATIC
@@ -587,129 +590,37 @@ func _on_set_explore_always_hunt():
 	explore_behavior = ExploreBehavior.ALWAYS_HUNT
 
 
-#####################
-# EXPLORE BEHAVIORS #
-#####################
-
-# TODO(conner): All of these behaviors are very similar, and factoring them 
-# should be quite easy. I just don't want to do it right now. Doing it later
-# might be worth it, though.
-
-# TODO(conner): implement all the exploration behaviors. It will involve pre-
-# computing all the search nodes as indices in a PackedInt32Array, ideally, and 
-# then exploring within those nodes. 
-# What is the commonality point here? Is computing the search nodes the common
-# functionality? Probably not to the extent that it can exist in the outer loop,
-# but perhaps to the extent that the inner implementations become mostly small
-# functions that call out to shared utilities. 
-
-func idle_explore_update(dt: float):
-	var search_node: SearchNode = update_explore_nodes(dt)
-	match explore_state:
-		ExploreState.MOVE:
-			nav_set_traversal_speed()
-			state_timer -= dt
-			if state_timer < 0.0:
-				nav_set_speed(0.0)
-				state_timer = randf_range(min_listen_seconds, max_listen_seconds)
-				explore_state = ExploreState.LISTEN
-			if nav_at_target():
-				nav_set_speed(0.0)
-				state_timer = randf_range(min_think_seconds, max_think_seconds)
-				explore_state = ExploreState.THINK
-		ExploreState.LISTEN:
-			state_timer -= dt
-			if state_timer < 0.0:
-				nav_goto_target(search_node.global_position)
-				state_timer = randf_range(min_move_seconds, max_move_seconds)
-				explore_state = ExploreState.MOVE
-		ExploreState.THINK:
-			state_timer -= dt
-			if state_timer < 0.0:
-				nav_goto_target(search_node.global_position)
-				state_timer = randf_range(min_move_seconds, max_move_seconds)
-				explore_state = ExploreState.MOVE
-	#if explore_behavior == ExploreZoneBehavior.MATCH_PLAYER_GUESS || explore_behavior == ExploreZoneBehavior.MATCH_PLAYER_ACTUAL:
-	var target_explore_zones: Array[SearchZone]
-	var should_update_explore_zones: bool = true
-	match explore_behavior:
-		ExploreZoneBehavior.STATIC: should_update_explore_zones = false
-		ExploreZoneBehavior.MATCH_PLAYER_GUESS: target_explore_zones = player_guess_zones
-		ExploreZoneBehavior.MATCH_PLAYER_ACTUAL: update_zones_at_position(player.global_position, target_explore_zones)
-	if should_update_explore_zones && target_explore_zones != explore_zones:
-		_on_set_explore_behavior(target_explore_zones, explore_behavior)
-
-func idle_guard_node_update(dt: float):
-	match explore_state:
-		ExploreState.MOVE:
-			nav_set_traversal_speed()
-			state_timer -= dt
-			if state_timer < 0.0:
-				nav_set_speed(0.0)
-				state_timer = randf_range(min_listen_seconds, max_listen_seconds)
-				explore_state = ExploreState.LISTEN
-			if nav_at_target():
-				nav_set_speed(0.0)
-				state_timer = randf_range(min_think_seconds, max_think_seconds)
-				explore_state = ExploreState.THINK
-		ExploreState.LISTEN:
-			state_timer -= dt
-			if state_timer < 0.0:
-				nav_goto_target(nearby_guard_nodes[randi_range(0, nearby_guard_nodes.size() - 1)].global_position)
-				state_timer = randf_range(min_move_seconds, max_move_seconds)
-				explore_state = ExploreState.MOVE
-		ExploreState.THINK:
-			state_timer -= dt
-			if state_timer < 0.0:
-				nav_goto_target(nearby_guard_nodes[randi_range(0, nearby_guard_nodes.size() - 1)].global_position)
-				state_timer = randf_range(min_move_seconds, max_move_seconds)
-				explore_state = ExploreState.MOVE
-
-func idle_patrol_node_cycle_update(dt: float):
-	match explore_state:
-		ExploreState.MOVE:
-			nav_goto_target(patrol_path[current_patrol_node].global_position)
-			nav_set_traversal_speed()
-			state_timer -= dt
-			if state_timer < 0.0:
-				nav_set_speed(0.0)
-				state_timer = randf_range(min_listen_seconds, max_listen_seconds)
-				explore_state = ExploreState.LISTEN
-			if nav_at_target():
-				nav_set_speed(0.0)
-				state_timer = randf_range(min_think_seconds, max_think_seconds)
-				explore_state = ExploreState.THINK
-		ExploreState.LISTEN:
-			state_timer -= dt
-			if state_timer < 0.0:
-				state_timer = randf_range(min_move_seconds, max_move_seconds)
-				explore_state = ExploreState.MOVE
-		ExploreState.THINK:
-			state_timer -= dt
-			if state_timer < 0.0:
-				current_patrol_node += 1
-				if current_patrol_node >= patrol_path.size(): current_patrol_node = 0
-				state_timer = randf_range(min_move_seconds, max_move_seconds)
-				explore_state = ExploreState.MOVE
-
-
 #################
 # BIG UTILITIES #
 #################
 
-func update_zones_at_position(pos: Vector3, zones: Array[SearchZone]):
-	zones.clear()
-	var space_state: PhysicsDirectSpaceState3D = get_world_3d().direct_space_state
-	var query = PhysicsPointQueryParameters3D.new()
-	query.position = pos
-	query.collide_with_areas = true 
-	var results = space_state.intersect_point(query)
-	for res in results:
-		for zone in search_zones:
-			if res["collider"] == zone.area:
-				zones.push_back(zone)
+func generate_explore_nodes_from_zone_at_position(pos: Vector3):
+	# TODO(conner): Find the zone which matches the given position.
+	var zones: Array[SearchZone]
+	generate_explore_nodes_from_zones(zones)
 
-func update_explore_nodes(dt: float) -> SearchNode:
+func generate_explore_nodes_from_zones(zones: Array[SearchZone]):
+	# TODO(conner): Populate explore_nodes LUT by simply adding all the nodes from
+	# the given zone. This involves iterating through the entire array of
+	# search_nodes and matching them up with the zone to get the relevant indices.
+	pass
+
+func generate_explore_nodes_from_point(center: Vector3, radius: float):
+	# TODO(conner): Populate explore_nodes LUT by finding all nodes in search_nodes
+	# which fall within a given radius and taking their indices.
+	pass
+
+func update_and_explore_nodes():
+	# TODO(conner): Update node scores and run explore logic.
+	
+	# Update node scores and get highest utility node.
+	# TODO(conner): This is the old logic which iterates explore nodes as if they
+	# are an array of SearchNodes, but now we are doing a packed array scheme and
+	# we should also be deactivating nodes outside the array, or maybe treating
+	# them as being the max distance away. Either way, the best way to do this is
+	# probably to just assume the explore_nodes are in the same relative order as
+	# the search_nodes and iterate through all the search nodes, iterating the
+	# explore node every time we hit the current one.
 	for node in explore_nodes:
 		var distance = global_position.distance_to(node.global_position)
 		var distance_contribution: float = lerp(-1.0, 1.0, clamp((distance / exploration_distance_threshold) / 2.0, 0.0, 1.0))
@@ -728,7 +639,48 @@ func update_explore_nodes(dt: float) -> SearchNode:
 		if node.score / (distance * 0.2) > highest_utility:
 			highest_utility = node.score
 			highest_utility_node = node
-	return highest_utility_node
+	var search_node: SearchNode = highest_utility_node
+
+	# Explore the nodes
+	# TODO(conner): This is the logic for the old explore update, and just needs to
+	# be made generic and remove stuff about ExploreZoneBehavior.
+	match explore_state:
+		ExploreState.MOVE:
+			nav_set_traversal_speed()
+			state_timer -= dt
+			if state_timer < 0.0:
+				nav_set_speed(0.0)
+				state_timer = randf_range(min_listen_seconds, max_listen_seconds)
+				explore_state = ExploreState.LISTEN
+			if nav_at_target():
+				nav_set_speed(0.0)
+				state_timer = randf_range(min_think_seconds, max_think_seconds)
+				explore_state = ExploreState.THINK
+		ExploreState.LISTEN:
+			state_timer -= dt
+			if state_timer < 0.0:
+				nav_goto_target(search_node.global_position)
+				state_timer = randf_range(min_move_seconds, max_move_seconds)
+				explore_state = ExploreState.MOVE
+		ExploreState.THINK:
+			state_timer -= dt
+			if state_timer < 0.0:
+				nav_goto_target(search_node.global_position)
+				state_timer = randf_range(min_move_seconds, max_move_seconds)
+				explore_state = ExploreState.MOVE
+
+# TODO(conner): This should just be generate_explore_zones_from_position
+func update_zones_at_position(pos: Vector3, zones: Array[SearchZone]):
+	zones.clear()
+	var space_state: PhysicsDirectSpaceState3D = get_world_3d().direct_space_state
+	var query = PhysicsPointQueryParameters3D.new()
+	query.position = pos
+	query.collide_with_areas = true 
+	var results = space_state.intersect_point(query)
+	for res in results:
+		for zone in search_zones:
+			if res["collider"] == zone.area:
+				zones.push_back(zone)
 
 func select_player_hunt_target():
 	var eligible_nodes: Array[SearchNode]
