@@ -3,11 +3,16 @@
 [ext_resource type="PackedScene" uid="uid://gh4cva7umx7l" path="res://scenes/player.tscn" id="1_f2txt"]
 [ext_resource type="PackedScene" uid="uid://6epy3hh1yt6f" path="res://scenes/bunny.tscn" id="2_1ainy"]
 [ext_resource type="Script" uid="uid://db7hv2hs74bhx" path="res://scripts/search_zone.gd" id="3_2r41h"]
+[ext_resource type="Script" uid="uid://dosfk808iv10s" path="res://scripts/bunny_stats.gd" id="3_8c41q"]
 [ext_resource type="PackedScene" uid="uid://klmjto4c8wlw" path="res://scenes/search_node.tscn" id="3_n6hdu"]
 [ext_resource type="PackedScene" uid="uid://biw5iayvcbs4i" path="res://media/EasterHorrorMap_260309.glb" id="4_km5ld"]
 [ext_resource type="PackedScene" uid="uid://d06iq86s5fsw8" path="res://scenes/egg_pickup.tscn" id="5_i2t4f"]
 [ext_resource type="Script" uid="uid://bol07p0nvxkrp" path="res://scripts/director.gd" id="7_klq6b"]
 [ext_resource type="PackedScene" uid="uid://1a2ur604qq27" path="res://scenes/eb_trigger.tscn" id="8_b121j"]
+
+[sub_resource type="Resource" id="Resource_olg7q"]
+script = ExtResource("3_8c41q")
+metadata/_custom_type_script = "uid://dosfk808iv10s"
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2r41h"]
 size = Vector3(30, 9, 22)
@@ -107,46 +112,13 @@ floor_constant_speed = true
 floor_max_angle = 1.0227629
 floor_snap_length = 0.25
 
-[node name="Bunny" parent="." unique_id=1494601571 node_paths=PackedStringArray("search_zones_parent", "guard_node") instance=ExtResource("2_1ainy")]
+[node name="Bunny" parent="." unique_id=1494601571 node_paths=PackedStringArray("search_zones_parent", "static_explore_zones") instance=ExtResource("2_1ainy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, -4)
 collision_layer = 1
 collision_mask = 15
-idle_behavior = null
-explore_behavior = null
-hunt_behavior = null
-can_kill_player = null
-use_debug_info = null
-exploration_distance_threshold = null
-search_node_forget_rate = null
-search_node_explore_rate = null
-player_guess_max_radius = null
-player_guess_radius_expansion_rate = null
-player_guess_reset_distance_threshold = null
-player_guess_velocity_depreciation_rate = null
-player_guess_intensity_depreciation_rate = 0.002
-sound_wall_obstruction_modifier = 0.4
-sound_obstacle_obstruction_modifier = 0.6
-player_kill_radius = null
-guard_nearby_max_distance = null
-idle_speed_distance_multiplier = null
-min_idle_speed = null
-max_idle_speed = null
-hunt_speed_distance_multiplier = null
-min_hunt_speed = null
-max_hunt_speed = null
-distracted_speed_distance_multiplier = null
-min_distracted_speed = null
-max_distracted_speed = null
-min_move_seconds = null
-max_move_seconds = null
-min_listen_seconds = null
-max_listen_seconds = null
-min_think_seconds = null
-max_think_seconds = null
-nav_stop_distance = null
-acceleration = null
+stats = SubResource("Resource_olg7q")
 search_zones_parent = NodePath("../SearchZones")
-guard_node = NodePath("../SearchZones/A_2/SearchNode3")
+static_explore_zones = [NodePath("../SearchZones/G_1")]
 
 [node name="SearchZones" type="Node3D" parent="." unique_id=63157058]
 
@@ -2546,1811 +2518,1811 @@ metadata/_edit_lock_ = true
 
 [node name="Geometry" parent="NavigationRegion3D/Level" unique_id=560795675 instance=ExtResource("4_km5ld")]
 
-[node name="Window_001" parent="NavigationRegion3D/Level/Geometry" index="0" unique_id=873893650]
+[node name="Window_001" parent="NavigationRegion3D/Level/Geometry" index="0" unique_id=897884595]
 layers = 2
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_001" index="0" unique_id=733325059]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_001" index="0" unique_id=326020355]
 collision_layer = 4
 
-[node name="Window_002" parent="NavigationRegion3D/Level/Geometry" index="1" unique_id=389401710]
+[node name="Window_002" parent="NavigationRegion3D/Level/Geometry" index="1" unique_id=888542822]
 layers = 2
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_002" index="0" unique_id=1665941106]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_002" index="0" unique_id=1087341944]
 collision_layer = 4
 
-[node name="Window_004" parent="NavigationRegion3D/Level/Geometry" index="2" unique_id=523165391]
+[node name="Window_004" parent="NavigationRegion3D/Level/Geometry" index="2" unique_id=1494242479]
 layers = 2
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_004" index="0" unique_id=50184486]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_004" index="0" unique_id=352980815]
 collision_layer = 4
 
-[node name="Window_005" parent="NavigationRegion3D/Level/Geometry" index="3" unique_id=2012053530]
+[node name="Window_005" parent="NavigationRegion3D/Level/Geometry" index="3" unique_id=664579680]
 layers = 2
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_005" index="0" unique_id=1013755874]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_005" index="0" unique_id=289251126]
 collision_layer = 4
 
-[node name="Window_007" parent="NavigationRegion3D/Level/Geometry" index="4" unique_id=650507574]
+[node name="Window_007" parent="NavigationRegion3D/Level/Geometry" index="4" unique_id=978443435]
 layers = 2
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_007" index="0" unique_id=566866888]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_007" index="0" unique_id=637739298]
 collision_layer = 4
 
-[node name="Window_008" parent="NavigationRegion3D/Level/Geometry" index="5" unique_id=523763705]
+[node name="Window_008" parent="NavigationRegion3D/Level/Geometry" index="5" unique_id=195204348]
 layers = 2
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_008" index="0" unique_id=2127312042]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_008" index="0" unique_id=1416760132]
 collision_layer = 4
 
-[node name="Window_010" parent="NavigationRegion3D/Level/Geometry" index="6" unique_id=317054932]
+[node name="Window_010" parent="NavigationRegion3D/Level/Geometry" index="6" unique_id=183375272]
 layers = 2
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_010" index="0" unique_id=1228769164]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_010" index="0" unique_id=1348150546]
 collision_layer = 4
 
-[node name="Window_011" parent="NavigationRegion3D/Level/Geometry" index="7" unique_id=578214572]
+[node name="Window_011" parent="NavigationRegion3D/Level/Geometry" index="7" unique_id=1325494052]
 layers = 2
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_011" index="0" unique_id=264134233]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_011" index="0" unique_id=1036504234]
 collision_layer = 4
 
-[node name="Circle" parent="NavigationRegion3D/Level/Geometry" index="8" unique_id=1289156374]
+[node name="Circle" parent="NavigationRegion3D/Level/Geometry" index="8" unique_id=1288580799]
 layers = 2
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Circle" index="0" unique_id=1986982137]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Circle" index="0" unique_id=1997279826]
 collision_layer = 4
 
-[node name="Circle_001" parent="NavigationRegion3D/Level/Geometry" index="9" unique_id=1332912259]
+[node name="Circle_001" parent="NavigationRegion3D/Level/Geometry" index="9" unique_id=1323830922]
 layers = 2
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Circle_001" index="0" unique_id=555469462]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Circle_001" index="0" unique_id=295169537]
 collision_layer = 4
 
-[node name="Circle_002" parent="NavigationRegion3D/Level/Geometry" index="10" unique_id=2024093883]
+[node name="Circle_002" parent="NavigationRegion3D/Level/Geometry" index="10" unique_id=1090697055]
 layers = 2
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Circle_002" index="0" unique_id=511315126]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Circle_002" index="0" unique_id=816441597]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3828015, 0, -0.9777384)
 collision_layer = 4
 
-[node name="Circle_003" parent="NavigationRegion3D/Level/Geometry" index="11" unique_id=795187300]
+[node name="Circle_003" parent="NavigationRegion3D/Level/Geometry" index="11" unique_id=1021591596]
 layers = 2
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Circle_003" index="0" unique_id=900109292]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Circle_003" index="0" unique_id=580623082]
 collision_layer = 4
 
-[node name="Circle_004" parent="NavigationRegion3D/Level/Geometry" index="12" unique_id=1757756771]
+[node name="Circle_004" parent="NavigationRegion3D/Level/Geometry" index="12" unique_id=125673254]
 layers = 2
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Circle_004" index="0" unique_id=1009949287]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Circle_004" index="0" unique_id=2034123362]
 collision_layer = 4
 
-[node name="Circle_005" parent="NavigationRegion3D/Level/Geometry" index="13" unique_id=1620025176]
+[node name="Circle_005" parent="NavigationRegion3D/Level/Geometry" index="13" unique_id=1056669503]
 layers = 2
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Circle_005" index="0" unique_id=291951874]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Circle_005" index="0" unique_id=1943872509]
 collision_layer = 4
 
-[node name="Circle_006" parent="NavigationRegion3D/Level/Geometry" index="14" unique_id=2061275095]
+[node name="Circle_006" parent="NavigationRegion3D/Level/Geometry" index="14" unique_id=835482393]
 layers = 2
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Circle_006" index="0" unique_id=1436745838]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Circle_006" index="0" unique_id=193470887]
 collision_layer = 4
 
-[node name="Circle_007" parent="NavigationRegion3D/Level/Geometry" index="15" unique_id=2115732177]
+[node name="Circle_007" parent="NavigationRegion3D/Level/Geometry" index="15" unique_id=1198126616]
 layers = 2
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Circle_007" index="0" unique_id=733146086]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Circle_007" index="0" unique_id=641430865]
 collision_layer = 4
 
-[node name="Circle_008" parent="NavigationRegion3D/Level/Geometry" index="16" unique_id=153896267]
+[node name="Circle_008" parent="NavigationRegion3D/Level/Geometry" index="16" unique_id=1879130636]
 layers = 2
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Circle_008" index="0" unique_id=1981099734]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Circle_008" index="0" unique_id=930042446]
 collision_layer = 4
 
-[node name="Circle_009" parent="NavigationRegion3D/Level/Geometry" index="17" unique_id=734625877]
+[node name="Circle_009" parent="NavigationRegion3D/Level/Geometry" index="17" unique_id=1298232115]
 layers = 2
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Circle_009" index="0" unique_id=118003397]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Circle_009" index="0" unique_id=135643513]
 collision_layer = 4
 
-[node name="Circle_010" parent="NavigationRegion3D/Level/Geometry" index="18" unique_id=929332844]
+[node name="Circle_010" parent="NavigationRegion3D/Level/Geometry" index="18" unique_id=1414443923]
 layers = 2
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Circle_010" index="0" unique_id=1695798441]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Circle_010" index="0" unique_id=945888529]
 collision_layer = 4
 
-[node name="Circle_011" parent="NavigationRegion3D/Level/Geometry" index="19" unique_id=1795182334]
+[node name="Circle_011" parent="NavigationRegion3D/Level/Geometry" index="19" unique_id=1825056918]
 layers = 2
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Circle_011" index="0" unique_id=683727868]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Circle_011" index="0" unique_id=249582763]
 collision_layer = 4
 
-[node name="Window_012" parent="NavigationRegion3D/Level/Geometry" index="20" unique_id=1235274492]
+[node name="Window_012" parent="NavigationRegion3D/Level/Geometry" index="20" unique_id=1333908991]
 layers = 2
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_012" index="0" unique_id=1926988072]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_012" index="0" unique_id=828016797]
 collision_layer = 4
 
-[node name="Window_013" parent="NavigationRegion3D/Level/Geometry" index="21" unique_id=1398525845]
+[node name="Window_013" parent="NavigationRegion3D/Level/Geometry" index="21" unique_id=1818143473]
 layers = 2
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_013" index="0" unique_id=907237484]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_013" index="0" unique_id=502208885]
 collision_layer = 4
 
-[node name="Window_015" parent="NavigationRegion3D/Level/Geometry" index="22" unique_id=99903917]
+[node name="Window_015" parent="NavigationRegion3D/Level/Geometry" index="22" unique_id=1754138930]
 layers = 2
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_015" index="0" unique_id=994746794]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_015" index="0" unique_id=1378851022]
 collision_layer = 4
 
-[node name="Window_016" parent="NavigationRegion3D/Level/Geometry" index="23" unique_id=1769211113]
+[node name="Window_016" parent="NavigationRegion3D/Level/Geometry" index="23" unique_id=726838705]
 layers = 2
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_016" index="0" unique_id=1781571640]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_016" index="0" unique_id=1667975934]
 collision_layer = 4
 
-[node name="Window_018" parent="NavigationRegion3D/Level/Geometry" index="24" unique_id=1919152907]
+[node name="Window_018" parent="NavigationRegion3D/Level/Geometry" index="24" unique_id=646724254]
 layers = 2
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_018" index="0" unique_id=1078902424]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_018" index="0" unique_id=1365921114]
 collision_layer = 4
 
-[node name="Window_019" parent="NavigationRegion3D/Level/Geometry" index="25" unique_id=834490024]
+[node name="Window_019" parent="NavigationRegion3D/Level/Geometry" index="25" unique_id=697855971]
 layers = 2
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_019" index="0" unique_id=1487940217]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_019" index="0" unique_id=1058648740]
 collision_layer = 4
 
-[node name="Window_021" parent="NavigationRegion3D/Level/Geometry" index="26" unique_id=1368055912]
+[node name="Window_021" parent="NavigationRegion3D/Level/Geometry" index="26" unique_id=716733116]
 layers = 2
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_021" index="0" unique_id=1723786090]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_021" index="0" unique_id=551625664]
 collision_layer = 4
 
-[node name="Window_022" parent="NavigationRegion3D/Level/Geometry" index="27" unique_id=614206369]
+[node name="Window_022" parent="NavigationRegion3D/Level/Geometry" index="27" unique_id=580229081]
 layers = 2
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_022" index="0" unique_id=1456132398]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_022" index="0" unique_id=1692608757]
 collision_layer = 4
 
-[node name="Window_003" parent="NavigationRegion3D/Level/Geometry" index="28" unique_id=1098233150]
+[node name="Window_003" parent="NavigationRegion3D/Level/Geometry" index="28" unique_id=355035263]
 layers = 2
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_003" index="0" unique_id=1856027285]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_003" index="0" unique_id=523208002]
 collision_layer = 4
 
-[node name="Window_006" parent="NavigationRegion3D/Level/Geometry" index="29" unique_id=1263881884]
+[node name="Window_006" parent="NavigationRegion3D/Level/Geometry" index="29" unique_id=162140658]
 layers = 2
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_006" index="0" unique_id=650122690]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_006" index="0" unique_id=2080990451]
 collision_layer = 4
 
-[node name="Window_009" parent="NavigationRegion3D/Level/Geometry" index="30" unique_id=1432772399]
+[node name="Window_009" parent="NavigationRegion3D/Level/Geometry" index="30" unique_id=42925283]
 layers = 2
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_009" index="0" unique_id=550620984]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_009" index="0" unique_id=1652518428]
 collision_layer = 4
 
-[node name="Window_014" parent="NavigationRegion3D/Level/Geometry" index="31" unique_id=1771809369]
+[node name="Window_014" parent="NavigationRegion3D/Level/Geometry" index="31" unique_id=15836508]
 layers = 2
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_014" index="0" unique_id=1701813116]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_014" index="0" unique_id=281096415]
 collision_layer = 4
 
-[node name="Window_017" parent="NavigationRegion3D/Level/Geometry" index="32" unique_id=184974024]
+[node name="Window_017" parent="NavigationRegion3D/Level/Geometry" index="32" unique_id=1163122220]
 layers = 2
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_017" index="0" unique_id=1859059303]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_017" index="0" unique_id=899446700]
 collision_layer = 4
 
-[node name="Window_020" parent="NavigationRegion3D/Level/Geometry" index="33" unique_id=573481413]
+[node name="Window_020" parent="NavigationRegion3D/Level/Geometry" index="33" unique_id=106593616]
 layers = 2
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_020" index="0" unique_id=1376209831]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_020" index="0" unique_id=1750182013]
 collision_layer = 4
 
-[node name="Window_023" parent="NavigationRegion3D/Level/Geometry" index="34" unique_id=1129425457]
+[node name="Window_023" parent="NavigationRegion3D/Level/Geometry" index="34" unique_id=1201489927]
 layers = 2
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_023" index="0" unique_id=1641551786]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_023" index="0" unique_id=383499843]
 collision_layer = 4
 
-[node name="Window_024" parent="NavigationRegion3D/Level/Geometry" index="35" unique_id=691459089]
+[node name="Window_024" parent="NavigationRegion3D/Level/Geometry" index="35" unique_id=41947026]
 layers = 2
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_024" index="0" unique_id=1534168389]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_024" index="0" unique_id=782843787]
 collision_layer = 4
 
-[node name="Window_025" parent="NavigationRegion3D/Level/Geometry" index="36" unique_id=222313436]
+[node name="Window_025" parent="NavigationRegion3D/Level/Geometry" index="36" unique_id=807337152]
 layers = 2
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_025" index="0" unique_id=1776069359]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_025" index="0" unique_id=813505454]
 collision_layer = 4
 
-[node name="Window_026" parent="NavigationRegion3D/Level/Geometry" index="37" unique_id=1621217811]
+[node name="Window_026" parent="NavigationRegion3D/Level/Geometry" index="37" unique_id=2005535317]
 layers = 2
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_026" index="0" unique_id=1147516700]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_026" index="0" unique_id=904049613]
 collision_layer = 4
 
-[node name="Window_027" parent="NavigationRegion3D/Level/Geometry" index="38" unique_id=1287592531]
+[node name="Window_027" parent="NavigationRegion3D/Level/Geometry" index="38" unique_id=796227743]
 layers = 2
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_027" index="0" unique_id=1085662685]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_027" index="0" unique_id=477789049]
 collision_layer = 4
 
-[node name="Window_028" parent="NavigationRegion3D/Level/Geometry" index="39" unique_id=2011526736]
+[node name="Window_028" parent="NavigationRegion3D/Level/Geometry" index="39" unique_id=1679212225]
 layers = 2
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_028" index="0" unique_id=90492804]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_028" index="0" unique_id=1477476458]
 collision_layer = 4
 
-[node name="Window_029" parent="NavigationRegion3D/Level/Geometry" index="40" unique_id=216689411]
+[node name="Window_029" parent="NavigationRegion3D/Level/Geometry" index="40" unique_id=1165156185]
 layers = 2
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_029" index="0" unique_id=714788796]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_029" index="0" unique_id=1637089218]
 collision_layer = 4
 
-[node name="Window_030" parent="NavigationRegion3D/Level/Geometry" index="41" unique_id=557641364]
+[node name="Window_030" parent="NavigationRegion3D/Level/Geometry" index="41" unique_id=1138581599]
 layers = 2
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_030" index="0" unique_id=815087913]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_030" index="0" unique_id=576766072]
 collision_layer = 4
 
-[node name="Window_031" parent="NavigationRegion3D/Level/Geometry" index="42" unique_id=1608114818]
+[node name="Window_031" parent="NavigationRegion3D/Level/Geometry" index="42" unique_id=1706810166]
 layers = 2
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_031" index="0" unique_id=379046240]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_031" index="0" unique_id=165123560]
 collision_layer = 4
 
-[node name="Window_032" parent="NavigationRegion3D/Level/Geometry" index="43" unique_id=384157497]
+[node name="Window_032" parent="NavigationRegion3D/Level/Geometry" index="43" unique_id=491233458]
 layers = 2
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_032" index="0" unique_id=1763819385]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_032" index="0" unique_id=1797072823]
 collision_layer = 4
 
-[node name="Window_033" parent="NavigationRegion3D/Level/Geometry" index="44" unique_id=751825571]
+[node name="Window_033" parent="NavigationRegion3D/Level/Geometry" index="44" unique_id=1816864253]
 layers = 2
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_033" index="0" unique_id=434613569]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_033" index="0" unique_id=1605560016]
 collision_layer = 4
 
-[node name="Window_034" parent="NavigationRegion3D/Level/Geometry" index="45" unique_id=1762342710]
+[node name="Window_034" parent="NavigationRegion3D/Level/Geometry" index="45" unique_id=1520286403]
 layers = 2
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_034" index="0" unique_id=1508665764]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_034" index="0" unique_id=2118339914]
 collision_layer = 4
 
-[node name="Window_035" parent="NavigationRegion3D/Level/Geometry" index="46" unique_id=1519090367]
+[node name="Window_035" parent="NavigationRegion3D/Level/Geometry" index="46" unique_id=52372030]
 layers = 2
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_035" index="0" unique_id=242859465]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_035" index="0" unique_id=1828671357]
 collision_layer = 4
 
-[node name="Window_036" parent="NavigationRegion3D/Level/Geometry" index="47" unique_id=1142893131]
+[node name="Window_036" parent="NavigationRegion3D/Level/Geometry" index="47" unique_id=1627669616]
 layers = 2
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_036" index="0" unique_id=275634409]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_036" index="0" unique_id=1755106542]
 collision_layer = 4
 
-[node name="Window_037" parent="NavigationRegion3D/Level/Geometry" index="48" unique_id=1450355696]
+[node name="Window_037" parent="NavigationRegion3D/Level/Geometry" index="48" unique_id=1171991972]
 layers = 2
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_037" index="0" unique_id=703312202]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_037" index="0" unique_id=690814167]
 collision_layer = 4
 
-[node name="Window_038" parent="NavigationRegion3D/Level/Geometry" index="49" unique_id=1560067891]
+[node name="Window_038" parent="NavigationRegion3D/Level/Geometry" index="49" unique_id=1861257479]
 layers = 2
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_038" index="0" unique_id=1866444580]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_038" index="0" unique_id=1997848940]
 collision_layer = 4
 
-[node name="Window_039" parent="NavigationRegion3D/Level/Geometry" index="50" unique_id=714981670]
+[node name="Window_039" parent="NavigationRegion3D/Level/Geometry" index="50" unique_id=347995478]
 layers = 2
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_039" index="0" unique_id=428387131]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_039" index="0" unique_id=312023674]
 collision_layer = 4
 
-[node name="Window_040" parent="NavigationRegion3D/Level/Geometry" index="51" unique_id=1810850391]
+[node name="Window_040" parent="NavigationRegion3D/Level/Geometry" index="51" unique_id=864420316]
 layers = 2
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_040" index="0" unique_id=497901299]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_040" index="0" unique_id=759310352]
 collision_layer = 4
 
-[node name="Window_041" parent="NavigationRegion3D/Level/Geometry" index="52" unique_id=1948031979]
+[node name="Window_041" parent="NavigationRegion3D/Level/Geometry" index="52" unique_id=701344785]
 layers = 2
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_041" index="0" unique_id=1477273039]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_041" index="0" unique_id=684172411]
 collision_layer = 4
 
-[node name="Window_042" parent="NavigationRegion3D/Level/Geometry" index="53" unique_id=740648852]
+[node name="Window_042" parent="NavigationRegion3D/Level/Geometry" index="53" unique_id=1751192666]
 layers = 2
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_042" index="0" unique_id=422610199]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_042" index="0" unique_id=2043909375]
 collision_layer = 4
 
-[node name="Window_043" parent="NavigationRegion3D/Level/Geometry" index="54" unique_id=564536625]
+[node name="Window_043" parent="NavigationRegion3D/Level/Geometry" index="54" unique_id=346839927]
 layers = 2
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_043" index="0" unique_id=441835970]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_043" index="0" unique_id=1765525935]
 collision_layer = 4
 
-[node name="Window_044" parent="NavigationRegion3D/Level/Geometry" index="55" unique_id=266562564]
+[node name="Window_044" parent="NavigationRegion3D/Level/Geometry" index="55" unique_id=920904552]
 layers = 2
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_044" index="0" unique_id=414044685]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_044" index="0" unique_id=84667149]
 collision_layer = 4
 
-[node name="Window_045" parent="NavigationRegion3D/Level/Geometry" index="56" unique_id=1814616771]
+[node name="Window_045" parent="NavigationRegion3D/Level/Geometry" index="56" unique_id=1347309479]
 layers = 2
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_045" index="0" unique_id=1116227473]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_045" index="0" unique_id=1838828905]
 collision_layer = 4
 
-[node name="Window_046" parent="NavigationRegion3D/Level/Geometry" index="57" unique_id=1340409910]
+[node name="Window_046" parent="NavigationRegion3D/Level/Geometry" index="57" unique_id=93057113]
 layers = 2
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_046" index="0" unique_id=1306189663]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_046" index="0" unique_id=1045817956]
 collision_layer = 4
 
-[node name="Window_047" parent="NavigationRegion3D/Level/Geometry" index="58" unique_id=6054304]
+[node name="Window_047" parent="NavigationRegion3D/Level/Geometry" index="58" unique_id=1188730507]
 layers = 2
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_047" index="0" unique_id=316692859]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_047" index="0" unique_id=16118012]
 collision_layer = 4
 
-[node name="Window_048" parent="NavigationRegion3D/Level/Geometry" index="59" unique_id=1115481389]
+[node name="Window_048" parent="NavigationRegion3D/Level/Geometry" index="59" unique_id=1158690997]
 layers = 2
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_048" index="0" unique_id=1028729925]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_048" index="0" unique_id=1792216474]
 collision_layer = 4
 
-[node name="Window_049" parent="NavigationRegion3D/Level/Geometry" index="60" unique_id=1713067837]
+[node name="Window_049" parent="NavigationRegion3D/Level/Geometry" index="60" unique_id=1472977396]
 layers = 2
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_049" index="0" unique_id=1860862418]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_049" index="0" unique_id=1085321867]
 collision_layer = 4
 
-[node name="Window_050" parent="NavigationRegion3D/Level/Geometry" index="61" unique_id=1326557098]
+[node name="Window_050" parent="NavigationRegion3D/Level/Geometry" index="61" unique_id=1700582488]
 layers = 2
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_050" index="0" unique_id=1099441860]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_050" index="0" unique_id=854137059]
 collision_layer = 4
 
-[node name="Window_051" parent="NavigationRegion3D/Level/Geometry" index="62" unique_id=684144468]
+[node name="Window_051" parent="NavigationRegion3D/Level/Geometry" index="62" unique_id=863515246]
 layers = 2
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_051" index="0" unique_id=1789522886]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_051" index="0" unique_id=249333983]
 collision_layer = 4
 
-[node name="Window_052" parent="NavigationRegion3D/Level/Geometry" index="63" unique_id=1373232922]
+[node name="Window_052" parent="NavigationRegion3D/Level/Geometry" index="63" unique_id=1558571516]
 layers = 2
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_052" index="0" unique_id=2084920573]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_052" index="0" unique_id=1633324223]
 collision_layer = 4
 
-[node name="Window_053" parent="NavigationRegion3D/Level/Geometry" index="64" unique_id=1150641955]
+[node name="Window_053" parent="NavigationRegion3D/Level/Geometry" index="64" unique_id=27938319]
 layers = 2
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_053" index="0" unique_id=170825076]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_053" index="0" unique_id=234047135]
 collision_layer = 4
 
-[node name="Window_054" parent="NavigationRegion3D/Level/Geometry" index="65" unique_id=1684684555]
+[node name="Window_054" parent="NavigationRegion3D/Level/Geometry" index="65" unique_id=74159314]
 layers = 2
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_054" index="0" unique_id=208889935]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_054" index="0" unique_id=1611106707]
 collision_layer = 4
 
-[node name="Window_055" parent="NavigationRegion3D/Level/Geometry" index="66" unique_id=2073149598]
+[node name="Window_055" parent="NavigationRegion3D/Level/Geometry" index="66" unique_id=260241971]
 layers = 2
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_055" index="0" unique_id=232169883]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_055" index="0" unique_id=588282667]
 collision_layer = 4
 
-[node name="Window_056" parent="NavigationRegion3D/Level/Geometry" index="67" unique_id=1319899575]
+[node name="Window_056" parent="NavigationRegion3D/Level/Geometry" index="67" unique_id=496583729]
 layers = 2
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_056" index="0" unique_id=1029208644]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_056" index="0" unique_id=92992422]
 collision_layer = 4
 
-[node name="Window_057" parent="NavigationRegion3D/Level/Geometry" index="68" unique_id=220126746]
+[node name="Window_057" parent="NavigationRegion3D/Level/Geometry" index="68" unique_id=1029060720]
 layers = 2
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_057" index="0" unique_id=16982433]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_057" index="0" unique_id=97738817]
 collision_layer = 4
 
-[node name="Window_058" parent="NavigationRegion3D/Level/Geometry" index="69" unique_id=1383217779]
+[node name="Window_058" parent="NavigationRegion3D/Level/Geometry" index="69" unique_id=679195701]
 layers = 2
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_058" index="0" unique_id=1333187889]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_058" index="0" unique_id=171456158]
 collision_layer = 4
 
-[node name="Window_059" parent="NavigationRegion3D/Level/Geometry" index="70" unique_id=501155055]
+[node name="Window_059" parent="NavigationRegion3D/Level/Geometry" index="70" unique_id=1189148033]
 layers = 2
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_059" index="0" unique_id=1305664399]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_059" index="0" unique_id=1318170535]
 collision_layer = 4
 
-[node name="Window_060" parent="NavigationRegion3D/Level/Geometry" index="71" unique_id=1513155508]
+[node name="Window_060" parent="NavigationRegion3D/Level/Geometry" index="71" unique_id=249686390]
 layers = 2
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_060" index="0" unique_id=425744751]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_060" index="0" unique_id=32899794]
 collision_layer = 4
 
-[node name="Window_061" parent="NavigationRegion3D/Level/Geometry" index="72" unique_id=1082651614]
+[node name="Window_061" parent="NavigationRegion3D/Level/Geometry" index="72" unique_id=147486990]
 layers = 2
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_061" index="0" unique_id=304120308]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_061" index="0" unique_id=901630448]
 collision_layer = 4
 
-[node name="Window_062" parent="NavigationRegion3D/Level/Geometry" index="73" unique_id=2131770777]
+[node name="Window_062" parent="NavigationRegion3D/Level/Geometry" index="73" unique_id=205237430]
 layers = 2
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_062" index="0" unique_id=391729886]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_062" index="0" unique_id=1987193907]
 collision_layer = 4
 
-[node name="Window_063" parent="NavigationRegion3D/Level/Geometry" index="74" unique_id=1117238669]
+[node name="Window_063" parent="NavigationRegion3D/Level/Geometry" index="74" unique_id=499417676]
 layers = 2
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_063" index="0" unique_id=877369714]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_063" index="0" unique_id=166745782]
 collision_layer = 4
 
-[node name="Window_064" parent="NavigationRegion3D/Level/Geometry" index="75" unique_id=64404132]
+[node name="Window_064" parent="NavigationRegion3D/Level/Geometry" index="75" unique_id=1915328795]
 layers = 2
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_064" index="0" unique_id=518832707]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_064" index="0" unique_id=1209497242]
 collision_layer = 4
 
-[node name="Window_065" parent="NavigationRegion3D/Level/Geometry" index="76" unique_id=142902469]
+[node name="Window_065" parent="NavigationRegion3D/Level/Geometry" index="76" unique_id=125105862]
 layers = 2
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_065" index="0" unique_id=227288981]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_065" index="0" unique_id=1121606396]
 collision_layer = 4
 
-[node name="Window_066" parent="NavigationRegion3D/Level/Geometry" index="77" unique_id=466575674]
+[node name="Window_066" parent="NavigationRegion3D/Level/Geometry" index="77" unique_id=891467720]
 layers = 2
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_066" index="0" unique_id=2057252664]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_066" index="0" unique_id=1561062977]
 collision_layer = 4
 
-[node name="Window_067" parent="NavigationRegion3D/Level/Geometry" index="78" unique_id=1791755122]
+[node name="Window_067" parent="NavigationRegion3D/Level/Geometry" index="78" unique_id=143396007]
 layers = 2
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_067" index="0" unique_id=1435416202]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_067" index="0" unique_id=1411050288]
 collision_layer = 4
 
-[node name="Window_068" parent="NavigationRegion3D/Level/Geometry" index="79" unique_id=1761796500]
+[node name="Window_068" parent="NavigationRegion3D/Level/Geometry" index="79" unique_id=1181153768]
 layers = 2
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_068" index="0" unique_id=759717382]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_068" index="0" unique_id=1396927432]
 collision_layer = 4
 
-[node name="Stanchion_001" parent="NavigationRegion3D/Level/Geometry" index="80" unique_id=1991531272]
+[node name="Stanchion_001" parent="NavigationRegion3D/Level/Geometry" index="80" unique_id=452646022]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Stanchion_001" index="0" unique_id=1402853567]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Stanchion_001" index="0" unique_id=83364222]
 collision_layer = 4
 
-[node name="Window_069" parent="NavigationRegion3D/Level/Geometry" index="81" unique_id=142850791]
+[node name="Window_069" parent="NavigationRegion3D/Level/Geometry" index="81" unique_id=603441830]
 layers = 2
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_069" index="0" unique_id=525887301]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_069" index="0" unique_id=479656266]
 collision_layer = 4
 
-[node name="Window_070" parent="NavigationRegion3D/Level/Geometry" index="82" unique_id=1477627714]
+[node name="Window_070" parent="NavigationRegion3D/Level/Geometry" index="82" unique_id=932053493]
 layers = 2
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_070" index="0" unique_id=1379871571]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_070" index="0" unique_id=1993453135]
 collision_layer = 4
 
-[node name="Window_071" parent="NavigationRegion3D/Level/Geometry" index="83" unique_id=1418288664]
+[node name="Window_071" parent="NavigationRegion3D/Level/Geometry" index="83" unique_id=1615868562]
 layers = 2
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_071" index="0" unique_id=3752632]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_071" index="0" unique_id=806214181]
 collision_layer = 4
 
-[node name="Window_072" parent="NavigationRegion3D/Level/Geometry" index="84" unique_id=74395342]
+[node name="Window_072" parent="NavigationRegion3D/Level/Geometry" index="84" unique_id=331960893]
 layers = 2
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_072" index="0" unique_id=2116037834]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_072" index="0" unique_id=2112381867]
 collision_layer = 4
 
-[node name="Window_073" parent="NavigationRegion3D/Level/Geometry" index="85" unique_id=47396809]
+[node name="Window_073" parent="NavigationRegion3D/Level/Geometry" index="85" unique_id=333070010]
 layers = 2
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_073" index="0" unique_id=1429872516]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_073" index="0" unique_id=1076653058]
 collision_layer = 4
 
-[node name="Window_074" parent="NavigationRegion3D/Level/Geometry" index="86" unique_id=1490066067]
+[node name="Window_074" parent="NavigationRegion3D/Level/Geometry" index="86" unique_id=395576830]
 layers = 2
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_074" index="0" unique_id=892877331]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_074" index="0" unique_id=1173144535]
 collision_layer = 4
 
-[node name="Window_075" parent="NavigationRegion3D/Level/Geometry" index="87" unique_id=1219813021]
+[node name="Window_075" parent="NavigationRegion3D/Level/Geometry" index="87" unique_id=650515786]
 layers = 2
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_075" index="0" unique_id=1012597330]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_075" index="0" unique_id=2106419410]
 collision_layer = 4
 
-[node name="Window_076" parent="NavigationRegion3D/Level/Geometry" index="88" unique_id=1017001726]
+[node name="Window_076" parent="NavigationRegion3D/Level/Geometry" index="88" unique_id=382286917]
 layers = 2
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_076" index="0" unique_id=1624394052]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_076" index="0" unique_id=401010228]
 collision_layer = 4
 
-[node name="Window_077" parent="NavigationRegion3D/Level/Geometry" index="89" unique_id=1858089506]
+[node name="Window_077" parent="NavigationRegion3D/Level/Geometry" index="89" unique_id=751568919]
 layers = 2
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_077" index="0" unique_id=1910787114]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_077" index="0" unique_id=840143348]
 collision_layer = 4
 
-[node name="Window_078" parent="NavigationRegion3D/Level/Geometry" index="90" unique_id=854275285]
+[node name="Window_078" parent="NavigationRegion3D/Level/Geometry" index="90" unique_id=1664146299]
 layers = 2
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_078" index="0" unique_id=1846292234]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_078" index="0" unique_id=584987480]
 collision_layer = 4
 
-[node name="Window_079" parent="NavigationRegion3D/Level/Geometry" index="91" unique_id=1963486133]
+[node name="Window_079" parent="NavigationRegion3D/Level/Geometry" index="91" unique_id=187401517]
 layers = 2
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_079" index="0" unique_id=334520488]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_079" index="0" unique_id=1178944952]
 collision_layer = 4
 
-[node name="Window_080" parent="NavigationRegion3D/Level/Geometry" index="92" unique_id=1703694083]
+[node name="Window_080" parent="NavigationRegion3D/Level/Geometry" index="92" unique_id=1473962855]
 layers = 2
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_080" index="0" unique_id=62429674]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_080" index="0" unique_id=139161173]
 collision_layer = 4
 
-[node name="Window_085" parent="NavigationRegion3D/Level/Geometry" index="93" unique_id=1408342096]
+[node name="Window_085" parent="NavigationRegion3D/Level/Geometry" index="93" unique_id=1188372800]
 layers = 2
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_085" index="0" unique_id=164693804]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_085" index="0" unique_id=656237801]
 collision_layer = 4
 
-[node name="Window_086" parent="NavigationRegion3D/Level/Geometry" index="94" unique_id=744567283]
+[node name="Window_086" parent="NavigationRegion3D/Level/Geometry" index="94" unique_id=1238639031]
 layers = 2
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_086" index="0" unique_id=1573600887]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_086" index="0" unique_id=1886067299]
 collision_layer = 4
 
-[node name="Window_087" parent="NavigationRegion3D/Level/Geometry" index="95" unique_id=273260325]
+[node name="Window_087" parent="NavigationRegion3D/Level/Geometry" index="95" unique_id=2054406844]
 layers = 2
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_087" index="0" unique_id=1439756581]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_087" index="0" unique_id=391197466]
 collision_layer = 4
 
-[node name="Window_088" parent="NavigationRegion3D/Level/Geometry" index="96" unique_id=1287586631]
+[node name="Window_088" parent="NavigationRegion3D/Level/Geometry" index="96" unique_id=926761892]
 layers = 2
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_088" index="0" unique_id=1069501829]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_088" index="0" unique_id=493786592]
 collision_layer = 4
 
-[node name="Window_089" parent="NavigationRegion3D/Level/Geometry" index="97" unique_id=1089579308]
+[node name="Window_089" parent="NavigationRegion3D/Level/Geometry" index="97" unique_id=1563079939]
 layers = 2
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_089" index="0" unique_id=1826523049]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_089" index="0" unique_id=369398843]
 collision_layer = 4
 
-[node name="Window_090" parent="NavigationRegion3D/Level/Geometry" index="98" unique_id=177649951]
+[node name="Window_090" parent="NavigationRegion3D/Level/Geometry" index="98" unique_id=1583228942]
 layers = 2
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_090" index="0" unique_id=969728009]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_090" index="0" unique_id=975866327]
 collision_layer = 4
 
-[node name="Window_091" parent="NavigationRegion3D/Level/Geometry" index="99" unique_id=1555220035]
+[node name="Window_091" parent="NavigationRegion3D/Level/Geometry" index="99" unique_id=2009355736]
 layers = 2
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_091" index="0" unique_id=453344089]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_091" index="0" unique_id=1378966121]
 collision_layer = 4
 
-[node name="Window_092" parent="NavigationRegion3D/Level/Geometry" index="100" unique_id=1720950226]
+[node name="Window_092" parent="NavigationRegion3D/Level/Geometry" index="100" unique_id=1828881926]
 layers = 2
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_092" index="0" unique_id=2054412504]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Window_092" index="0" unique_id=1756787268]
 collision_layer = 4
 
-[node name="Stanchion_002" parent="NavigationRegion3D/Level/Geometry" index="101" unique_id=877332186]
+[node name="Stanchion_002" parent="NavigationRegion3D/Level/Geometry" index="101" unique_id=306249639]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Stanchion_002" index="0" unique_id=1609199076]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Stanchion_002" index="0" unique_id=1705811718]
 collision_layer = 4
 
-[node name="Stanchion_003" parent="NavigationRegion3D/Level/Geometry" index="102" unique_id=1210126803]
+[node name="Stanchion_003" parent="NavigationRegion3D/Level/Geometry" index="102" unique_id=1293714717]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Stanchion_003" index="0" unique_id=1357595024]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Stanchion_003" index="0" unique_id=1687635918]
 collision_layer = 4
 
-[node name="Stanchion_004" parent="NavigationRegion3D/Level/Geometry" index="103" unique_id=502155558]
+[node name="Stanchion_004" parent="NavigationRegion3D/Level/Geometry" index="103" unique_id=499046561]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Stanchion_004" index="0" unique_id=1799518148]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Stanchion_004" index="0" unique_id=1849839949]
 collision_layer = 4
 
-[node name="Stanchion_005" parent="NavigationRegion3D/Level/Geometry" index="104" unique_id=574012311]
+[node name="Stanchion_005" parent="NavigationRegion3D/Level/Geometry" index="104" unique_id=705659606]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Stanchion_005" index="0" unique_id=639135802]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Stanchion_005" index="0" unique_id=22617742]
 collision_layer = 4
 
-[node name="Stanchion_006" parent="NavigationRegion3D/Level/Geometry" index="105" unique_id=1955229242]
+[node name="Stanchion_006" parent="NavigationRegion3D/Level/Geometry" index="105" unique_id=1025364845]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Stanchion_006" index="0" unique_id=438530571]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Stanchion_006" index="0" unique_id=1355775946]
 collision_layer = 4
 
-[node name="Stanchion_007" parent="NavigationRegion3D/Level/Geometry" index="106" unique_id=171851584]
+[node name="Stanchion_007" parent="NavigationRegion3D/Level/Geometry" index="106" unique_id=711571440]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Stanchion_007" index="0" unique_id=1219985583]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Stanchion_007" index="0" unique_id=814092534]
 collision_layer = 4
 
-[node name="Stanchion_008" parent="NavigationRegion3D/Level/Geometry" index="107" unique_id=1885169672]
+[node name="Stanchion_008" parent="NavigationRegion3D/Level/Geometry" index="107" unique_id=1172073775]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Stanchion_008" index="0" unique_id=1168839338]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Stanchion_008" index="0" unique_id=575988630]
 collision_layer = 4
 
-[node name="Stanchion_009" parent="NavigationRegion3D/Level/Geometry" index="108" unique_id=1254828724]
+[node name="Stanchion_009" parent="NavigationRegion3D/Level/Geometry" index="108" unique_id=1945923720]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Stanchion_009" index="0" unique_id=870629657]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Stanchion_009" index="0" unique_id=830769093]
 collision_layer = 4
 
-[node name="Museum Chair" parent="NavigationRegion3D/Level/Geometry" index="109" unique_id=626889324]
+[node name="Museum Chair" parent="NavigationRegion3D/Level/Geometry" index="109" unique_id=1848094766]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Museum Chair" index="1" unique_id=423863237]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Museum Chair" index="1" unique_id=1427602273]
 collision_layer = 4
 
-[node name="Museum Chair_001" parent="NavigationRegion3D/Level/Geometry" index="110" unique_id=2068491185]
+[node name="Museum Chair_001" parent="NavigationRegion3D/Level/Geometry" index="110" unique_id=1716244984]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Museum Chair_001" index="1" unique_id=497591539]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Museum Chair_001" index="1" unique_id=607601963]
 collision_layer = 4
 
-[node name="Lampshade Stand" parent="NavigationRegion3D/Level/Geometry" index="111" unique_id=1471127696]
+[node name="Lampshade Stand" parent="NavigationRegion3D/Level/Geometry" index="111" unique_id=1912234333]
 layers = 4
 
-[node name="Lampshade" parent="NavigationRegion3D/Level/Geometry/Lampshade Stand" index="0" unique_id=1797696584]
+[node name="Lampshade" parent="NavigationRegion3D/Level/Geometry/Lampshade Stand" index="0" unique_id=506739694]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Lampshade Stand/Lampshade" index="0" unique_id=60309142]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Lampshade Stand/Lampshade" index="0" unique_id=1877974018]
 collision_layer = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Lampshade Stand" index="1" unique_id=341786847]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Lampshade Stand" index="1" unique_id=1610467685]
 collision_layer = 4
 
-[node name="Suzanne" parent="NavigationRegion3D/Level/Geometry" index="112" unique_id=546405026]
+[node name="Suzanne" parent="NavigationRegion3D/Level/Geometry" index="112" unique_id=91288448]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Suzanne" index="0" unique_id=1928416421]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Suzanne" index="0" unique_id=1497203462]
 collision_layer = 4
 
-[node name="Cube_001" parent="NavigationRegion3D/Level/Geometry" index="113" unique_id=821723383]
+[node name="Cube_001" parent="NavigationRegion3D/Level/Geometry" index="113" unique_id=1716718479]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Cube_001" index="0" unique_id=2140018720]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Cube_001" index="0" unique_id=510997863]
 collision_layer = 4
 
-[node name="Cube_004" parent="NavigationRegion3D/Level/Geometry" index="114" unique_id=1177090183]
+[node name="Cube_004" parent="NavigationRegion3D/Level/Geometry" index="114" unique_id=1601373923]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Cube_004" index="0" unique_id=1456712489]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Cube_004" index="0" unique_id=738360514]
 collision_layer = 4
 
-[node name="Cube_022" parent="NavigationRegion3D/Level/Geometry" index="115" unique_id=539525538]
+[node name="Cube_022" parent="NavigationRegion3D/Level/Geometry" index="115" unique_id=1141843420]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Cube_022" index="0" unique_id=695923935]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Cube_022" index="0" unique_id=912531861]
 collision_layer = 4
 
-[node name="Cube_025" parent="NavigationRegion3D/Level/Geometry" index="116" unique_id=814781357]
+[node name="Cube_025" parent="NavigationRegion3D/Level/Geometry" index="116" unique_id=288571153]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Cube_025" index="0" unique_id=1847010720]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Cube_025" index="0" unique_id=308209025]
 collision_layer = 4
 
-[node name="Cube_026" parent="NavigationRegion3D/Level/Geometry" index="117" unique_id=2039789000]
+[node name="Cube_026" parent="NavigationRegion3D/Level/Geometry" index="117" unique_id=692808589]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Cube_026" index="0" unique_id=996827523]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Cube_026" index="0" unique_id=1357495245]
 collision_layer = 4
 
-[node name="Cube_027" parent="NavigationRegion3D/Level/Geometry" index="118" unique_id=1744694973]
+[node name="Cube_027" parent="NavigationRegion3D/Level/Geometry" index="118" unique_id=2122022471]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Cube_027" index="0" unique_id=611656859]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Cube_027" index="0" unique_id=516618730]
 collision_layer = 4
 
-[node name="Cube_028" parent="NavigationRegion3D/Level/Geometry" index="119" unique_id=2031476035]
+[node name="Cube_028" parent="NavigationRegion3D/Level/Geometry" index="119" unique_id=1044490085]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Cube_028" index="0" unique_id=2092825368]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Cube_028" index="0" unique_id=2114614989]
 collision_layer = 4
 
-[node name="Cube_029" parent="NavigationRegion3D/Level/Geometry" index="120" unique_id=803355535]
+[node name="Cube_029" parent="NavigationRegion3D/Level/Geometry" index="120" unique_id=1564312328]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Cube_029" index="0" unique_id=747326448]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Cube_029" index="0" unique_id=2091823207]
 collision_layer = 4
 
-[node name="Cube_030" parent="NavigationRegion3D/Level/Geometry" index="121" unique_id=2012199]
+[node name="Cube_030" parent="NavigationRegion3D/Level/Geometry" index="121" unique_id=937470880]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Cube_030" index="0" unique_id=175966716]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Cube_030" index="0" unique_id=1505146947]
 collision_layer = 4
 
-[node name="Cube_031" parent="NavigationRegion3D/Level/Geometry" index="122" unique_id=1802351395]
+[node name="Cube_031" parent="NavigationRegion3D/Level/Geometry" index="122" unique_id=2046634966]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Cube_031" index="0" unique_id=2006322074]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Cube_031" index="0" unique_id=223933680]
 collision_layer = 4
 
-[node name="Cube_032" parent="NavigationRegion3D/Level/Geometry" index="123" unique_id=911372629]
+[node name="Cube_032" parent="NavigationRegion3D/Level/Geometry" index="123" unique_id=2096126926]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Cube_032" index="0" unique_id=1319854506]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Cube_032" index="0" unique_id=1616627521]
 collision_layer = 4
 
-[node name="Cube_033" parent="NavigationRegion3D/Level/Geometry" index="124" unique_id=145910038]
+[node name="Cube_033" parent="NavigationRegion3D/Level/Geometry" index="124" unique_id=395671690]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Cube_033" index="0" unique_id=1515495970]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Cube_033" index="0" unique_id=570227244]
 collision_layer = 4
 
-[node name="Cube_034" parent="NavigationRegion3D/Level/Geometry" index="125" unique_id=802588263]
+[node name="Cube_034" parent="NavigationRegion3D/Level/Geometry" index="125" unique_id=1634390751]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Cube_034" index="0" unique_id=1887798458]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Cube_034" index="0" unique_id=145660473]
 collision_layer = 4
 
-[node name="Cube_035" parent="NavigationRegion3D/Level/Geometry" index="126" unique_id=1347758813]
+[node name="Cube_035" parent="NavigationRegion3D/Level/Geometry" index="126" unique_id=749207744]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Cube_035" index="0" unique_id=1119644659]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Cube_035" index="0" unique_id=2011066045]
 collision_layer = 4
 
-[node name="Cube_036" parent="NavigationRegion3D/Level/Geometry" index="127" unique_id=140772103]
+[node name="Cube_036" parent="NavigationRegion3D/Level/Geometry" index="127" unique_id=353753872]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Cube_036" index="0" unique_id=1665717745]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Cube_036" index="0" unique_id=244513895]
 collision_layer = 4
 
-[node name="Cube_037" parent="NavigationRegion3D/Level/Geometry" index="128" unique_id=1194217441]
+[node name="Cube_037" parent="NavigationRegion3D/Level/Geometry" index="128" unique_id=2026068713]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Cube_037" index="0" unique_id=1099905381]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Cube_037" index="0" unique_id=2065065167]
 collision_layer = 4
 
-[node name="Cube_038" parent="NavigationRegion3D/Level/Geometry" index="129" unique_id=2104648949]
+[node name="Cube_038" parent="NavigationRegion3D/Level/Geometry" index="129" unique_id=618560382]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Cube_038" index="0" unique_id=1064661028]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Cube_038" index="0" unique_id=591450540]
 collision_layer = 4
 
-[node name="Cube_039" parent="NavigationRegion3D/Level/Geometry" index="130" unique_id=2088808586]
+[node name="Cube_039" parent="NavigationRegion3D/Level/Geometry" index="130" unique_id=714830561]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Cube_039" index="0" unique_id=604239115]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Cube_039" index="0" unique_id=1839323422]
 collision_layer = 4
 
-[node name="Cube_040" parent="NavigationRegion3D/Level/Geometry" index="131" unique_id=644781070]
+[node name="Cube_040" parent="NavigationRegion3D/Level/Geometry" index="131" unique_id=155441961]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Cube_040" index="0" unique_id=1834531928]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Cube_040" index="0" unique_id=942866557]
 collision_layer = 4
 
-[node name="Cube_049" parent="NavigationRegion3D/Level/Geometry" index="132" unique_id=39860945]
+[node name="Cube_049" parent="NavigationRegion3D/Level/Geometry" index="132" unique_id=1634075592]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Cube_049" index="0" unique_id=1747897727]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Cube_049" index="0" unique_id=2063435366]
 collision_layer = 4
 
-[node name="Cube_050" parent="NavigationRegion3D/Level/Geometry" index="133" unique_id=398443413]
+[node name="Cube_050" parent="NavigationRegion3D/Level/Geometry" index="133" unique_id=148460037]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Cube_050" index="0" unique_id=93785850]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Cube_050" index="0" unique_id=1573826062]
 collision_layer = 4
 
-[node name="Cube_051" parent="NavigationRegion3D/Level/Geometry" index="134" unique_id=1839236965]
+[node name="Cube_051" parent="NavigationRegion3D/Level/Geometry" index="134" unique_id=489464954]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Cube_051" index="0" unique_id=745704752]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Cube_051" index="0" unique_id=1451811361]
 collision_layer = 4
 
-[node name="Cube_052" parent="NavigationRegion3D/Level/Geometry" index="135" unique_id=1486556475]
+[node name="Cube_052" parent="NavigationRegion3D/Level/Geometry" index="135" unique_id=1214030114]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Cube_052" index="0" unique_id=2049084515]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Cube_052" index="0" unique_id=8430085]
 collision_layer = 4
 
-[node name="Sign" parent="NavigationRegion3D/Level/Geometry" index="136" unique_id=823451386]
+[node name="Sign" parent="NavigationRegion3D/Level/Geometry" index="136" unique_id=544074996]
 layers = 4
 
-[node name="Text" parent="NavigationRegion3D/Level/Geometry/Sign" index="0" unique_id=1999196064]
+[node name="Text" parent="NavigationRegion3D/Level/Geometry/Sign" index="0" unique_id=1646569200]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Sign/Text" index="0" unique_id=1991499240]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Sign/Text" index="0" unique_id=1447585766]
 collision_layer = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Sign" index="1" unique_id=342443205]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Sign" index="1" unique_id=837282581]
 collision_layer = 4
 
-[node name="Trim" parent="NavigationRegion3D/Level/Geometry" index="137" unique_id=599474044]
+[node name="Trim" parent="NavigationRegion3D/Level/Geometry" index="137" unique_id=951529191]
 layers = 2
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Trim" index="0" unique_id=629580902]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Trim" index="0" unique_id=1803786946]
 collision_layer = 4
 
-[node name="Cube_002" parent="NavigationRegion3D/Level/Geometry" index="138" unique_id=1310323145]
+[node name="Cube_002" parent="NavigationRegion3D/Level/Geometry" index="138" unique_id=1578564217]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Cube_002" index="0" unique_id=91374777]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Cube_002" index="0" unique_id=1844418657]
 collision_layer = 4
 
-[node name="Cube_003" parent="NavigationRegion3D/Level/Geometry" index="139" unique_id=1941839291]
+[node name="Cube_003" parent="NavigationRegion3D/Level/Geometry" index="139" unique_id=1691904370]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Cube_003" index="0" unique_id=1037329605]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Cube_003" index="0" unique_id=1286912146]
 collision_layer = 4
 
-[node name="Cube_008" parent="NavigationRegion3D/Level/Geometry" index="140" unique_id=274473777]
+[node name="Cube_008" parent="NavigationRegion3D/Level/Geometry" index="140" unique_id=2078596282]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Cube_008" index="0" unique_id=99389047]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Cube_008" index="0" unique_id=730848193]
 collision_layer = 4
 
-[node name="Cube_009" parent="NavigationRegion3D/Level/Geometry" index="141" unique_id=1801259144]
+[node name="Cube_009" parent="NavigationRegion3D/Level/Geometry" index="141" unique_id=1995953907]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Cube_009" index="0" unique_id=1601381487]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Cube_009" index="0" unique_id=168127259]
 collision_layer = 4
 
-[node name="Main Building" parent="NavigationRegion3D/Level/Geometry" index="142" unique_id=1351953431]
+[node name="Main Building" parent="NavigationRegion3D/Level/Geometry" index="142" unique_id=1708521611]
 layers = 2
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Main Building" index="0" unique_id=375703998]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Main Building" index="0" unique_id=912771721]
 collision_layer = 2
 
-[node name="Cube_015" parent="NavigationRegion3D/Level/Geometry" index="143" unique_id=892573188]
+[node name="Cube_015" parent="NavigationRegion3D/Level/Geometry" index="143" unique_id=41075230]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Cube_015" index="0" unique_id=175517284]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Cube_015" index="0" unique_id=1739416689]
 collision_layer = 4
 
-[node name="Cube_016" parent="NavigationRegion3D/Level/Geometry" index="144" unique_id=17451297]
+[node name="Cube_016" parent="NavigationRegion3D/Level/Geometry" index="144" unique_id=1760460012]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Cube_016" index="0" unique_id=530238167]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Cube_016" index="0" unique_id=392389416]
 collision_layer = 4
 
-[node name="Cube_017" parent="NavigationRegion3D/Level/Geometry" index="145" unique_id=1873459452]
+[node name="Cube_017" parent="NavigationRegion3D/Level/Geometry" index="145" unique_id=297911844]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Cube_017" index="0" unique_id=1693414669]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Cube_017" index="0" unique_id=1544110895]
 collision_layer = 4
 
-[node name="Cube_018" parent="NavigationRegion3D/Level/Geometry" index="146" unique_id=740468612]
+[node name="Cube_018" parent="NavigationRegion3D/Level/Geometry" index="146" unique_id=277733279]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Cube_018" index="0" unique_id=1997213153]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Cube_018" index="0" unique_id=1212503881]
 collision_layer = 4
 
-[node name="Cube_010" parent="NavigationRegion3D/Level/Geometry" index="147" unique_id=591223680]
+[node name="Cube_010" parent="NavigationRegion3D/Level/Geometry" index="147" unique_id=858661514]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Cube_010" index="0" unique_id=1850515581]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Cube_010" index="0" unique_id=1739799091]
 collision_layer = 4
 
-[node name="Cube_011" parent="NavigationRegion3D/Level/Geometry" index="148" unique_id=1081632989]
+[node name="Cube_011" parent="NavigationRegion3D/Level/Geometry" index="148" unique_id=679457701]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Cube_011" index="0" unique_id=1091254104]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Cube_011" index="0" unique_id=1653620940]
 collision_layer = 4
 
-[node name="Cube_012" parent="NavigationRegion3D/Level/Geometry" index="149" unique_id=1437719832]
+[node name="Cube_012" parent="NavigationRegion3D/Level/Geometry" index="149" unique_id=1801788551]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Cube_012" index="0" unique_id=1107494853]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Cube_012" index="0" unique_id=1615755860]
 collision_layer = 4
 
-[node name="Medium Height Case_001" parent="NavigationRegion3D/Level/Geometry" index="150" unique_id=520971586]
+[node name="Medium Height Case_001" parent="NavigationRegion3D/Level/Geometry" index="150" unique_id=1240372627]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Medium Height Case_001" index="0" unique_id=199428733]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Medium Height Case_001" index="0" unique_id=1734719964]
 collision_layer = 4
 
-[node name="Cube_014" parent="NavigationRegion3D/Level/Geometry" index="151" unique_id=1322188405]
+[node name="Cube_014" parent="NavigationRegion3D/Level/Geometry" index="151" unique_id=2128686480]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Cube_014" index="0" unique_id=1321513086]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Cube_014" index="0" unique_id=146586219]
 collision_layer = 4
 
-[node name="Cube_005" parent="NavigationRegion3D/Level/Geometry" index="152" unique_id=250451956]
+[node name="Cube_005" parent="NavigationRegion3D/Level/Geometry" index="152" unique_id=1520635263]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Cube_005" index="0" unique_id=1735652422]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Cube_005" index="0" unique_id=1619429995]
 collision_layer = 4
 
-[node name="Cube_013" parent="NavigationRegion3D/Level/Geometry" index="153" unique_id=1593988335]
+[node name="Cube_013" parent="NavigationRegion3D/Level/Geometry" index="153" unique_id=835578849]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Cube_013" index="0" unique_id=1884365514]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Cube_013" index="0" unique_id=43845597]
 collision_layer = 4
 
-[node name="Cube_019" parent="NavigationRegion3D/Level/Geometry" index="154" unique_id=534641703]
+[node name="Cube_019" parent="NavigationRegion3D/Level/Geometry" index="154" unique_id=587664795]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Cube_019" index="0" unique_id=1026061538]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Cube_019" index="0" unique_id=977070157]
 collision_layer = 4
 
-[node name="Cube_006" parent="NavigationRegion3D/Level/Geometry" index="155" unique_id=1449644112]
+[node name="Cube_006" parent="NavigationRegion3D/Level/Geometry" index="155" unique_id=1794850774]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Cube_006" index="0" unique_id=354731396]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Cube_006" index="0" unique_id=1758148038]
 collision_layer = 4
 
-[node name="Cube_007" parent="NavigationRegion3D/Level/Geometry" index="156" unique_id=716595218]
+[node name="Cube_007" parent="NavigationRegion3D/Level/Geometry" index="156" unique_id=1353515824]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Cube_007" index="0" unique_id=1807390162]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Cube_007" index="0" unique_id=841899566]
 collision_layer = 4
 
-[node name="Cube_020" parent="NavigationRegion3D/Level/Geometry" index="157" unique_id=1760024161]
+[node name="Cube_020" parent="NavigationRegion3D/Level/Geometry" index="157" unique_id=1396482645]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Cube_020" index="0" unique_id=347961831]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Cube_020" index="0" unique_id=1113648506]
 collision_layer = 4
 
-[node name="Cube_021" parent="NavigationRegion3D/Level/Geometry" index="158" unique_id=2026299247]
+[node name="Cube_021" parent="NavigationRegion3D/Level/Geometry" index="158" unique_id=967885772]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Cube_021" index="0" unique_id=1437800342]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Cube_021" index="0" unique_id=2143289429]
 collision_layer = 4
 
-[node name="Cube_023" parent="NavigationRegion3D/Level/Geometry" index="159" unique_id=1547390876]
+[node name="Cube_023" parent="NavigationRegion3D/Level/Geometry" index="159" unique_id=699232710]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Cube_023" index="0" unique_id=305786333]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Cube_023" index="0" unique_id=2081525042]
 collision_layer = 4
 
-[node name="Cube_024" parent="NavigationRegion3D/Level/Geometry" index="160" unique_id=1501770372]
+[node name="Cube_024" parent="NavigationRegion3D/Level/Geometry" index="160" unique_id=118686502]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Cube_024" index="0" unique_id=1573368159]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Cube_024" index="0" unique_id=1557584852]
 collision_layer = 4
 
-[node name="Tall Case_002" parent="NavigationRegion3D/Level/Geometry" index="161" unique_id=1826819685]
+[node name="Tall Case_002" parent="NavigationRegion3D/Level/Geometry" index="161" unique_id=1971328907]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Tall Case_002" index="0" unique_id=2122425847]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Tall Case_002" index="0" unique_id=1019926556]
 collision_layer = 4
 
-[node name="Tall Case_003" parent="NavigationRegion3D/Level/Geometry" index="162" unique_id=1931535387]
+[node name="Tall Case_003" parent="NavigationRegion3D/Level/Geometry" index="162" unique_id=264407589]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Tall Case_003" index="0" unique_id=1067859035]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Tall Case_003" index="0" unique_id=1649459762]
 collision_layer = 4
 
-[node name="Tall Case_004" parent="NavigationRegion3D/Level/Geometry" index="163" unique_id=612928244]
+[node name="Tall Case_004" parent="NavigationRegion3D/Level/Geometry" index="163" unique_id=1415629193]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Tall Case_004" index="0" unique_id=931441878]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Tall Case_004" index="0" unique_id=1958860478]
 collision_layer = 4
 
-[node name="Tall Case_005" parent="NavigationRegion3D/Level/Geometry" index="164" unique_id=2045345230]
+[node name="Tall Case_005" parent="NavigationRegion3D/Level/Geometry" index="164" unique_id=398591033]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Tall Case_005" index="0" unique_id=1484053180]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Tall Case_005" index="0" unique_id=1304240135]
 collision_layer = 4
 
-[node name="Tall Case_006" parent="NavigationRegion3D/Level/Geometry" index="165" unique_id=586963814]
+[node name="Tall Case_006" parent="NavigationRegion3D/Level/Geometry" index="165" unique_id=850933096]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Tall Case_006" index="0" unique_id=1858056461]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Tall Case_006" index="0" unique_id=1006008445]
 collision_layer = 4
 
-[node name="Tall Case_007" parent="NavigationRegion3D/Level/Geometry" index="166" unique_id=2112727063]
+[node name="Tall Case_007" parent="NavigationRegion3D/Level/Geometry" index="166" unique_id=2092158088]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Tall Case_007" index="0" unique_id=511421960]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Tall Case_007" index="0" unique_id=1348243806]
 collision_layer = 4
 
-[node name="Tall Case_008" parent="NavigationRegion3D/Level/Geometry" index="167" unique_id=430415827]
+[node name="Tall Case_008" parent="NavigationRegion3D/Level/Geometry" index="167" unique_id=412269424]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Tall Case_008" index="0" unique_id=664323361]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Tall Case_008" index="0" unique_id=1402715307]
 collision_layer = 4
 
-[node name="Tall Case_009" parent="NavigationRegion3D/Level/Geometry" index="168" unique_id=1728709177]
+[node name="Tall Case_009" parent="NavigationRegion3D/Level/Geometry" index="168" unique_id=1150285982]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Tall Case_009" index="0" unique_id=976835171]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Tall Case_009" index="0" unique_id=9312012]
 collision_layer = 4
 
-[node name="Tall Case_011" parent="NavigationRegion3D/Level/Geometry" index="169" unique_id=2141797724]
+[node name="Tall Case_011" parent="NavigationRegion3D/Level/Geometry" index="169" unique_id=1170187638]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Tall Case_011" index="0" unique_id=808983350]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Tall Case_011" index="0" unique_id=1024634987]
 collision_layer = 4
 
-[node name="Tall Case_012" parent="NavigationRegion3D/Level/Geometry" index="170" unique_id=1355520371]
+[node name="Tall Case_012" parent="NavigationRegion3D/Level/Geometry" index="170" unique_id=539234809]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Tall Case_012" index="0" unique_id=714905331]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Tall Case_012" index="0" unique_id=210176166]
 collision_layer = 4
 
-[node name="Tall Case_015" parent="NavigationRegion3D/Level/Geometry" index="171" unique_id=1663768207]
+[node name="Tall Case_015" parent="NavigationRegion3D/Level/Geometry" index="171" unique_id=1751534282]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Tall Case_015" index="0" unique_id=364146590]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Tall Case_015" index="0" unique_id=830173924]
 collision_layer = 4
 
-[node name="Tall Case_016" parent="NavigationRegion3D/Level/Geometry" index="172" unique_id=522001342]
+[node name="Tall Case_016" parent="NavigationRegion3D/Level/Geometry" index="172" unique_id=1100514139]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Tall Case_016" index="0" unique_id=2048018286]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Tall Case_016" index="0" unique_id=1251253240]
 collision_layer = 4
 
-[node name="Tall Case_019" parent="NavigationRegion3D/Level/Geometry" index="173" unique_id=958305092]
+[node name="Tall Case_019" parent="NavigationRegion3D/Level/Geometry" index="173" unique_id=1986275580]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Tall Case_019" index="0" unique_id=1551398715]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Tall Case_019" index="0" unique_id=35469280]
 collision_layer = 4
 
-[node name="Tall Case_020" parent="NavigationRegion3D/Level/Geometry" index="174" unique_id=682804624]
+[node name="Tall Case_020" parent="NavigationRegion3D/Level/Geometry" index="174" unique_id=185148336]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Tall Case_020" index="0" unique_id=1113737950]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Tall Case_020" index="0" unique_id=1281330811]
 collision_layer = 4
 
-[node name="Tall Case_023" parent="NavigationRegion3D/Level/Geometry" index="175" unique_id=974046830]
+[node name="Tall Case_023" parent="NavigationRegion3D/Level/Geometry" index="175" unique_id=212343713]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Tall Case_023" index="0" unique_id=1531333683]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Tall Case_023" index="0" unique_id=426092328]
 collision_layer = 4
 
-[node name="Tall Case_024" parent="NavigationRegion3D/Level/Geometry" index="176" unique_id=1070243134]
+[node name="Tall Case_024" parent="NavigationRegion3D/Level/Geometry" index="176" unique_id=1341332134]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Tall Case_024" index="0" unique_id=1319646671]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Tall Case_024" index="0" unique_id=583332691]
 collision_layer = 4
 
-[node name="Tall Case_010" parent="NavigationRegion3D/Level/Geometry" index="177" unique_id=61677025]
+[node name="Tall Case_010" parent="NavigationRegion3D/Level/Geometry" index="177" unique_id=1091338716]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Tall Case_010" index="0" unique_id=896932683]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Tall Case_010" index="0" unique_id=691512975]
 collision_layer = 4
 
-[node name="Tall Case_013" parent="NavigationRegion3D/Level/Geometry" index="178" unique_id=108722718]
+[node name="Tall Case_013" parent="NavigationRegion3D/Level/Geometry" index="178" unique_id=1019565368]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Tall Case_013" index="0" unique_id=347951066]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Tall Case_013" index="0" unique_id=1203685218]
 collision_layer = 4
 
-[node name="Tall Case_014" parent="NavigationRegion3D/Level/Geometry" index="179" unique_id=1872001716]
+[node name="Tall Case_014" parent="NavigationRegion3D/Level/Geometry" index="179" unique_id=1616225711]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Tall Case_014" index="0" unique_id=1669144364]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Tall Case_014" index="0" unique_id=151826668]
 collision_layer = 4
 
-[node name="Tall Case_017" parent="NavigationRegion3D/Level/Geometry" index="180" unique_id=674991098]
+[node name="Tall Case_017" parent="NavigationRegion3D/Level/Geometry" index="180" unique_id=1172486647]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Tall Case_017" index="0" unique_id=2140399869]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Tall Case_017" index="0" unique_id=229066943]
 collision_layer = 4
 
-[node name="Tall Case_018" parent="NavigationRegion3D/Level/Geometry" index="181" unique_id=569900119]
+[node name="Tall Case_018" parent="NavigationRegion3D/Level/Geometry" index="181" unique_id=726338688]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Tall Case_018" index="0" unique_id=1348687070]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Tall Case_018" index="0" unique_id=445213096]
 collision_layer = 4
 
-[node name="Tall Case_021" parent="NavigationRegion3D/Level/Geometry" index="182" unique_id=710321833]
+[node name="Tall Case_021" parent="NavigationRegion3D/Level/Geometry" index="182" unique_id=702985450]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Tall Case_021" index="0" unique_id=1018232489]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Tall Case_021" index="0" unique_id=1467222607]
 collision_layer = 4
 
-[node name="Tall Case_022" parent="NavigationRegion3D/Level/Geometry" index="183" unique_id=1973091354]
+[node name="Tall Case_022" parent="NavigationRegion3D/Level/Geometry" index="183" unique_id=1994684833]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Tall Case_022" index="0" unique_id=727716140]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Tall Case_022" index="0" unique_id=1645332817]
 collision_layer = 4
 
-[node name="Tall Case_025" parent="NavigationRegion3D/Level/Geometry" index="184" unique_id=225776330]
+[node name="Tall Case_025" parent="NavigationRegion3D/Level/Geometry" index="184" unique_id=1738243562]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Tall Case_025" index="0" unique_id=1756636643]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Tall Case_025" index="0" unique_id=386013784]
 collision_layer = 4
 
-[node name="Tall Case_026" parent="NavigationRegion3D/Level/Geometry" index="185" unique_id=1087918878]
+[node name="Tall Case_026" parent="NavigationRegion3D/Level/Geometry" index="185" unique_id=1530104851]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Tall Case_026" index="0" unique_id=1432701351]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Tall Case_026" index="0" unique_id=1837643597]
 collision_layer = 4
 
-[node name="Tall Case_027" parent="NavigationRegion3D/Level/Geometry" index="186" unique_id=1916084965]
+[node name="Tall Case_027" parent="NavigationRegion3D/Level/Geometry" index="186" unique_id=990596980]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Tall Case_027" index="0" unique_id=264027242]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Tall Case_027" index="0" unique_id=1487992131]
 collision_layer = 4
 
-[node name="Tall Case_028" parent="NavigationRegion3D/Level/Geometry" index="187" unique_id=1728496122]
+[node name="Tall Case_028" parent="NavigationRegion3D/Level/Geometry" index="187" unique_id=1572855678]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Tall Case_028" index="0" unique_id=1656427095]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Tall Case_028" index="0" unique_id=257116750]
 collision_layer = 4
 
-[node name="Tall Case_029" parent="NavigationRegion3D/Level/Geometry" index="188" unique_id=1561192205]
+[node name="Tall Case_029" parent="NavigationRegion3D/Level/Geometry" index="188" unique_id=1256230522]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Tall Case_029" index="0" unique_id=624405496]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Tall Case_029" index="0" unique_id=1573444496]
 collision_layer = 4
 
-[node name="Tall Case_030" parent="NavigationRegion3D/Level/Geometry" index="189" unique_id=545181487]
+[node name="Tall Case_030" parent="NavigationRegion3D/Level/Geometry" index="189" unique_id=625593155]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Tall Case_030" index="0" unique_id=165634956]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Tall Case_030" index="0" unique_id=847780823]
 collision_layer = 4
 
-[node name="Tall Case_031" parent="NavigationRegion3D/Level/Geometry" index="190" unique_id=110817591]
+[node name="Tall Case_031" parent="NavigationRegion3D/Level/Geometry" index="190" unique_id=51349643]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Tall Case_031" index="0" unique_id=444659202]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Tall Case_031" index="0" unique_id=966109439]
 collision_layer = 4
 
-[node name="Tall Case_032" parent="NavigationRegion3D/Level/Geometry" index="191" unique_id=95733313]
+[node name="Tall Case_032" parent="NavigationRegion3D/Level/Geometry" index="191" unique_id=704625299]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Tall Case_032" index="0" unique_id=1797687617]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Tall Case_032" index="0" unique_id=1696769835]
 collision_layer = 4
 
-[node name="Tall Case_033" parent="NavigationRegion3D/Level/Geometry" index="192" unique_id=1342550989]
+[node name="Tall Case_033" parent="NavigationRegion3D/Level/Geometry" index="192" unique_id=1460731328]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Tall Case_033" index="0" unique_id=582077420]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Tall Case_033" index="0" unique_id=2040019263]
 collision_layer = 4
 
-[node name="Tall Case_036" parent="NavigationRegion3D/Level/Geometry" index="193" unique_id=1871861389]
+[node name="Tall Case_036" parent="NavigationRegion3D/Level/Geometry" index="193" unique_id=2048071374]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Tall Case_036" index="0" unique_id=926456470]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Tall Case_036" index="0" unique_id=1384947895]
 collision_layer = 4
 
-[node name="Tall Case_039" parent="NavigationRegion3D/Level/Geometry" index="194" unique_id=470267174]
+[node name="Tall Case_039" parent="NavigationRegion3D/Level/Geometry" index="194" unique_id=1293116629]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Tall Case_039" index="0" unique_id=620327239]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Tall Case_039" index="0" unique_id=1721050575]
 collision_layer = 4
 
-[node name="Tall Case_034" parent="NavigationRegion3D/Level/Geometry" index="195" unique_id=2107006717]
+[node name="Tall Case_034" parent="NavigationRegion3D/Level/Geometry" index="195" unique_id=1549748326]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Tall Case_034" index="0" unique_id=407977311]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Tall Case_034" index="0" unique_id=2067703414]
 collision_layer = 4
 
-[node name="Tall Case_035" parent="NavigationRegion3D/Level/Geometry" index="196" unique_id=688521426]
+[node name="Tall Case_035" parent="NavigationRegion3D/Level/Geometry" index="196" unique_id=2116554970]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Tall Case_035" index="0" unique_id=1157050350]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Tall Case_035" index="0" unique_id=20547436]
 collision_layer = 4
 
-[node name="Tall Case_037" parent="NavigationRegion3D/Level/Geometry" index="197" unique_id=2135678126]
+[node name="Tall Case_037" parent="NavigationRegion3D/Level/Geometry" index="197" unique_id=402423942]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Tall Case_037" index="0" unique_id=766433060]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Tall Case_037" index="0" unique_id=429502377]
 collision_layer = 4
 
-[node name="Tall Case_038" parent="NavigationRegion3D/Level/Geometry" index="198" unique_id=698049544]
+[node name="Tall Case_038" parent="NavigationRegion3D/Level/Geometry" index="198" unique_id=1984582204]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Tall Case_038" index="0" unique_id=2061530621]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Tall Case_038" index="0" unique_id=542587882]
 collision_layer = 4
 
-[node name="Tall Case_040" parent="NavigationRegion3D/Level/Geometry" index="199" unique_id=136816663]
+[node name="Tall Case_040" parent="NavigationRegion3D/Level/Geometry" index="199" unique_id=732236266]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Tall Case_040" index="0" unique_id=198252451]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Tall Case_040" index="0" unique_id=1051894526]
 collision_layer = 4
 
-[node name="Tall Case_041" parent="NavigationRegion3D/Level/Geometry" index="200" unique_id=127329905]
+[node name="Tall Case_041" parent="NavigationRegion3D/Level/Geometry" index="200" unique_id=136180937]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Tall Case_041" index="0" unique_id=396935737]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Tall Case_041" index="0" unique_id=475652368]
 collision_layer = 4
 
-[node name="Tall Case_042" parent="NavigationRegion3D/Level/Geometry" index="201" unique_id=1425704469]
+[node name="Tall Case_042" parent="NavigationRegion3D/Level/Geometry" index="201" unique_id=1359173981]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Tall Case_042" index="0" unique_id=2118049189]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Tall Case_042" index="0" unique_id=1335387150]
 collision_layer = 4
 
-[node name="Tall Case_043" parent="NavigationRegion3D/Level/Geometry" index="202" unique_id=901898458]
+[node name="Tall Case_043" parent="NavigationRegion3D/Level/Geometry" index="202" unique_id=1386844510]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Tall Case_043" index="0" unique_id=386854473]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Tall Case_043" index="0" unique_id=151439912]
 collision_layer = 4
 
-[node name="Tall Case_044" parent="NavigationRegion3D/Level/Geometry" index="203" unique_id=492839229]
+[node name="Tall Case_044" parent="NavigationRegion3D/Level/Geometry" index="203" unique_id=1587479425]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Tall Case_044" index="0" unique_id=97954873]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Tall Case_044" index="0" unique_id=1297673007]
 collision_layer = 4
 
-[node name="Tall Case_045" parent="NavigationRegion3D/Level/Geometry" index="204" unique_id=341456904]
+[node name="Tall Case_045" parent="NavigationRegion3D/Level/Geometry" index="204" unique_id=1322336996]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Tall Case_045" index="0" unique_id=1901066528]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Tall Case_045" index="0" unique_id=902184057]
 collision_layer = 4
 
-[node name="Tall Case_046" parent="NavigationRegion3D/Level/Geometry" index="205" unique_id=581512108]
+[node name="Tall Case_046" parent="NavigationRegion3D/Level/Geometry" index="205" unique_id=1486630009]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Tall Case_046" index="0" unique_id=25958265]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Tall Case_046" index="0" unique_id=973109618]
 collision_layer = 4
 
-[node name="Tall Case_047" parent="NavigationRegion3D/Level/Geometry" index="206" unique_id=1051433474]
+[node name="Tall Case_047" parent="NavigationRegion3D/Level/Geometry" index="206" unique_id=1264041549]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Tall Case_047" index="0" unique_id=447243202]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Tall Case_047" index="0" unique_id=399710193]
 collision_layer = 4
 
-[node name="Tall Case_048" parent="NavigationRegion3D/Level/Geometry" index="207" unique_id=739210211]
+[node name="Tall Case_048" parent="NavigationRegion3D/Level/Geometry" index="207" unique_id=409064042]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Tall Case_048" index="0" unique_id=296376783]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Tall Case_048" index="0" unique_id=1985966835]
 collision_layer = 4
 
-[node name="Tall Case_049" parent="NavigationRegion3D/Level/Geometry" index="208" unique_id=1069312436]
+[node name="Tall Case_049" parent="NavigationRegion3D/Level/Geometry" index="208" unique_id=1565824358]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Tall Case_049" index="0" unique_id=490575864]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Tall Case_049" index="0" unique_id=1973858260]
 collision_layer = 4
 
-[node name="Tall Case_050" parent="NavigationRegion3D/Level/Geometry" index="209" unique_id=573326356]
+[node name="Tall Case_050" parent="NavigationRegion3D/Level/Geometry" index="209" unique_id=796687337]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Tall Case_050" index="0" unique_id=2024178819]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Tall Case_050" index="0" unique_id=461947146]
 collision_layer = 4
 
-[node name="Tall Case_051" parent="NavigationRegion3D/Level/Geometry" index="210" unique_id=444434868]
+[node name="Tall Case_051" parent="NavigationRegion3D/Level/Geometry" index="210" unique_id=1271795667]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Tall Case_051" index="0" unique_id=116572481]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Tall Case_051" index="0" unique_id=386842886]
 collision_layer = 4
 
-[node name="Tall Case_052" parent="NavigationRegion3D/Level/Geometry" index="211" unique_id=287492351]
+[node name="Tall Case_052" parent="NavigationRegion3D/Level/Geometry" index="211" unique_id=1154950013]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Tall Case_052" index="0" unique_id=1230412976]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Tall Case_052" index="0" unique_id=1561482727]
 collision_layer = 4
 
-[node name="Tall Case_053" parent="NavigationRegion3D/Level/Geometry" index="212" unique_id=1853498017]
+[node name="Tall Case_053" parent="NavigationRegion3D/Level/Geometry" index="212" unique_id=678914174]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Tall Case_053" index="0" unique_id=705171126]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Tall Case_053" index="0" unique_id=1196001623]
 collision_layer = 4
 
-[node name="Tall Case_054" parent="NavigationRegion3D/Level/Geometry" index="213" unique_id=1219111239]
+[node name="Tall Case_054" parent="NavigationRegion3D/Level/Geometry" index="213" unique_id=438433842]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Tall Case_054" index="0" unique_id=1487869531]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Tall Case_054" index="0" unique_id=1420890476]
 collision_layer = 4
 
-[node name="Tall Case_055" parent="NavigationRegion3D/Level/Geometry" index="214" unique_id=1088163579]
+[node name="Tall Case_055" parent="NavigationRegion3D/Level/Geometry" index="214" unique_id=1151180639]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Tall Case_055" index="0" unique_id=404895875]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Tall Case_055" index="0" unique_id=1588297051]
 collision_layer = 4
 
-[node name="Flat Case Medium_001" parent="NavigationRegion3D/Level/Geometry" index="215" unique_id=850120456]
+[node name="Flat Case Medium_001" parent="NavigationRegion3D/Level/Geometry" index="215" unique_id=440732165]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Flat Case Medium_001" index="0" unique_id=2030390663]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Flat Case Medium_001" index="0" unique_id=782622748]
 collision_layer = 4
 
-[node name="Flat Case Medium_002" parent="NavigationRegion3D/Level/Geometry" index="216" unique_id=1399720071]
+[node name="Flat Case Medium_002" parent="NavigationRegion3D/Level/Geometry" index="216" unique_id=1379562070]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Flat Case Medium_002" index="0" unique_id=1136771400]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Flat Case Medium_002" index="0" unique_id=19919680]
 collision_layer = 4
 
-[node name="Flat Case Medium_003" parent="NavigationRegion3D/Level/Geometry" index="217" unique_id=707876555]
+[node name="Flat Case Medium_003" parent="NavigationRegion3D/Level/Geometry" index="217" unique_id=24953520]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Flat Case Medium_003" index="0" unique_id=187685475]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Flat Case Medium_003" index="0" unique_id=335389060]
 collision_layer = 4
 
-[node name="Flat Case Medium_004" parent="NavigationRegion3D/Level/Geometry" index="218" unique_id=1175870123]
+[node name="Flat Case Medium_004" parent="NavigationRegion3D/Level/Geometry" index="218" unique_id=641386973]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Flat Case Medium_004" index="0" unique_id=1307475119]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Flat Case Medium_004" index="0" unique_id=1644432093]
 collision_layer = 4
 
-[node name="Flat Case Medium_005" parent="NavigationRegion3D/Level/Geometry" index="219" unique_id=716779841]
+[node name="Flat Case Medium_005" parent="NavigationRegion3D/Level/Geometry" index="219" unique_id=116701704]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Flat Case Medium_005" index="0" unique_id=505355246]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Flat Case Medium_005" index="0" unique_id=1303138016]
 collision_layer = 4
 
-[node name="Flat Case Medium_006" parent="NavigationRegion3D/Level/Geometry" index="220" unique_id=699225817]
+[node name="Flat Case Medium_006" parent="NavigationRegion3D/Level/Geometry" index="220" unique_id=678320161]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Flat Case Medium_006" index="0" unique_id=1275735311]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Flat Case Medium_006" index="0" unique_id=1525756102]
 collision_layer = 4
 
-[node name="Flat Case Large_001" parent="NavigationRegion3D/Level/Geometry" index="221" unique_id=570329281]
+[node name="Flat Case Large_001" parent="NavigationRegion3D/Level/Geometry" index="221" unique_id=1831437830]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Flat Case Large_001" index="0" unique_id=465480851]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Flat Case Large_001" index="0" unique_id=1411762362]
 collision_layer = 4
 
-[node name="Flat Case Large_002" parent="NavigationRegion3D/Level/Geometry" index="222" unique_id=834050903]
+[node name="Flat Case Large_002" parent="NavigationRegion3D/Level/Geometry" index="222" unique_id=132589499]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Flat Case Large_002" index="0" unique_id=2087371176]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Flat Case Large_002" index="0" unique_id=1965488258]
 collision_layer = 4
 
-[node name="Flat Case Large_003" parent="NavigationRegion3D/Level/Geometry" index="223" unique_id=177099779]
+[node name="Flat Case Large_003" parent="NavigationRegion3D/Level/Geometry" index="223" unique_id=101033929]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Flat Case Large_003" index="0" unique_id=1215729320]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Flat Case Large_003" index="0" unique_id=1459965994]
 collision_layer = 4
 
-[node name="Flat Case Large_004" parent="NavigationRegion3D/Level/Geometry" index="224" unique_id=4931484]
+[node name="Flat Case Large_004" parent="NavigationRegion3D/Level/Geometry" index="224" unique_id=1084412993]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Flat Case Large_004" index="0" unique_id=38201596]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Flat Case Large_004" index="0" unique_id=1798672776]
 collision_layer = 4
 
-[node name="Flat Case Large_005" parent="NavigationRegion3D/Level/Geometry" index="225" unique_id=2117224646]
+[node name="Flat Case Large_005" parent="NavigationRegion3D/Level/Geometry" index="225" unique_id=1544106577]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Flat Case Large_005" index="0" unique_id=610174297]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Flat Case Large_005" index="0" unique_id=659015217]
 collision_layer = 4
 
-[node name="Flat Case Square_002" parent="NavigationRegion3D/Level/Geometry" index="226" unique_id=722308562]
+[node name="Flat Case Square_002" parent="NavigationRegion3D/Level/Geometry" index="226" unique_id=1473331141]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Flat Case Square_002" index="0" unique_id=99083261]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Flat Case Square_002" index="0" unique_id=1939090388]
 collision_layer = 4
 
-[node name="Flat Case Medium_007" parent="NavigationRegion3D/Level/Geometry" index="227" unique_id=1239726820]
+[node name="Flat Case Medium_007" parent="NavigationRegion3D/Level/Geometry" index="227" unique_id=1339361052]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Flat Case Medium_007" index="0" unique_id=1725683372]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Flat Case Medium_007" index="0" unique_id=1741314545]
 collision_layer = 4
 
-[node name="Flat Case Medium_009" parent="NavigationRegion3D/Level/Geometry" index="228" unique_id=126908954]
+[node name="Flat Case Medium_009" parent="NavigationRegion3D/Level/Geometry" index="228" unique_id=1942159921]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Flat Case Medium_009" index="0" unique_id=122114864]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Flat Case Medium_009" index="0" unique_id=1015586728]
 collision_layer = 4
 
-[node name="Flat Case Medium_010" parent="NavigationRegion3D/Level/Geometry" index="229" unique_id=844714640]
+[node name="Flat Case Medium_010" parent="NavigationRegion3D/Level/Geometry" index="229" unique_id=1062955080]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Flat Case Medium_010" index="0" unique_id=586747099]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Flat Case Medium_010" index="0" unique_id=1378003227]
 collision_layer = 4
 
-[node name="Flat Case Square_003" parent="NavigationRegion3D/Level/Geometry" index="230" unique_id=945290463]
+[node name="Flat Case Square_003" parent="NavigationRegion3D/Level/Geometry" index="230" unique_id=1453916167]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Flat Case Square_003" index="0" unique_id=1718815224]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Flat Case Square_003" index="0" unique_id=1601931164]
 collision_layer = 4
 
-[node name="Flat Case Medium_008" parent="NavigationRegion3D/Level/Geometry" index="231" unique_id=1152416115]
+[node name="Flat Case Medium_008" parent="NavigationRegion3D/Level/Geometry" index="231" unique_id=523792773]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Flat Case Medium_008" index="0" unique_id=1265486181]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Flat Case Medium_008" index="0" unique_id=1736028537]
 collision_layer = 4
 
-[node name="Flat Case Medium_011" parent="NavigationRegion3D/Level/Geometry" index="232" unique_id=319621653]
+[node name="Flat Case Medium_011" parent="NavigationRegion3D/Level/Geometry" index="232" unique_id=1934585581]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Flat Case Medium_011" index="0" unique_id=1400648010]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Flat Case Medium_011" index="0" unique_id=841984783]
 collision_layer = 4
 
-[node name="Flat Case Medium_012" parent="NavigationRegion3D/Level/Geometry" index="233" unique_id=1063562955]
+[node name="Flat Case Medium_012" parent="NavigationRegion3D/Level/Geometry" index="233" unique_id=676948316]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Flat Case Medium_012" index="0" unique_id=1333975814]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Flat Case Medium_012" index="0" unique_id=380094339]
 collision_layer = 4
 
-[node name="Divider_001" parent="NavigationRegion3D/Level/Geometry" index="234" unique_id=1010341067]
+[node name="Divider_001" parent="NavigationRegion3D/Level/Geometry" index="234" unique_id=1631488298]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Divider_001" index="0" unique_id=157175235]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Divider_001" index="0" unique_id=936082304]
 collision_layer = 4
 
-[node name="Divider_002" parent="NavigationRegion3D/Level/Geometry" index="235" unique_id=1571116137]
+[node name="Divider_002" parent="NavigationRegion3D/Level/Geometry" index="235" unique_id=868656098]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Divider_002" index="0" unique_id=241203182]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Divider_002" index="0" unique_id=1816126557]
 collision_layer = 4
 
-[node name="Divider_003" parent="NavigationRegion3D/Level/Geometry" index="236" unique_id=1792336295]
+[node name="Divider_003" parent="NavigationRegion3D/Level/Geometry" index="236" unique_id=1676477717]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Divider_003" index="0" unique_id=1702981298]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Divider_003" index="0" unique_id=1467532496]
 collision_layer = 4
 
-[node name="Divider_004" parent="NavigationRegion3D/Level/Geometry" index="237" unique_id=1012830937]
+[node name="Divider_004" parent="NavigationRegion3D/Level/Geometry" index="237" unique_id=1176659456]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Divider_004" index="0" unique_id=1179291268]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Divider_004" index="0" unique_id=1278258550]
 collision_layer = 4
 
-[node name="Divider_005" parent="NavigationRegion3D/Level/Geometry" index="238" unique_id=2127642918]
+[node name="Divider_005" parent="NavigationRegion3D/Level/Geometry" index="238" unique_id=2092408585]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Divider_005" index="0" unique_id=464679489]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Divider_005" index="0" unique_id=127457442]
 collision_layer = 4
 
-[node name="Divider_006" parent="NavigationRegion3D/Level/Geometry" index="239" unique_id=292975492]
+[node name="Divider_006" parent="NavigationRegion3D/Level/Geometry" index="239" unique_id=373542825]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Divider_006" index="0" unique_id=844688246]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Divider_006" index="0" unique_id=968373440]
 collision_layer = 4
 
-[node name="Flat Case Large_006" parent="NavigationRegion3D/Level/Geometry" index="240" unique_id=1853385044]
+[node name="Flat Case Large_006" parent="NavigationRegion3D/Level/Geometry" index="240" unique_id=731200275]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Flat Case Large_006" index="0" unique_id=1344715689]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Flat Case Large_006" index="0" unique_id=273363326]
 collision_layer = 4
 
-[node name="Flat Case Large_007" parent="NavigationRegion3D/Level/Geometry" index="241" unique_id=949892250]
+[node name="Flat Case Large_007" parent="NavigationRegion3D/Level/Geometry" index="241" unique_id=1746671486]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Flat Case Large_007" index="0" unique_id=1706501034]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Flat Case Large_007" index="0" unique_id=1996315251]
 collision_layer = 4
 
-[node name="Flat Case Large_008" parent="NavigationRegion3D/Level/Geometry" index="242" unique_id=201859963]
+[node name="Flat Case Large_008" parent="NavigationRegion3D/Level/Geometry" index="242" unique_id=871049440]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Flat Case Large_008" index="0" unique_id=545308411]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Flat Case Large_008" index="0" unique_id=1090840422]
 collision_layer = 4
 
-[node name="Flat Case Large_009" parent="NavigationRegion3D/Level/Geometry" index="243" unique_id=383229133]
+[node name="Flat Case Large_009" parent="NavigationRegion3D/Level/Geometry" index="243" unique_id=1993176298]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Flat Case Large_009" index="0" unique_id=1779716268]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Flat Case Large_009" index="0" unique_id=1882051825]
 collision_layer = 4
 
-[node name="Flat Case Large_010" parent="NavigationRegion3D/Level/Geometry" index="244" unique_id=1078630170]
+[node name="Flat Case Large_010" parent="NavigationRegion3D/Level/Geometry" index="244" unique_id=403808228]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Flat Case Large_010" index="0" unique_id=1557115182]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Flat Case Large_010" index="0" unique_id=569934013]
 collision_layer = 4
 
-[node name="Flat Case Large_011" parent="NavigationRegion3D/Level/Geometry" index="245" unique_id=417719649]
+[node name="Flat Case Large_011" parent="NavigationRegion3D/Level/Geometry" index="245" unique_id=903040530]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Flat Case Large_011" index="0" unique_id=94502935]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Flat Case Large_011" index="0" unique_id=16297126]
 collision_layer = 4
 
-[node name="Flat Case Large_012" parent="NavigationRegion3D/Level/Geometry" index="246" unique_id=162067433]
+[node name="Flat Case Large_012" parent="NavigationRegion3D/Level/Geometry" index="246" unique_id=409519944]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Flat Case Large_012" index="0" unique_id=449907692]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Flat Case Large_012" index="0" unique_id=1247089535]
 collision_layer = 4
 
-[node name="Flat Case Large_013" parent="NavigationRegion3D/Level/Geometry" index="247" unique_id=904355749]
+[node name="Flat Case Large_013" parent="NavigationRegion3D/Level/Geometry" index="247" unique_id=1901774087]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Flat Case Large_013" index="0" unique_id=1484142537]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Flat Case Large_013" index="0" unique_id=1506656744]
 collision_layer = 4
 
-[node name="Flat Case Medium_013" parent="NavigationRegion3D/Level/Geometry" index="248" unique_id=304890069]
+[node name="Flat Case Medium_013" parent="NavigationRegion3D/Level/Geometry" index="248" unique_id=805373037]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Flat Case Medium_013" index="0" unique_id=1749577581]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Flat Case Medium_013" index="0" unique_id=2052377819]
 collision_layer = 4
 
-[node name="Flat Case Medium_014" parent="NavigationRegion3D/Level/Geometry" index="249" unique_id=335828135]
+[node name="Flat Case Medium_014" parent="NavigationRegion3D/Level/Geometry" index="249" unique_id=1315863014]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Flat Case Medium_014" index="0" unique_id=1132145031]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Flat Case Medium_014" index="0" unique_id=105124129]
 collision_layer = 4
 
-[node name="Medium Height Case_002" parent="NavigationRegion3D/Level/Geometry" index="250" unique_id=1952450161]
+[node name="Medium Height Case_002" parent="NavigationRegion3D/Level/Geometry" index="250" unique_id=1689752958]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Medium Height Case_002" index="0" unique_id=1327471456]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Medium Height Case_002" index="0" unique_id=1863191119]
 collision_layer = 4
 
-[node name="Medium Height Case_003" parent="NavigationRegion3D/Level/Geometry" index="251" unique_id=304948194]
+[node name="Medium Height Case_003" parent="NavigationRegion3D/Level/Geometry" index="251" unique_id=1469893574]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Medium Height Case_003" index="0" unique_id=287472578]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Medium Height Case_003" index="0" unique_id=2135948299]
 collision_layer = 4
 
-[node name="Medium Height Case_004" parent="NavigationRegion3D/Level/Geometry" index="252" unique_id=1009672454]
+[node name="Medium Height Case_004" parent="NavigationRegion3D/Level/Geometry" index="252" unique_id=1619427478]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Medium Height Case_004" index="0" unique_id=563754272]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Medium Height Case_004" index="0" unique_id=512967775]
 collision_layer = 4
 
-[node name="Medium Height Case_005" parent="NavigationRegion3D/Level/Geometry" index="253" unique_id=1389122000]
+[node name="Medium Height Case_005" parent="NavigationRegion3D/Level/Geometry" index="253" unique_id=270430027]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Medium Height Case_005" index="0" unique_id=579779148]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Medium Height Case_005" index="0" unique_id=516774371]
 collision_layer = 4
 
-[node name="Medium Height Case_006" parent="NavigationRegion3D/Level/Geometry" index="254" unique_id=297581562]
+[node name="Medium Height Case_006" parent="NavigationRegion3D/Level/Geometry" index="254" unique_id=1570444901]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Medium Height Case_006" index="0" unique_id=1293287589]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Medium Height Case_006" index="0" unique_id=448854216]
 collision_layer = 4
 
-[node name="Medium Height Case_007" parent="NavigationRegion3D/Level/Geometry" index="255" unique_id=92453197]
+[node name="Medium Height Case_007" parent="NavigationRegion3D/Level/Geometry" index="255" unique_id=550688772]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Medium Height Case_007" index="0" unique_id=458529392]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Medium Height Case_007" index="0" unique_id=266164630]
 collision_layer = 4
 
-[node name="Medium Height Case_008" parent="NavigationRegion3D/Level/Geometry" index="256" unique_id=1855182573]
+[node name="Medium Height Case_008" parent="NavigationRegion3D/Level/Geometry" index="256" unique_id=812595654]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Medium Height Case_008" index="0" unique_id=1765300502]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Medium Height Case_008" index="0" unique_id=755459877]
 collision_layer = 4
 
-[node name="Medium Height Case_009" parent="NavigationRegion3D/Level/Geometry" index="257" unique_id=1643934565]
+[node name="Medium Height Case_009" parent="NavigationRegion3D/Level/Geometry" index="257" unique_id=480426549]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Medium Height Case_009" index="0" unique_id=1406524575]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Medium Height Case_009" index="0" unique_id=1099338133]
 collision_layer = 4
 
-[node name="Medium Height Case_010" parent="NavigationRegion3D/Level/Geometry" index="258" unique_id=1513784195]
+[node name="Medium Height Case_010" parent="NavigationRegion3D/Level/Geometry" index="258" unique_id=1202929513]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Medium Height Case_010" index="0" unique_id=1938978700]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Medium Height Case_010" index="0" unique_id=631510729]
 collision_layer = 4
 
-[node name="Medium Height Case_011" parent="NavigationRegion3D/Level/Geometry" index="259" unique_id=429896886]
+[node name="Medium Height Case_011" parent="NavigationRegion3D/Level/Geometry" index="259" unique_id=88273785]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Medium Height Case_011" index="0" unique_id=286674654]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Medium Height Case_011" index="0" unique_id=1485654825]
 collision_layer = 4
 
-[node name="Cube_041" parent="NavigationRegion3D/Level/Geometry" index="260" unique_id=1424418677]
+[node name="Cube_041" parent="NavigationRegion3D/Level/Geometry" index="260" unique_id=288473017]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Cube_041" index="0" unique_id=527447013]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Cube_041" index="0" unique_id=1179261493]
 collision_layer = 4
 
-[node name="Cube_042" parent="NavigationRegion3D/Level/Geometry" index="261" unique_id=1994329316]
+[node name="Cube_042" parent="NavigationRegion3D/Level/Geometry" index="261" unique_id=41269674]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Cube_042" index="0" unique_id=1145124647]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Cube_042" index="0" unique_id=1931640094]
 collision_layer = 4
 
-[node name="Cube_043" parent="NavigationRegion3D/Level/Geometry" index="262" unique_id=1803567513]
+[node name="Cube_043" parent="NavigationRegion3D/Level/Geometry" index="262" unique_id=1177361774]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Cube_043" index="0" unique_id=1827341892]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Cube_043" index="0" unique_id=1573292123]
 collision_layer = 4
 
-[node name="Cube_044" parent="NavigationRegion3D/Level/Geometry" index="263" unique_id=1230467136]
+[node name="Cube_044" parent="NavigationRegion3D/Level/Geometry" index="263" unique_id=1887362874]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Cube_044" index="0" unique_id=662058097]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Cube_044" index="0" unique_id=424675273]
 collision_layer = 4
 
-[node name="Cube_045" parent="NavigationRegion3D/Level/Geometry" index="264" unique_id=1117428242]
+[node name="Cube_045" parent="NavigationRegion3D/Level/Geometry" index="264" unique_id=1150589116]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Cube_045" index="0" unique_id=1185070386]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Cube_045" index="0" unique_id=203356145]
 collision_layer = 4
 
-[node name="Cube_046" parent="NavigationRegion3D/Level/Geometry" index="265" unique_id=1858409128]
+[node name="Cube_046" parent="NavigationRegion3D/Level/Geometry" index="265" unique_id=749384858]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Cube_046" index="0" unique_id=396368574]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Cube_046" index="0" unique_id=1656234314]
 collision_layer = 4
 
-[node name="Cube_047" parent="NavigationRegion3D/Level/Geometry" index="266" unique_id=1380860627]
+[node name="Cube_047" parent="NavigationRegion3D/Level/Geometry" index="266" unique_id=455276370]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Cube_047" index="0" unique_id=1267516778]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Cube_047" index="0" unique_id=696828576]
 collision_layer = 4
 
-[node name="Cube_048" parent="NavigationRegion3D/Level/Geometry" index="267" unique_id=1271997737]
+[node name="Cube_048" parent="NavigationRegion3D/Level/Geometry" index="267" unique_id=881415382]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Cube_048" index="0" unique_id=93594669]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Cube_048" index="0" unique_id=1798821261]
 collision_layer = 4
 
-[node name="Medium Height Case_012" parent="NavigationRegion3D/Level/Geometry" index="268" unique_id=1010096892]
+[node name="Medium Height Case_012" parent="NavigationRegion3D/Level/Geometry" index="268" unique_id=1973735271]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Medium Height Case_012" index="0" unique_id=247230292]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Medium Height Case_012" index="0" unique_id=1430447829]
 collision_layer = 4
 
-[node name="Medium Height Case_013" parent="NavigationRegion3D/Level/Geometry" index="269" unique_id=1919456262]
+[node name="Medium Height Case_013" parent="NavigationRegion3D/Level/Geometry" index="269" unique_id=318324501]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Medium Height Case_013" index="0" unique_id=1131025297]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Medium Height Case_013" index="0" unique_id=2077819343]
 collision_layer = 4
 
-[node name="Medium Height Case_014" parent="NavigationRegion3D/Level/Geometry" index="270" unique_id=1546462362]
+[node name="Medium Height Case_014" parent="NavigationRegion3D/Level/Geometry" index="270" unique_id=263488411]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Medium Height Case_014" index="0" unique_id=1696508085]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Medium Height Case_014" index="0" unique_id=1524249702]
 collision_layer = 4
 
-[node name="Medium Height Case_015" parent="NavigationRegion3D/Level/Geometry" index="271" unique_id=1500140300]
+[node name="Medium Height Case_015" parent="NavigationRegion3D/Level/Geometry" index="271" unique_id=1774351903]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Medium Height Case_015" index="0" unique_id=1470934866]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Medium Height Case_015" index="0" unique_id=840303200]
 collision_layer = 4
 
-[node name="Medium Height Case_016" parent="NavigationRegion3D/Level/Geometry" index="272" unique_id=1343056008]
+[node name="Medium Height Case_016" parent="NavigationRegion3D/Level/Geometry" index="272" unique_id=1032070053]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Medium Height Case_016" index="0" unique_id=607524809]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Medium Height Case_016" index="0" unique_id=299742754]
 collision_layer = 4
 
-[node name="Medium Height Case_017" parent="NavigationRegion3D/Level/Geometry" index="273" unique_id=904869102]
+[node name="Medium Height Case_017" parent="NavigationRegion3D/Level/Geometry" index="273" unique_id=1114164060]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Medium Height Case_017" index="0" unique_id=280923369]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Medium Height Case_017" index="0" unique_id=885655933]
 collision_layer = 4
 
-[node name="Medium Height Case_018" parent="NavigationRegion3D/Level/Geometry" index="274" unique_id=1872337278]
+[node name="Medium Height Case_018" parent="NavigationRegion3D/Level/Geometry" index="274" unique_id=637449144]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Medium Height Case_018" index="0" unique_id=1566502047]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Medium Height Case_018" index="0" unique_id=2043454460]
 collision_layer = 4
 
-[node name="Medium Height Case_019" parent="NavigationRegion3D/Level/Geometry" index="275" unique_id=15986647]
+[node name="Medium Height Case_019" parent="NavigationRegion3D/Level/Geometry" index="275" unique_id=1112390002]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Medium Height Case_019" index="0" unique_id=1737580037]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Medium Height Case_019" index="0" unique_id=58371723]
 collision_layer = 4
 
-[node name="Medium Height Case_020" parent="NavigationRegion3D/Level/Geometry" index="276" unique_id=91954863]
+[node name="Medium Height Case_020" parent="NavigationRegion3D/Level/Geometry" index="276" unique_id=1245885003]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Medium Height Case_020" index="0" unique_id=1047700408]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Medium Height Case_020" index="0" unique_id=1052481464]
 collision_layer = 4
 
-[node name="Medium Height Case_021" parent="NavigationRegion3D/Level/Geometry" index="277" unique_id=1389197669]
+[node name="Medium Height Case_021" parent="NavigationRegion3D/Level/Geometry" index="277" unique_id=846542028]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Medium Height Case_021" index="0" unique_id=465469387]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Medium Height Case_021" index="0" unique_id=241218570]
 collision_layer = 4
 
-[node name="Medium Height Case_022" parent="NavigationRegion3D/Level/Geometry" index="278" unique_id=891587707]
+[node name="Medium Height Case_022" parent="NavigationRegion3D/Level/Geometry" index="278" unique_id=654817295]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Medium Height Case_022" index="0" unique_id=1049764350]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Medium Height Case_022" index="0" unique_id=1036828326]
 collision_layer = 4
 
-[node name="Medium Height Case_023" parent="NavigationRegion3D/Level/Geometry" index="279" unique_id=754866478]
+[node name="Medium Height Case_023" parent="NavigationRegion3D/Level/Geometry" index="279" unique_id=1697712493]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Medium Height Case_023" index="0" unique_id=1482664605]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Medium Height Case_023" index="0" unique_id=2103315572]
 collision_layer = 4
 
-[node name="Medium Height Case_024" parent="NavigationRegion3D/Level/Geometry" index="280" unique_id=1580157090]
+[node name="Medium Height Case_024" parent="NavigationRegion3D/Level/Geometry" index="280" unique_id=1403031647]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Medium Height Case_024" index="0" unique_id=527385576]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Medium Height Case_024" index="0" unique_id=1672626929]
 collision_layer = 4
 
-[node name="Medium Height Case_025" parent="NavigationRegion3D/Level/Geometry" index="281" unique_id=326346727]
+[node name="Medium Height Case_025" parent="NavigationRegion3D/Level/Geometry" index="281" unique_id=12299473]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Medium Height Case_025" index="0" unique_id=140739575]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Medium Height Case_025" index="0" unique_id=1556784616]
 collision_layer = 4
 
-[node name="Medium Height Case_026" parent="NavigationRegion3D/Level/Geometry" index="282" unique_id=1823016606]
+[node name="Medium Height Case_026" parent="NavigationRegion3D/Level/Geometry" index="282" unique_id=1490925716]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Medium Height Case_026" index="0" unique_id=1792689934]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Medium Height Case_026" index="0" unique_id=212178209]
 collision_layer = 4
 
-[node name="Medium Height Case_027" parent="NavigationRegion3D/Level/Geometry" index="283" unique_id=285742877]
+[node name="Medium Height Case_027" parent="NavigationRegion3D/Level/Geometry" index="283" unique_id=128725376]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Medium Height Case_027" index="0" unique_id=1468411747]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Medium Height Case_027" index="0" unique_id=1763790165]
 collision_layer = 4
 
-[node name="Medium Height Case_028" parent="NavigationRegion3D/Level/Geometry" index="284" unique_id=543638386]
+[node name="Medium Height Case_028" parent="NavigationRegion3D/Level/Geometry" index="284" unique_id=331830154]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Medium Height Case_028" index="0" unique_id=437103236]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Medium Height Case_028" index="0" unique_id=1709068400]
 collision_layer = 4
 
-[node name="Medium Height Case_029" parent="NavigationRegion3D/Level/Geometry" index="285" unique_id=705530496]
+[node name="Medium Height Case_029" parent="NavigationRegion3D/Level/Geometry" index="285" unique_id=428577379]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Medium Height Case_029" index="0" unique_id=24722250]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Medium Height Case_029" index="0" unique_id=363421133]
 collision_layer = 4
 
-[node name="Medium Height Case_030" parent="NavigationRegion3D/Level/Geometry" index="286" unique_id=1012576712]
+[node name="Medium Height Case_030" parent="NavigationRegion3D/Level/Geometry" index="286" unique_id=1868334026]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Medium Height Case_030" index="0" unique_id=787774037]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Medium Height Case_030" index="0" unique_id=1384884158]
 collision_layer = 4
 
-[node name="Medium Height Case_031" parent="NavigationRegion3D/Level/Geometry" index="287" unique_id=51086810]
+[node name="Medium Height Case_031" parent="NavigationRegion3D/Level/Geometry" index="287" unique_id=1746533317]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Medium Height Case_031" index="0" unique_id=66102019]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Medium Height Case_031" index="0" unique_id=102922822]
 collision_layer = 4
 
-[node name="Medium Height Case_032" parent="NavigationRegion3D/Level/Geometry" index="288" unique_id=1971677348]
+[node name="Medium Height Case_032" parent="NavigationRegion3D/Level/Geometry" index="288" unique_id=406016150]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Medium Height Case_032" index="0" unique_id=1949842054]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Medium Height Case_032" index="0" unique_id=217622516]
 collision_layer = 4
 
-[node name="Medium Height Case_033" parent="NavigationRegion3D/Level/Geometry" index="289" unique_id=974244050]
+[node name="Medium Height Case_033" parent="NavigationRegion3D/Level/Geometry" index="289" unique_id=1588896079]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Medium Height Case_033" index="0" unique_id=1810721722]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Medium Height Case_033" index="0" unique_id=1989415676]
 collision_layer = 4
 
-[node name="Medium Height Case_034" parent="NavigationRegion3D/Level/Geometry" index="290" unique_id=378848199]
+[node name="Medium Height Case_034" parent="NavigationRegion3D/Level/Geometry" index="290" unique_id=429419642]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Medium Height Case_034" index="0" unique_id=163003360]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Medium Height Case_034" index="0" unique_id=837450398]
 collision_layer = 4
 
-[node name="Medium Height Case_035" parent="NavigationRegion3D/Level/Geometry" index="291" unique_id=1114936008]
+[node name="Medium Height Case_035" parent="NavigationRegion3D/Level/Geometry" index="291" unique_id=618112946]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Medium Height Case_035" index="0" unique_id=1153182295]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Medium Height Case_035" index="0" unique_id=149918500]
 collision_layer = 4
 
-[node name="Cube_053" parent="NavigationRegion3D/Level/Geometry" index="292" unique_id=1367955303]
+[node name="Cube_053" parent="NavigationRegion3D/Level/Geometry" index="292" unique_id=1891950779]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Cube_053" index="0" unique_id=968727073]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Cube_053" index="0" unique_id=545743871]
 collision_layer = 4
 
-[node name="Cube_054" parent="NavigationRegion3D/Level/Geometry" index="293" unique_id=1169571957]
+[node name="Cube_054" parent="NavigationRegion3D/Level/Geometry" index="293" unique_id=597149741]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Cube_054" index="0" unique_id=291427265]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Cube_054" index="0" unique_id=1879626295]
 collision_layer = 4
 
-[node name="Cube_055" parent="NavigationRegion3D/Level/Geometry" index="294" unique_id=110018588]
+[node name="Cube_055" parent="NavigationRegion3D/Level/Geometry" index="294" unique_id=1161350255]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Cube_055" index="0" unique_id=1504491243]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Cube_055" index="0" unique_id=2144967687]
 collision_layer = 4
 
-[node name="Cube_056" parent="NavigationRegion3D/Level/Geometry" index="295" unique_id=557962540]
+[node name="Cube_056" parent="NavigationRegion3D/Level/Geometry" index="295" unique_id=1030186284]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Cube_056" index="0" unique_id=724272838]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Cube_056" index="0" unique_id=1414353824]
 collision_layer = 4
 
-[node name="Cube_057" parent="NavigationRegion3D/Level/Geometry" index="296" unique_id=1444271382]
+[node name="Cube_057" parent="NavigationRegion3D/Level/Geometry" index="296" unique_id=625898451]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Cube_057" index="0" unique_id=1748292925]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Cube_057" index="0" unique_id=1625455887]
 collision_layer = 4
 
-[node name="Cube_058" parent="NavigationRegion3D/Level/Geometry" index="297" unique_id=2055879792]
+[node name="Cube_058" parent="NavigationRegion3D/Level/Geometry" index="297" unique_id=84931114]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Cube_058" index="0" unique_id=1833079495]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Cube_058" index="0" unique_id=1139001688]
 collision_layer = 4
 
-[node name="Cube_059" parent="NavigationRegion3D/Level/Geometry" index="298" unique_id=94467684]
+[node name="Cube_059" parent="NavigationRegion3D/Level/Geometry" index="298" unique_id=1708137158]
 layers = 4
 
-[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Cube_059" index="0" unique_id=2139226517]
+[node name="StaticBody3D" parent="NavigationRegion3D/Level/Geometry/Cube_059" index="0" unique_id=1995398547]
 collision_layer = 4
 
 [node name="OmniLight3D" type="OmniLight3D" parent="NavigationRegion3D/Level" unique_id=1103019400]
@@ -4392,12 +4364,8 @@ script = ExtResource("7_klq6b")
 player = NodePath("../Player")
 bunny = NodePath("../Bunny")
 
-[node name="EbTrigger" parent="." unique_id=1078263301 node_paths=PackedStringArray("trigger_guard_node") groups=["EbEventEmitter"] instance=ExtResource("8_b121j")]
+[node name="EbTrigger" parent="." unique_id=1078263301 groups=["EbEventEmitter"] instance=ExtResource("8_b121j")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.159697, 0, -22.087618)
-trigger_set_idle_behavior = true
-behavior_to_set = 1
-trigger_guard_nearby_max_distance = 4.0
-trigger_guard_node = NodePath("../SearchZones/A_1/SearchNode6")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="EbTrigger" unique_id=281914353]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.31292725, 1.96875, -0.5503578)
