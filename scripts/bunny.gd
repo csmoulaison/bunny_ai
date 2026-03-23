@@ -198,6 +198,7 @@ func _ready():
 		var nodes: Array[Node] = zone.get_children()
 		for node in nodes:
 			if node is SearchNode:
+				print("search node back!")
 				search_nodes.push_back(node)
 
 	# Initialize state
@@ -297,7 +298,7 @@ func process_sound(origin: Vector3, type: Sound.Type):
 	var actual_distance: float = global_position.distance_to(origin) / 100.0
 	var distance_score = actual_distance
 	
-	if actual_distance < stats.airhorn_stun_radius:
+	if type == Sound.Type.AIRHORN && actual_distance < stats.airhorn_stun_radius:
 		stun_timer = airhorn_response_curve.sample(distance_score)
 		if stun_timer < 2.0: stun_timer = 2.0
 		return
@@ -448,19 +449,14 @@ func generate_explore_nodes_from_zone_at_position(pos: Vector3):
 func generate_explore_nodes_from_zones(zones: Array[SearchZone]):
 	explore_node_indices.clear()
 	for zone in zones:
-		var zone_nodes: Array[Node] = zone.get_children()
 		var zone_i: int = 0
 		for i in search_nodes.size():
-			while zone_nodes[zone_i] is not SearchNode:
-				zone_i += 1
-				if zone_i >= zone_nodes.size(): break
-			if zone_i >= zone_nodes.size(): break
+			if zone_i >= zone.search_nodes.size(): break
 				
 			var node: SearchNode = search_nodes[i]
-			if node == zone_nodes[zone_i]:
+			if node == zone.search_nodes[zone_i]:
 				explore_node_indices.push_back(i)
 				zone_i += 1
-				if zone_i >= zone_nodes.size(): break
 
 func generate_explore_nodes_from_point(center: Vector3, radius: float):
 	explore_node_indices.clear()
@@ -507,8 +503,6 @@ func update_and_explore_nodes(dt: float):
 
 # lmao naming things. Operates move/listen/think state machine, returning true 
 # if another target is needed.
-# TODO(conner): ensure our target is already set at the beginning of a new mode
-# being set. These, I suppose, should happen in the _on_set callbacks.
 func explore_traverse_is_ready_for_target(dt: float) -> bool:
 	match explore_state:
 		ExploreState.MOVE:

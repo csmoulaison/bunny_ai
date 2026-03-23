@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://klmjto4c8wlw"]
 
 [ext_resource type="Script" uid="uid://kit8wmpo23ke" path="res://scripts/search_node.gd" id="1_cpsei"]
+[ext_resource type="Script" uid="uid://crgvgnwq60y5n" path="res://scenes/debug_sphere.gd" id="2_w1obl"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_cpsei"]
 
@@ -9,10 +10,11 @@ resource_local_to_scene = true
 transparency = 1
 albedo_color = Color(0, 1, 0, 0.5019608)
 
-[node name="SearchNode" type="Node3D" unique_id=1519857486 node_paths=PackedStringArray("debug_mesh")]
+[node name="SearchNode" type="Node3D" unique_id=1519857486]
 script = ExtResource("1_cpsei")
-debug_mesh = NodePath("DebugSphere")
+use_debug_sphere = false
 
 [node name="DebugSphere" type="MeshInstance3D" parent="." unique_id=1439985360]
 mesh = SubResource("SphereMesh_cpsei")
 surface_material_override/0 = SubResource("StandardMaterial3D_cpsei")
+script = ExtResource("2_w1obl")
