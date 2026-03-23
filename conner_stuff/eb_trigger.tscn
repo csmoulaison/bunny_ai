@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://c1nhwmveg0ahq"]
+
+[ext_resource type="Script" uid="uid://sjgsxh1qn1ry" path="res://scripts/eb_trigger.gd" id="1_wkabk"]
+
+[node name="EbTrigger" type="Area3D" unique_id=1078263301]
+script = ExtResource("1_wkabk")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
