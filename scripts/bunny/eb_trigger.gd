@@ -1,18 +1,5 @@
 class_name EbTrigger extends Area3D
 
-signal eb_sound(origin: Vector3, type: Sound.Type)
-signal eb_set_stats(stats: BunnyStats)
-signal eb_set_can_hunt_player(can_hunt: bool)
-signal eb_set_can_kill_player(can_kill: bool)
-signal eb_set_explore_zone_static(zones: Array[SearchZone])
-signal eb_set_explore_zone_follow_guess(initial_zones: Array[SearchZone])
-signal eb_set_explore_zone_follow_player()
-signal eb_set_explore_radius_static(center: Vector3, radius: float)
-signal eb_set_explore_radius_follow_player(radius: float)
-signal eb_set_explore_patrol(path: Array[Node3D])
-signal eb_set_explore_stay_in_place(pos: Vector3)
-signal eb_set_explore_always_hunt()
-
 @export_group("Emit Sound")
 @export var trigger_sound: bool
 @export var sound_origin: Vector3
@@ -45,28 +32,28 @@ func _on_body_entered(body: Node3D):
 		return
 	
 	if trigger_sound:
-		eb_sound.emit(sound_origin, sound_type)
+		EventBus.eb_sound.emit(sound_origin, sound_type)
 	if trigger_set_stats:
-		eb_set_stats.emit(stats)
+		EventBus.eb_set_stats.emit(stats)
 	if trigger_set_can_hunt_player:
-		eb_set_can_hunt_player.emit(can_hunt_player)
+		EventBus.eb_set_can_hunt_player.emit(can_hunt_player)
 	if trigger_set_can_kill_player:
-		eb_set_can_kill_player.emit(can_kill_player)
+		EventBus.eb_set_can_kill_player.emit(can_kill_player)
 	if trigger_set_explore_behavior:
 		match behavior:
 			Bunny.ExploreBehavior.ZONE_STATIC:
-				eb_set_explore_zone_static.emit(explore_zones)
+				EventBus.eb_set_explore_zone_static.emit(explore_zones)
 			Bunny.ExploreBehavior.ZONE_FOLLOW_GUESS:
-				eb_set_explore_zone_follow_guess.emit(explore_zones)
+				EventBus.eb_set_explore_zone_follow_guess.emit(explore_zones)
 			Bunny.ExploreBehavior.ZONE_FOLLOW_PLAYER:
-				eb_set_explore_zone_follow_player.emit()
+				EventBus.eb_set_explore_zone_follow_player.emit()
 			Bunny.ExploreBehavior.RADIUS_STATIC:
-				eb_set_explore_radius_static.emit(point_center, point_radius)
+				EventBus.eb_set_explore_radius_static.emit(point_center, point_radius)
 			Bunny.ExploreBehavior.RADIUS_FOLLOW_PLAYER:
-				eb_set_explore_radius_follow_player.emit(point_radius)
+				EventBus.eb_set_explore_radius_follow_player.emit(point_radius)
 			Bunny.ExploreBehavior.PATROL:
-				eb_set_explore_patrol.emit(patrol_nodes)
+				EventBus.eb_set_explore_patrol.emit(patrol_nodes)
 			Bunny.ExploreBehavior.ALWAYS_HUNT:
-				eb_set_explore_always_hunt.emit()
+				EventBus.eb_set_explore_always_hunt.emit()
 			Bunny.ExploreBehavior.STAY_IN_PLACE:
-				eb_set_explore_stay_in_place.emit(point_center)
+				EventBus.eb_set_explore_stay_in_place.emit(point_center)

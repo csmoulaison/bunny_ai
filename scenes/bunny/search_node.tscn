@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://klmjto4c8wlw"]
 
-[ext_resource type="Script" uid="uid://kit8wmpo23ke" path="res://scripts/search_node.gd" id="1_cpsei"]
-[ext_resource type="Script" uid="uid://crgvgnwq60y5n" path="res://scenes/debug_sphere.gd" id="2_w1obl"]
+[ext_resource type="Script" uid="uid://kit8wmpo23ke" path="res://scripts/bunny/search_node.gd" id="1_cpsei"]
+[ext_resource type="Script" uid="uid://crgvgnwq60y5n" path="res://scenes/bunny/debug_sphere.gd" id="2_w1obl"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_cpsei"]
 

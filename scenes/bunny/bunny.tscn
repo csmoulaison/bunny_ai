@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://6epy3hh1yt6f"]
 
-[ext_resource type="Script" uid="uid://htq1ecmu2oxk" path="res://scripts/bunny.gd" id="1_vonwv"]
-[ext_resource type="Script" uid="uid://dosfk808iv10s" path="res://scripts/bunny_stats.gd" id="2_kdyof"]
-[ext_resource type="Script" uid="uid://cr4nj8qg3dyqg" path="res://scripts/bunny_debug.gd" id="3_e4qck"]
-[ext_resource type="Script" uid="uid://did4dbiqjy8a4" path="res://scripts/sound_curve.gd" id="5_g5rs1"]
+[ext_resource type="Script" uid="uid://htq1ecmu2oxk" path="res://scripts/bunny/bunny.gd" id="1_vonwv"]
+[ext_resource type="Script" uid="uid://dosfk808iv10s" path="res://scripts/bunny/bunny_stats.gd" id="2_kdyof"]
+[ext_resource type="Script" uid="uid://cr4nj8qg3dyqg" path="res://scripts/bunny/bunny_debug.gd" id="3_e4qck"]
+[ext_resource type="Script" uid="uid://did4dbiqjy8a4" path="res://scripts/bunny/sound_curve.gd" id="5_g5rs1"]
 
 [sub_resource type="Resource" id="Resource_ggkmg"]
 script = ExtResource("2_kdyof")

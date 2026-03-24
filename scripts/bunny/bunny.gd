@@ -161,34 +161,18 @@ func _ready():
 	player = get_tree().get_first_node_in_group("Player")
 	
 	# Listen for event emitters
-	var event_emitter = get_tree().get_nodes_in_group("EbEventEmitter")
-	for emitter in event_emitter:
-		var signal_list = emitter.get_signal_list()
-		for signal_dictionary in signal_list:
-			if signal_dictionary.name == "eb_sound":
-				emitter.eb_sound.connect(_on_sound)
-			if signal_dictionary.name == "eb_set_stats":
-				emitter.eb_set_stats.connect(_on_set_stats)
-			if signal_dictionary.name == "eb_set_can_hunt_player":
-				emitter.eb_set_can_hunt_player.connect(_on_set_can_hunt_player)
-			if signal_dictionary.name == "eb_set_can_kill_player":
-				emitter.eb_set_can_kill_player.connect(_on_set_can_kill_player)
-			if signal_dictionary.name == "eb_set_explore_zone_static":
-				emitter.eb_set_explore_zone_static.connect(_on_set_explore_zone_static)
-			if signal_dictionary.name == "eb_set_explore_zone_follow_guess":
-				emitter.eb_set_explore_zone_follow_guess.connect(_on_set_explore_zone_follow_guess)
-			if signal_dictionary.name == "eb_set_explore_zone_follow_player":
-				emitter.eb_set_explore_zone_follow_player.connect(_on_set_explore_zone_follow_player)
-			if signal_dictionary.name == "eb_set_explore_radius_static":
-				emitter.eb_set_explore_radius_static.connect(_on_set_explore_radius_static)
-			if signal_dictionary.name == "eb_set_explore_radius_follow_player":
-				emitter.eb_set_explore_radius_follow_player.connect(_on_set_explore_radius_follow_player)
-			if signal_dictionary.name == "eb_set_explore_patrol":
-				emitter.eb_set_explore_patrol.connect(_on_set_explore_patrol)
-			if signal_dictionary.name == "eb_set_explore_always_hunt":
-				emitter.eb_set_explore_always_hunt.connect(_on_set_explore_always_hunt)
-			if signal_dictionary.name == "eb_set_explore_stay_in_place":
-				emitter.eb_set_explore_stay_in_place.connect(_on_set_explore_stay_in_place)
+	EventBus.eb_sound.connect(_on_sound)
+	EventBus.eb_set_stats.connect(_on_set_stats)
+	EventBus.eb_set_can_hunt_player.connect(_on_set_can_hunt_player)
+	EventBus.eb_set_can_kill_player.connect(_on_set_can_kill_player)
+	EventBus.eb_set_explore_zone_static.connect(_on_set_explore_zone_static)
+	EventBus.eb_set_explore_zone_follow_guess.connect(_on_set_explore_zone_follow_guess)
+	EventBus.eb_set_explore_zone_follow_player.connect(_on_set_explore_zone_follow_player)
+	EventBus.eb_set_explore_radius_static.connect(_on_set_explore_radius_static)
+	EventBus.eb_set_explore_radius_follow_player.connect(_on_set_explore_radius_follow_player)
+	EventBus.eb_set_explore_patrol.connect(_on_set_explore_patrol)
+	EventBus.eb_set_explore_always_hunt.connect(_on_set_explore_always_hunt)
+	EventBus.eb_set_explore_stay_in_place.connect(_on_set_explore_stay_in_place)
 
 	# Populate search nodes
 	var tmp_zones = search_zones_parent.get_children()
@@ -198,7 +182,6 @@ func _ready():
 		var nodes: Array[Node] = zone.get_children()
 		for node in nodes:
 			if node is SearchNode:
-				print("search node back!")
 				search_nodes.push_back(node)
 
 	# Initialize state

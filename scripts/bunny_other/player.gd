@@ -1,7 +1,6 @@
 extends CharacterBody3D
 
-signal eb_sound(pos: Vector3, type: Sound.Type)
-const egg_scene = preload("res://scenes/thrown_egg.tscn")
+const egg_scene = preload("res://scenes/bunny_other/thrown_egg.tscn")
 
 enum MoveState {
 	WALK,
@@ -72,18 +71,18 @@ func _process(dt: float):
 	if Input.is_action_just_pressed("airhorn"):
 		print("Airhorn!")
 		$AirhornSound.play()
-		eb_sound.emit(get_sound_position(), Sound.Type.AIRHORN)
+		EventBus.eb_sound.emit(get_sound_position(), Sound.Type.AIRHORN)
 		
 	breath_cooldown -= dt
 	if breath_cooldown < 0.0:
 		#print("breath!")
 		$BreathSound.play()
-		eb_sound.emit(get_sound_position(), Sound.Type.BREATH)
+		EventBus.eb_sound.emit(get_sound_position(), Sound.Type.BREATH)
 		breath_cooldown = breath_interval
 
 func on_egg_collide(pos: Vector3, _body: Node3D):
 	pos.y = 0.0
-	eb_sound.emit(Vector3(pos.x, 0.0, pos.z), Sound.Type.EGG_NORMAL)
+	EventBus.eb_sound.emit(Vector3(pos.x, 0.0, pos.z), Sound.Type.EGG_NORMAL)
 
 func _physics_process(dt: float):
 	var input  = Vector2.ZERO
@@ -139,7 +138,7 @@ func _physics_process(dt: float):
 			footstep_cooldown = footstep_interval
 			$FootstepSound.volume_db = footstep_volume_db
 			$FootstepSound.play()
-			eb_sound.emit(get_sound_position(), footstep_sound)
+			EventBus.eb_sound.emit(get_sound_position(), footstep_sound)
 	else:
 		footstep_cooldown = 0.0
 			

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://c5h0tthfxoku1"]
 
-[ext_resource type="Script" uid="uid://l6cgv6m48wre" path="res://scripts/thown_egg.gd" id="1_bg8j3"]
+[ext_resource type="Script" uid="uid://l6cgv6m48wre" path="res://scripts/bunny_other/thown_egg.gd" id="1_xgdx1"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_t01cm"]
 
@@ -14,7 +14,7 @@ collision_priority = 5.0
 continuous_cd = true
 contact_monitor = true
 max_contacts_reported = 8
-script = ExtResource("1_bg8j3")
+script = ExtResource("1_xgdx1")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=607819248]
 transform = Transform3D(0.275, 0, 0, 0, 0.275, 0, 0, 0, 0.275, 0, 0, 0)
